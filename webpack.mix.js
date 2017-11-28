@@ -1,5 +1,5 @@
 let mix = require('laravel-mix');
-
+var path = require('path')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,5 +11,28 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.webpackConfig({
+
+  devtool:'eval-source-map',
+
+  resolve:{
+
+    alias:{
+
+      Components:path.resolve(__dirname,'resources/assets/js/components'),
+      Layouts:path.resolve(__dirname,'resources/assets/js/layouts'),
+      Sass:path.resolve(__dirname,'resources/assets/sass'),
+      Images:path.resolve(__dirname,'resources/assets/images'),
+
+    }
+
+  },
+
+
+
+
+})
+
+
+
+// mix.react('resources/assets/js/index.js', 'public/js')
