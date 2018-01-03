@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/{section}', function () {
     return view('welcome');
-});
+})->where(['section' => '.*']);

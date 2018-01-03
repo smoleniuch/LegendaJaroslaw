@@ -1,6 +1,44 @@
-// your bootstrap default overrides here
+@import '~Sass/variables/_colors';
+@import '~Sass/mixins/_media';
+@import '~Sass/mixins/_size';
 
-.main-navbar {
+.main-navbar-container {
 
 
+  .main-navbar {
+
+
+    // background-color:white;
+    // border-color:$color-primary-4;
+
+  }
+
+  .azs-legenda-logo {
+
+    border-radius:50%;
+    z-index:2;
+    @include square(50px);
+
+  }
+
+  @include media('screen', '>mediumWidth'){
+
+    // .container {
+    //
+    //   max-width:calc(100vw - 300px)
+    //
+    // }
+    // max-width: calc(100vw - 300px);
+    // margin-left:auto;
+    // margin-right:auto;
+    // padding: 23px 0px;
+    // background-color: blue;
+    height:50px;
+  }
+
+  .navbar {
+
+    margin-bottom:25px;
+
+  }
 }

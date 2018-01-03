@@ -1,44 +1,49 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Nav, NavItem, Navbar} from 'react-bootstrap'
+import {LinkContainer} from 'react-router-bootstrap'
 import './style.scss'
+import Logo from 'Components/Logo'
 class MainNavBar extends Component {
 
   render() {
-    return (
+    return (<div className="main-navbar-container">
 
-      <Navbar inverse collapseOnSelect>
-  <Navbar.Header>
-    <Navbar.Brand>
-      <a href="#">Legenda Jarosław</a>
-    </Navbar.Brand>
-    <Navbar.Toggle />
-  </Navbar.Header>
-  <Navbar.Collapse>
-    <Nav>
+      <Navbar className="main-navbar" staticTop collapseOnSelect fixedTop fluid>
+        <div>
+          <Navbar.Header>
 
-      {this.props.navItems.map((navItem, i)=>{
+            <Navbar.Brand>
+              <Logo/>
 
-        var {label} = navItem;
+            </Navbar.Brand>
+            <Navbar.Toggle/>
+          </Navbar.Header>
 
-        return (
-          <NavItem key={i}>{label}</NavItem>
-        )
+          <Navbar.Collapse className="options">
+            <Nav>
+              <LinkContainer to='/aktualnośći'><NavItem>Aktualnośći</NavItem></LinkContainer>
+              <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
+              <LinkContainer to='/galeria'><NavItem>Galeria</NavItem></LinkContainer>
+              <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
 
-      })}
 
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
 
-    );
+
+            </Nav>
+            <Nav pullRight>
+              <NavItem>Zaloguj się</NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </div>
+      </Navbar>
+    </div>);
   }
 
 }
 
 MainNavBar.defaultProps = {
 
-  navItems:[],
-
+  navItems: []
 }
 
 export default MainNavBar;

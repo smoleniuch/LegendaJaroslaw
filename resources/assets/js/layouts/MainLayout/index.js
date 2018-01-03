@@ -1,34 +1,22 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
 import {Grid, Row, Col} from 'react-bootstrap'
 
 import Logo from 'Components/Logo'
 import MainNavBar from 'Components/MainNavBar'
+import NewsDashboard from 'Containers/NewsDashboard'
+import TrainingsDashboard from 'Containers/TrainingsDashboard'
 
 export default function({children}){
 
 
 
   return (
-
-    <Grid>
-      <Row>
-        <Logo />
-        <MainNavBar navItems={[
-
-          {label:'Aktualnośći'},
-          {label:'Treningi'},
-          {label:'Galeria'},
-          {label:'Kontakt'},
-
-        ]}/>
-      </Row>
-
-      <Row>
-
-      </Row>
-
-    </Grid>
-
+    <React.Fragment>
+          <MainNavBar />
+          <Route path="/aktualnośći" component={NewsDashboard} />
+          <Route path="/treningi" component={TrainingsDashboard} />
+    </React.Fragment>
   )
 
 }

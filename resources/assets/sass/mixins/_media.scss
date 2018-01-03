@@ -1,0 +1,46 @@
+/**
+* Conditional Media Query Mixin
+* by @sheiko (http://dsheiko.com)
+*
+* The problem this mixin solves is explained there
+* https://css-tricks.com/conditional-media-query-mixins/
+*
+* https://github.com/dsheiko
+* MIT license: https://www.opensource.org/licenses/mit-license.php
+*/
+
+
+
+$smallDevices: 576px;
+$mediumDevices: 768px;
+$largeDevices: 992px;
+$xlargeDevices: 1200px;
+
+@function translate-media-condition($c) {
+  $condMap: (
+		"screen": "only screen",
+		"print": "only print",
+		">smallWidth": "(min-width: #{$smallDevices + 1})",
+    "<smallWidth": "(max-width: #{$smallDevices})",
+    ">mediumWidth": "(min-width: #{$mediumDevices + 1})",
+    "<mediumWidth": "(max-width: #{$mediumDevices})",
+    ">largeWidth": "(min-width: #{$largeDevices + 1})",
+    "<largeWidth": "(max-width: #{$largeDevices})",
+    ">xlargeWidth": "(min-width: #{$xlargeDevices + 1})",
+    "<xlargeWidth": "(max-width: #{$xlargeDevices})",
+	);
+  @return map-get( $condMap, $c );
+}
+
+// The mdia mixin
+@mixin media($args...) {
+  $query: "";
+  @each $arg in $args {
+    $op: "";
+    @if ( $query != "" ) {
+      $op: " and ";
+    }
+    $query: $query + $op + translate-media-condition($arg);
+  }
+  @media #{$query}  { @content; }
+}
