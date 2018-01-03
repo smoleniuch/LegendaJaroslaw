@@ -24,25 +24,12 @@ class TrainingsDashboard extends Component {
 
   render() {
 
-    // var events = [
-    //
-    //   {
-    //     'title': 'Trening',
-    //     'start':new Date(2015, 3, 17, 5, 30, 0),
-    //     'end': new Date(2015, 3, 17, 22, 0, 0)
-    //   }
-    //
-    // ]
+    var { events, ...props } = this.props
 
-    var { events } = this.props
     return (<Dashboard className="trainings-dashboard">
 
       <BigCalendar
-        step={60}
-        events={events}
-        defaultDate={new Date()}
-        startAccessor='start'
-        endAccessor='end'/>
+        events={events}/>
 
     </Dashboard>);
   }
