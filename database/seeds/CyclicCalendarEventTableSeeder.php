@@ -24,10 +24,10 @@ class CyclicCalendarEventTableSeeder extends Seeder
 
       CyclicCalendarEvent::create([
 
-        'title' => 'Poniedzialkowy Trening' ,
+        'title' => 'Trening' ,
         'description' => 'Opis' ,
         'start' =>  $mondayTraining,
-        'end' =>  $mondayTraining->addHours(2),
+        'end' =>  $mondayTraining->copy()->addHours(2),
         'is_valid_from' => $now ,
         'is_valid_to' => $afterYear ,
         'cycle' =>  'weekly'
@@ -37,10 +37,10 @@ class CyclicCalendarEventTableSeeder extends Seeder
 
       CyclicCalendarEvent::create([
 
-        'title' => 'Srodowy Trening' ,
+        'title' => 'Trening' ,
         'description' => 'Opis' ,
         'start' =>  $wednesdayTraining,
-        'end' =>  $wednesdayTraining->addHours(2),
+        'end' =>  $wednesdayTraining->copy()->addHours(2),
         'is_valid_from' => $now ,
         'is_valid_to' => $afterYear ,
         'cycle' =>  'weekly'
@@ -49,10 +49,10 @@ class CyclicCalendarEventTableSeeder extends Seeder
 
       CyclicCalendarEvent::create([
 
-        'title' => 'Piatkowy Trening' ,
+        'title' => 'Trening' ,
         'description' => 'Opis' ,
         'start' =>  $fridayTraining,
-        'end' =>  $fridayTraining->addHours(2),
+        'end' =>  $fridayTraining->copy()->addHours(2),
         'is_valid_from' => $now ,
         'is_valid_to' => $afterYear ,
         'cycle' =>  'weekly'

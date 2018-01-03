@@ -1,18 +1,34 @@
-.rbc-time-view .rbc-row {
-    min-height: 0px;
+@import '~Sass/variables/_colors.scss';
+@import '~Sass/mixins/_media.scss';
 
-    div:nth-child(1) {
-        height: 0px !important;
+.rbc-calendar {
+
+  &.without-all-day-row {
+
+
+    .rbc-time-header .rbc-row:nth-child(2) {
+      display:none;
     }
 
-}
-
-.without-all-day-row {
-
-  .rbc-time-header .rbc-row:nth-child(2){
-
-    display:none;
 
   }
+
+  .rbc-event {
+
+    background-color:$color-primary-0;
+
+  }
+
+
+  .rbc-toolbar {
+
+    @include media('<mediumWidth'){
+
+      display:none;
+
+    }
+
+  }
+
 
 }

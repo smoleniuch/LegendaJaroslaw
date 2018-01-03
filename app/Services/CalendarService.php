@@ -34,9 +34,9 @@ class CalendarService {
       $calendarEventData = $cyclicCalendarEvent->only(['title','description'])
                                                ->merge(['start' => $currentStartingDate, 'end' => $currentEndingDate]);
 
-      $test = CalendarEvent::create($calendarEventData->toArray());
-      $test->save();
-      
+      CalendarEvent::create($calendarEventData->toArray());
+
+
       $currentStartingDate = self::getNextDateBasedOnCycle($currentStartingDate, $cycle);
       $currentEndingDate = self::getNextDateBasedOnCycle($currentEndingDate, $cycle);
 

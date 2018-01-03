@@ -1,0 +1,27 @@
+@import '~Sass/mixins/_size.scss';
+@import '~Sass/variables/_colors.scss';
+
+.calendar-event {
+
+
+
+  .title {
+    display:inline-block;
+
+    &.canceled {
+
+      text-decoration: line-through;
+
+    }
+
+  }
+
+  .cancel-word {
+
+    color:$color-secondary-2-0;
+
+  }
+
+
+
+}

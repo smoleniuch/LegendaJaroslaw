@@ -2,6 +2,9 @@ import BigCalendar from 'react-big-calendar';
 import React, { Component } from 'react';
 import classNames from 'classnames'
 import moment from 'moment';
+
+import Event from './Event';
+import Toolbar from './Toolbar';
 import './style.scss'
 
 moment.locale('pl')
@@ -24,7 +27,33 @@ class Calendar extends Component {
     })
 
     return (
-      <BigCalendar className={className} {...props}/>
+      <BigCalendar
+        step={60}
+        className={className}
+        defaultDate={new Date()}
+        defaultView='week'
+        startAccessor='start'
+        endAccessor='end'
+        messages={{
+
+          previous:'poprzedni',
+          next:'następny',
+          today:'dziś',
+          week:'tydzień',
+          day:'dzień',
+          month:'miesiąc',
+          date:'data',
+          time:'godzina',
+          event:'wydarzenie'
+
+
+        }}
+        components={{
+
+          event:Event,
+
+        }}
+        {...props}/>
     );
   }
 

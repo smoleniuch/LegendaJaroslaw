@@ -6,17 +6,17 @@ import Logo from 'Components/Logo'
 import MainNavBar from 'Components/MainNavBar'
 import NewsDashboard from 'Containers/NewsDashboard'
 import TrainingsDashboard from 'Containers/TrainingsDashboard'
-
+import './style.scss'
 export default function({children}){
 
 
 
   return (
-    <React.Fragment>
+    <div className="app-layout">
           <MainNavBar />
           <Route path="/aktualnośći" component={NewsDashboard} />
           <Route path="/treningi" component={TrainingsDashboard} />
-    </React.Fragment>
+    </div>
   )
 
 }
