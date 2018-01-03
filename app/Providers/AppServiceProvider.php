@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\CyclicCalendarEvent;
+use App\Observers\CyclicCalendarEventObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
+      CyclicCalendarEvent::observe(CyclicCalendarEventObserver::class);
+
     }
 
     /**
@@ -23,6 +27,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 }

@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-import testReducer from './test-reducer.js'
+import calendar from './calendar_reducer.js'
 
 // Combine Reducers
 var reducers = combineReducers({
-  testReducer:testReducer
+  calendar
 });
 
 export default reducers;

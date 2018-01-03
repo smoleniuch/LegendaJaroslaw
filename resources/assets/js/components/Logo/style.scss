@@ -1,7 +1,7 @@
+@import '~Sass/mixins/_size.scss';
 
+.logo-container {
 
-.logo-container{
-
-  @include size(500px, 500px)
+  display:inline-block;
 
 }

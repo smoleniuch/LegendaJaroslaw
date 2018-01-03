@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 
+import LogoImageUrl from 'Images/cropped-logo.png';
 import './style.scss'
-import logoImage from 'Images/cropped-logo.png'
 
 class Logo extends Component {
 
   render() {
-    return (
-      <div className="logo-container">
+    return(
+    <div className='logo-container'>
 
-        <img src={logoImage} />
+      <img  className="azs-legenda-logo" src={LogoImageUrl} />
 
-      </div>
-    );
-  }
+    </div>
+  )}
 
 }
+
 
 export default Logo;
