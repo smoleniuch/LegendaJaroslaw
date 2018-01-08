@@ -19,10 +19,12 @@ mix.webpackConfig({
 
     alias:{
 
+  
       Components:path.resolve(__dirname,'resources/assets/js/components'),
       Layouts:path.resolve(__dirname,'resources/assets/js/layouts'),
       Sass:path.resolve(__dirname,'resources/assets/sass'),
       Images:path.resolve(__dirname,'resources/assets/images'),
+      Utilities:path.resolve(__dirname,'resources/assets/utilities'),
 
     }
 

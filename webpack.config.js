@@ -72,6 +72,7 @@ module.exports = {
       Layouts: path.resolve(__dirname, 'resources/assets/js/layouts'),
       Reducers: path.resolve(__dirname, 'resources/assets/js/reducers'),
       Sass: path.resolve(__dirname, 'resources/assets/sass'),
+      Utilities: path.resolve(__dirname, 'resources/assets/js/utilities')
 
     }
 

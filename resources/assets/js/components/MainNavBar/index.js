@@ -3,6 +3,19 @@ import {Nav, NavItem, Navbar} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import './style.scss'
 import Logo from 'Components/Logo'
+import { displayModal } from 'Actions/modal_actions.js'
+import { connect } from 'react-redux'
+
+const mapDispatchToProps = (dispatch) => {
+
+  return {
+
+      displayAuthModal:() => dispatch(displayModal('AuthModal'))
+
+  }
+
+}
+
 class MainNavBar extends Component {
 
   render() {
@@ -31,13 +44,14 @@ class MainNavBar extends Component {
 
             </Nav>
             <Nav pullRight>
-              <NavItem>Zaloguj się</NavItem>
+              <NavItem onSelect={this.props.displayAuthModal}>Zaloguj się</NavItem>
             </Nav>
           </Navbar.Collapse>
         </div>
       </Navbar>
     </div>);
   }
+
 
 }
 
@@ -46,4 +60,4 @@ MainNavBar.defaultProps = {
   navItems: []
 }
 
-export default MainNavBar;
+export default connect(null, mapDispatchToProps)(MainNavBar);
