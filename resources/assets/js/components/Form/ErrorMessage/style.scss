@@ -1,0 +1,16 @@
+@import '~Sass/variables/_colors.scss';
+
+.form-error-message-container {
+
+  color:$color-secondary-2-0;
+  display:none;
+
+  &.active {
+
+    display:block;
+    margin-top:5px;
+    margin-bottom:5px;
+
+  }
+
+}

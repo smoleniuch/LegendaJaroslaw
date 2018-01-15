@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 
   return {
 
-    modals:Object.values(state.modals.modals)
+    modals:Object.values(state.modal.modals)
 
   }
 

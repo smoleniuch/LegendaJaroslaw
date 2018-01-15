@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/{section}', function () {
-    return view('welcome');
-})->where(['section' => '.*']);
+Route::get('/{section}', 'HomeController@index')->where(['section' => '.*']);
+
+
+
+Route::namespace('Auth')->group(function (){
+
+    Route::post('api/login','LoginController@authenticate');
+
+    Route::post('api/logout','LoginController@logout');
+
+    Route::post('api/register','RegisterController@register');
+
+});

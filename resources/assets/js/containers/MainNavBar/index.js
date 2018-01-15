@@ -4,14 +4,26 @@ import {LinkContainer} from 'react-router-bootstrap'
 import './style.scss'
 import Logo from 'Components/Logo'
 import { displayModal } from 'Actions/modal_actions.js'
+import { logOut } from 'Actions/user_actions'
+
 import { connect } from 'react-redux'
+
+const mapStateToProps = (state) => {
+
+  return {
+
+    user:state.user
+
+  }
+
+}
 
 const mapDispatchToProps = (dispatch) => {
 
   return {
 
-      displayAuthModal:() => dispatch(displayModal('AuthModal'))
-
+      displayAuthModal:() => dispatch(displayModal('AuthModal')),
+      logOut:() => dispatch(logOut())
   }
 
 }
@@ -38,13 +50,19 @@ class MainNavBar extends Component {
               <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
               <LinkContainer to='/galeria'><NavItem>Galeria</NavItem></LinkContainer>
               <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
-
-
-
-
             </Nav>
             <Nav pullRight>
-              <NavItem onSelect={this.props.displayAuthModal}>Zaloguj się</NavItem>
+
+              {!this.props.user.isLoggedIn?
+
+                <NavItem onSelect={this.props.displayAuthModal}>Zaloguj się</NavItem>:
+
+                <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
+
+              }
+
+
+
             </Nav>
           </Navbar.Collapse>
         </div>
@@ -60,4 +78,4 @@ MainNavBar.defaultProps = {
   navItems: []
 }
 
-export default connect(null, mapDispatchToProps)(MainNavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(MainNavBar);

@@ -1,0 +1,13 @@
+@import '~Sass/mixins/_media';
+
+.modal-content-block {
+
+  padding:15px;
+
+  @include media('>smallWidth'){
+
+    border-right:1px solid #e5e5e5;
+
+  }
+
+}

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {Modal as BootstrapModal} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import _pick from 'lodash/pick'
-
+import Content from './Content'
+import LoadingBar from 'Components/LoadingBar'
 import reduxModal from './redux_modal'
 
 class Modal extends Component {
@@ -18,7 +19,11 @@ class Modal extends Component {
       <BootstrapModal {...this.modalProps}>
         <BootstrapModal.Header {...this.headerProps}>
           <BootstrapModal.Title>{this.headerProps.title}</BootstrapModal.Title>
+
         </BootstrapModal.Header>
+        <div className="loading-bar-container">
+          <LoadingBar scope='modal'/>
+        </div>
         {this.props.children}
       </BootstrapModal>
     );
@@ -32,7 +37,7 @@ class Modal extends Component {
 
   get modalProps(){
 
-    return _pick(this.props,['show','onHide'])
+    return _pick(this.props,['show','onHide','bsSize'])
 
   }
 
@@ -59,6 +64,7 @@ Modal.propTypes = {
 export {
 
   Modal,
+  Content,
   reduxModal
 
 }

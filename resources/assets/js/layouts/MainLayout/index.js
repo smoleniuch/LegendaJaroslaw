@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import {Grid, Row, Col} from 'react-bootstrap'
 
 import Logo from 'Components/Logo'
-import MainNavBar from 'Components/MainNavBar'
+import MainNavBar from 'Containers/MainNavBar'
 import NewsDashboard from 'Containers/NewsDashboard'
 import TrainingsDashboard from 'Containers/TrainingsDashboard'
 import './style.scss'

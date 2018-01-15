@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack')
 
 module.exports = {
   entry: path.resolve(__dirname, './resources/assets/js/index.js'),
@@ -6,6 +7,12 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public')
   },
+
+  plugins: [
+    new webpack.ProvidePlugin({
+      Promise: 'bluebird'
+    })
+  ],
 
   module: {
 
@@ -39,12 +46,12 @@ module.exports = {
             loader: "css-loader"
           }, {
             loader: "sass-loader",
-            options: {
-              includePaths: [
-                path.resolve(__dirname, 'resources/assets/sass'),
-                path.resolve(__dirname, 'resources/assets/sass/mixins/_size.scss')
-              ]
-            }
+            // options: {
+            //   includePaths: [
+            //     path.resolve(__dirname, 'resources/assets/sass'),
+            //     path.resolve(__dirname, 'resources/assets/sass/mixins/_size.scss')
+            //   ]
+            // }
           }
         ]
 
@@ -71,8 +78,10 @@ module.exports = {
       Images: path.resolve(__dirname, 'resources/assets/images'),
       Layouts: path.resolve(__dirname, 'resources/assets/js/layouts'),
       Reducers: path.resolve(__dirname, 'resources/assets/js/reducers'),
-      Sass: path.resolve(__dirname, 'resources/assets/sass'),
-      Utilities: path.resolve(__dirname, 'resources/assets/js/utilities')
+      Sass: path.resolve(__dirname, 'resources/assets/styles/sass'),
+      Styles: path.resolve(__dirname, 'resources/assets/styles'),
+      Utilities: path.resolve(__dirname, 'resources/assets/js/utilities'),
+      InlineStyles:path.resolve(__dirname,'resources/assets/styles/InlineStyles'),
 
     }
 
