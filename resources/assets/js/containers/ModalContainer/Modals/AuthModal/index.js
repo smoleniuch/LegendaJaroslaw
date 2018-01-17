@@ -69,7 +69,7 @@ class AuthModal extends Component {
 
     this.props.hide()
 
-    setTimeout(this.props.updateCurrentUserData,5000);
+    this.props.updateCurrentUserData
 
   }
 

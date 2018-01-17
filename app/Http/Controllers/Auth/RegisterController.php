@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
+use App\Services\UserService;
 
 class RegisterController extends Controller
 {
@@ -39,6 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->userService = new UserService();
     }
 
     /**
@@ -70,7 +72,11 @@ class RegisterController extends Controller
     //   return
     //
     // }
+    protected function registered(){
 
+      return response()->json($this->userService->getCurrentUserData());
+
+    }
     /**
      * Create a new user instance after a valid registration.
      *

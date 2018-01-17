@@ -18,11 +18,22 @@ export default function userReducer(state = initialState, action){
 
       }
 
+    case 'REGISTER_USER_REQUEST_SUCCESS':
+
+      return {
+
+        ...state,
+        isLoggedIn:true,
+        ...action.payload.data
+
+      }
+
     case 'LOGIN_ATTEMPT_REQUEST_SUCCESS':
 
       return {
 
         ...state,
+        isLoggedIn:true,
         ...action.payload.data,
 
       }

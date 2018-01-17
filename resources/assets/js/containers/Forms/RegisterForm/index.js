@@ -8,7 +8,7 @@ import _mapValues from 'lodash/mapValues'
 import { reduxForm, Form, FieldGroup, Field, SubmissionError, ErrorMessage } from 'Components/Form'
 import { required, sameAsValue, minLength, email, validateGenerator } from 'Components/Form/Validators'
 import Button  from 'Components/Button'
-import { registerUser, getCurrentUserData } from 'Actions/user_actions'
+import { registerUser, getCurrentUserData, setUser } from 'Actions/user_actions'
 import { validateRegisterCredentials } from 'Actions/validator_actions.js'
 import { Grid, Col, Row } from 'react-bootstrap'
 
@@ -17,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
 
     registerUser:(data) => dispatch(registerUser(data)),
+    setUser:(data) => dispatch(setUser(data))
   }
 
 }
