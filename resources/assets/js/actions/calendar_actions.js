@@ -11,9 +11,9 @@ export function getCalendarEvents(prop) {
 
         url: '/calendar-events',
         transformResponse: (data) => {
-          console.log(data.length)
+
           return data.map((calendarEvent) => {
-            // transform string date into javascript object
+            // transform string date into javascript date object
             return _mapValues(
               calendarEvent, (v, k) => ['start', 'end'].includes(k)
               ? new Date(v)

@@ -1,0 +1,15 @@
+@import '~Sass/variables/colors';
+
+.field-group-error {
+
+  display:inline-block;
+  margin-left:20px;
+
+}
+
+
+.has-error {
+
+  color:$color-secondary-2-0;
+
+}
