@@ -1,7 +1,13 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
+var WebFont = require('webfontloader');
+
+WebFont.load({
+  google: {
+    families: ['Dancing Script']
+  }
+});
 
 import App from './app'
-// import 'bootstrap/dist/css/bootstrap.css'
 import 'Styles/index.scss'
 ReactDOM.render(<App />, document.getElementById('app'))

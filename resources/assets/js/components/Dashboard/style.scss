@@ -2,7 +2,8 @@
 .dashboard {
 
   padding:20px;
-  margin-top:50px;
-  height:calc(100vh - 50px)
+  // margin-top:50px;
+  height:calc(100vh - 50px);
+  overflow:auto;
 
 }

@@ -78,4 +78,4 @@ MainNavBar.defaultProps = {
   navItems: []
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainNavBar);
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(MainNavBar);
