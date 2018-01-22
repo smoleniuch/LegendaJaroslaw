@@ -4,9 +4,13 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Services\MotivationalQuoteService;
+use App\MotivationalQuote;
+
 
 class Kernel extends ConsoleKernel
 {
+
     /**
      * The Artisan commands provided by your application.
      *
@@ -24,8 +28,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+
+      $schedule->call('App\Services\MotivationalQuoteService@shuffleQuoteOfTheDay')->dailyAt('17:00');
+
     }
 
     /**
