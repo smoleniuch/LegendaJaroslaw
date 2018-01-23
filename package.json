@@ -3,7 +3,8 @@
     "scripts": {
         "dev": "npm run development",
         "production": "webpack -p",
-        "watch": "webpack --watch"
+        "watch": "webpack --watch",
+        "test": "jest --config ./jest.config.js"
     },
     "devDependencies": {
         "axios": "^0.17",
@@ -17,6 +18,7 @@
         "cross-env": "^5.1.1",
         "css-loader": "^0.28.7",
         "img-loader": "^2.0.0",
+        "jest": "^22.1.4",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "node-sass": "^4.7.2",
@@ -30,19 +32,22 @@
         "bluebird": "^3.5.1",
         "bootstrap": "^3.3.7",
         "classnames": "^2.2.5",
+        "history": "^4.7.2",
         "moment": "^2.20.1",
         "react": "^16.2.0",
         "react-big-calendar": "^0.17.0",
-        "react-bootstrap": "^0.31.5",
+        "react-bootstrap": "^0.32.0",
         "react-dom": "^16.2.0",
+        "react-icons": "^2.2.7",
         "react-redux": "^5.0.6",
         "react-redux-loading-bar": "^3.1.1",
         "react-router-bootstrap": "^0.24.4",
         "react-router-dom": "^4.2.2",
-        "react-router-redux": "^4.0.8",
+        "react-router-redux": "^5.0.0-alpha.9",
         "redux": "^3.7.2",
         "redux-axios-middleware": "^4.0.0",
         "redux-form": "7.1.0",
-        "redux-thunk": "^2.2.0"
+        "redux-thunk": "^2.2.0",
+        "webfontloader": "^1.6.28"
     }
 }

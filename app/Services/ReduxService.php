@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Services\UserService;
+use App\Services\PostService;
+use App\Services\MotivationalQuoteService;
 
 
 class ReduxService {
@@ -10,18 +12,34 @@ class ReduxService {
   public function __construct(){
 
     $this->userService = new UserService();
+    $this->postService = new PostService();
+    $this->motivationalQuoteService = new MotivationalQuoteService();
 
   }
 
   public function getPreloadedState(){
 
+    $preloadedState = json_encode([
 
-    return json_encode([
+      'user' => $this->userService->getCurrentUserData(),
+      'post' => [
 
-      'user' => $this->userService->getCurrentUserData()
+        'posts' => $this->postService->getAllPosts()
 
+      ],
+      'motivationalQuote' => [
+
+        'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay()
+
+      ]
+      
     ]);
 
+
+
+
+    return $preloadedState;
   }
+
 
 }

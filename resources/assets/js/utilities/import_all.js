@@ -1,4 +1,4 @@
-import pascalCase from 'Utilities/pascal_case'
+import pascalCase from './pascal_case'
 
 
 // imports are file from context
@@ -9,7 +9,7 @@ import pascalCase from 'Utilities/pascal_case'
 function importAll (r) {
 
   var cache = {};
-  console.log(r.keys(),r)
+
   r.keys().forEach(key => {
 
     cache = Object.assign(cache, r(key))
