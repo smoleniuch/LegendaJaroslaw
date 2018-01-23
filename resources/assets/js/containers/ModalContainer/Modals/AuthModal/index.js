@@ -6,7 +6,6 @@ import {Tabs, Tab} from 'Components/Tabs'
 
 import LoginForm from 'Containers/Forms/LoginForm'
 import RegisterForm from 'Containers/Forms/RegisterForm'
-import Test from 'Containers/Forms/Test'
 import { getCurrentUserData } from 'Actions/user_actions'
 
 const mapDispatchToProps = dispatch => {
