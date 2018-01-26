@@ -51,5 +51,54 @@ function reduxModal(ModalComponent, options = {}){
 
 }
 
+function testReduxModal(options = {}){
 
-export default reduxModal
+  const creator = (ModalComponent) => {
+
+    class ReduxModal extends React.Component {
+
+      constructor(props) {
+        super(props);
+
+        this.hide = this.hide.bind(this)
+      }
+
+      render(){
+
+        var { hide, ...props } = this.props
+
+        return (
+
+          <ModalComponent onHide={this.hide} hide={this.hide} {...props} />
+
+        )
+
+      }
+
+      hide(deleteIt = true){
+
+        this.props.hide(options.name)
+
+      }
+
+    }
+
+    wrapComponentName(ReduxModal,'reduxModal')
+
+    return connect(null, mapDispatchToProps)(ReduxModal)
+
+  }
+
+
+  return creator
+
+
+}
+
+export {
+
+  testReduxModal,
+
+}
+
+export default testReduxModal

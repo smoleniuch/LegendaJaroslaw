@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {Modal, Content,  reduxModal} from 'Components/Modal';
 import { Grid, Row, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {Tabs, Tab} from 'Components/Tabs'
+import { compose } from 'recompose'
+import { withRouter, Route } from 'react-router'
 
 import LoginForm from 'Containers/Forms/LoginForm'
 import RegisterForm from 'Containers/Forms/RegisterForm'
 import { getCurrentUserData } from 'Actions/user_actions'
+import {Modal, Content,  reduxModal} from 'Components/Modal';
+import {ReduxModal, withReduxModalManager} from 'Components/ReduxModal';
+import {Tabs, Tab} from 'Components/Tabs'
 
 const mapDispatchToProps = dispatch => {
 
@@ -26,7 +29,7 @@ class AuthModal extends Component {
   }
   render() {
     return (
-      <Modal  title='Panel Autoryzacji' {...this.props}>
+      <ReduxModal name="AuthModal"  title='Panel Autoryzacji'>
 
         <Grid fluid>
           <Row>
@@ -37,7 +40,7 @@ class AuthModal extends Component {
 
             <Tab eventKey={1} title='Logowanie'>
 
-                <LoginForm onSubmitSuccess={this.props.hide}/>
+                <LoginForm onSubmitSuccess={this.props.hideModal}/>
 
             </Tab>
 
@@ -60,13 +63,13 @@ class AuthModal extends Component {
           </Row>
         </Grid>
 
-      </Modal>
+      </ReduxModal>
     );
   }
 
   onRegisterSuccess(){
 
-    this.props.hide()
+    this.props.hideModal()
 
     this.props.updateCurrentUserData
 
@@ -74,8 +77,16 @@ class AuthModal extends Component {
 
 }
 
+const enhance = compose(
 
-AuthModal = connect(null,mapDispatchToProps)(reduxModal(AuthModal, {name:'AuthModal'}))
+  connect(null,mapDispatchToProps),
+  withRouter,
+  withReduxModalManager({bindNameToActions:'AuthModal'})
+
+)
+
+AuthModal = enhance(AuthModal)
+
 export {
   AuthModal
 }

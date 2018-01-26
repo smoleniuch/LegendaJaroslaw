@@ -48,7 +48,7 @@ class MainNavBar extends Component {
             <Nav>
               <LinkContainer to='/aktualnośći'><NavItem>Aktualnośći</NavItem></LinkContainer>
               <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
-              <LinkContainer to='/galeria'><NavItem>Galeria</NavItem></LinkContainer>
+              <LinkContainer to='/galeria/albumy/1'><NavItem>Galeria</NavItem></LinkContainer>
               <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
             </Nav>
             <Nav pullRight>

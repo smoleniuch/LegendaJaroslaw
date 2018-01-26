@@ -21,6 +21,7 @@ class MotivationalQuotesTableSeeder extends Seeder
         $quote = new MotivationalQuote();
         $quote->text = 'Nienawidziłem każdej minuty treningu, ale powtarzałem sobie ‚Nie poddawaj się. Przecierp teraz i żyj resztę życia jako mistrz.';
         $quote->author = 'Muhammad Ali';
+        $quote->quote_of_the_day = true;
 
         $quote->save();
 

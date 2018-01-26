@@ -8,6 +8,7 @@ import modal from './modal_reducer.js'
 import user from './user_reducer.js'
 import post from './post_reducer.js'
 import motivationalQuote from './motivational_quote_reducer.js'
+import gallery from './gallery_reducer.js'
 
 
 
@@ -23,7 +24,7 @@ var reducers = combineReducers({
   user,
   post,
   motivationalQuote,
-  
+  gallery
 
 });
 

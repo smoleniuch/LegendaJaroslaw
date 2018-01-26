@@ -5,7 +5,6 @@ import _pick from 'lodash/pick'
 import Content from './Content'
 import LoadingBar from 'Components/LoadingBar'
 import reduxModal from './redux_modal'
-
 class Modal extends Component {
   constructor(props) {
     super(props);

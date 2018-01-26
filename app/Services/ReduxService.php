@@ -5,7 +5,9 @@ namespace App\Services;
 use App\Services\UserService;
 use App\Services\PostService;
 use App\Services\MotivationalQuoteService;
-
+use App\Services\GalleryService;
+use Underscore\Types\Arrays;
+use Underscore\Types\Parse;
 
 class ReduxService {
 
@@ -14,6 +16,7 @@ class ReduxService {
     $this->userService = new UserService();
     $this->postService = new PostService();
     $this->motivationalQuoteService = new MotivationalQuoteService();
+    $this->galleryService = new GalleryService();
 
   }
 
@@ -31,8 +34,9 @@ class ReduxService {
 
         'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay()
 
-      ]
-      
+      ],
+      'gallery' => $this->galleryService->getMainGallery(),
+
     ]);
 
 
