@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, matchPath } from 'react-router-dom'
 import _pick from 'lodash/pick'
+import _get from 'lodash/get'
 
 import Dashboard from 'Components/Dashboard'
 import DashboardGrid from 'Components/DashboardGrid';
 import GridCard from 'Components/GridCard'
 import Breadcrumb from 'Components/Breadcrumb'
-
-
+import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers'
+import { compose } from 'recompose'
 
 const mapStateToProps = (state, props) => {
 
-  var currentGalleryAlbum = state.gallery.albums[props.match.params.currentGalleryId] || {}
+  var galleryId = _get(props.matchCurrentPath({path:'/galeria/albumy/:currentAlbumId'}),'params.currentAlbumId')
+  console.log(props.matchCurrentPath({path:'/galeria/albumy/:currentAlbumId'}))
+  var currentGalleryAlbum = state.gallery.albums[galleryId] || {}
 
   var currentGalleryAlbumAlbums = _pick(state.gallery.albums,currentGalleryAlbum.album_ids,[])
   var currentGalleryAlbumPhotos = _pick(state.gallery.photos,currentGalleryAlbum.photo_ids,[])
@@ -61,10 +64,9 @@ class GalleryDashboard extends Component {
 
   }
 
-  openGalleryInspectorModal(){
+  openGalleryInspectorModal(photoId){
 
-    this.props.history.push(this.props.location.pathname + '/zdjecia/1')
-    this.props.history.push(this.props.location.pathname + '/zdjecia/2')
+    this.props.history.push(this.props.location.pathname + `/zdjecia/${photoId}`,{modal:true,preModalLocation:this.props.location.pathname})
 
   }
 
@@ -81,7 +83,7 @@ class GalleryDashboard extends Component {
   drawPhotoCard(photo){
 
     return (
-      <GridCard onClick={this.openGalleryInspectorModal}  key={photo.id}>
+      <GridCard onClick={this.openGalleryInspectorModal} eventKey={photo.id}  key={photo.id}>
         <GridCard.Body>
 
           <img style={{maxWidth:'100%',maxHeight:'100%'}} src={photo.url} />
@@ -111,4 +113,11 @@ class GalleryDashboard extends Component {
 
 }
 
-export default withRouter(connect(mapStateToProps)(GalleryDashboard));
+const enhance = compose(
+
+  withRouter,
+  withRouterHelpers,
+  connect(mapStateToProps)
+)
+
+export default enhance(GalleryDashboard);

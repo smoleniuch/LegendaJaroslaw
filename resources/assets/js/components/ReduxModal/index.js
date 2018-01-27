@@ -12,9 +12,9 @@ class ReduxModal extends Component {
   render() {
 
     var { children, name, hideModal, ...props } = this.props
-    console.log(this.props.isModalActive(name))
+
     return (
-      <Modal {...props} onHide={this.hide} show={this.props.isModalActive(name)}>
+      <Modal  onHide={this.hide}  {...props}>
         {children}
       </Modal>
     );
@@ -33,8 +33,7 @@ ReduxModal.defaultProps = {
   // closeButton:true,
   // title:'',
   // hide:()=>{}
-  onHide:() => {}
-
+  onHide:() => {},
 }
 
 ReduxModal.propTypes = {

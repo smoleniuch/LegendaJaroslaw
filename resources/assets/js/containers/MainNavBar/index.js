@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Nav, NavItem, Navbar} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import { withRouter } from 'react-router'
 import './style.scss'
 import Logo from 'Components/Logo'
 import { displayModal } from 'Actions/modal_actions.js'
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
 class MainNavBar extends Component {
 
   render() {
+
+    var { location } = this.props
+
     return (<div className="main-navbar-container">
 
       <Navbar className="main-navbar" staticTop collapseOnSelect fixedTop fluid>
@@ -55,7 +59,7 @@ class MainNavBar extends Component {
 
               {!this.props.user.isLoggedIn?
 
-                <NavItem onSelect={this.props.displayAuthModal}>Zaloguj się</NavItem>:
+                <LinkContainer to={{pathname:'/autoryzacja',state:{'modal':true, preModalLocation:location.pathname}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>:
 
                 <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
 
@@ -78,4 +82,4 @@ MainNavBar.defaultProps = {
   navItems: []
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(MainNavBar);
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(withRouter(MainNavBar));

@@ -7,8 +7,8 @@ import { withRouter, Route } from 'react-router'
 import LoginForm from 'Containers/Forms/LoginForm'
 import RegisterForm from 'Containers/Forms/RegisterForm'
 import { getCurrentUserData } from 'Actions/user_actions'
-import {Modal, Content,  reduxModal} from 'Components/Modal';
-import {ReduxModal, withReduxModalManager} from 'Components/ReduxModal';
+import {Modal, Content} from 'Components/Modal';
+import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers.js';
 import {Tabs, Tab} from 'Components/Tabs'
 
 const mapDispatchToProps = dispatch => {
@@ -25,11 +25,13 @@ class AuthModal extends Component {
   constructor(props) {
     super(props);
 
+    this.hide = this.hide.bind(this)
     this.onRegisterSuccess = this.onRegisterSuccess.bind(this)
   }
   render() {
+
     return (
-      <ReduxModal name="AuthModal"  title='Panel Autoryzacji'>
+      <Modal onHide={this.hide} title='Panel Autoryzacji' show={true}>
 
         <Grid fluid>
           <Row>
@@ -63,13 +65,19 @@ class AuthModal extends Component {
           </Row>
         </Grid>
 
-      </ReduxModal>
+      </Modal>
     );
+  }
+
+  hide(){
+
+    this.props.displayPreModalRoute()
+
   }
 
   onRegisterSuccess(){
 
-    this.props.hideModal()
+    this.hide()
 
     this.props.updateCurrentUserData
 
@@ -79,9 +87,8 @@ class AuthModal extends Component {
 
 const enhance = compose(
 
+  withRouterHelpers,
   connect(null,mapDispatchToProps),
-  withRouter,
-  withReduxModalManager({bindNameToActions:'AuthModal'})
 
 )
 

@@ -5,6 +5,7 @@ import { compose } from 'recompose'
 
 import importAll from 'Utilities/import_all'
 import { withReduxModalManager } from 'Components/ReduxModal'
+import ModalSwitch from './ModalSwitch'
 
 const Modals = importAll(require.context('./Modals',true,/index\.js/))
 
@@ -43,6 +44,7 @@ class ModalContainer extends Component {
 
         })}
 
+        <ModalSwitch />
       </div>
     );
   }
