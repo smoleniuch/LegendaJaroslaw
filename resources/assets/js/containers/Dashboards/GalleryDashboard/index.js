@@ -8,13 +8,15 @@ import Dashboard from 'Components/Dashboard'
 import DashboardGrid from 'Components/DashboardGrid';
 import GridCard from 'Components/GridCard'
 import Breadcrumb from 'Components/Breadcrumb'
+import AlbumCard from './AlbumCard'
+import PhotoCard from './PhotoCard'
 import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers'
 import { compose } from 'recompose'
 
 const mapStateToProps = (state, props) => {
 
-  var galleryId = _get(props.matchCurrentPath({path:'/galeria/albumy/:currentAlbumId'}),'params.currentAlbumId')
-  console.log(props.matchCurrentPath({path:'/galeria/albumy/:currentAlbumId'}))
+  var galleryId = _get(props.match,'params.albumId')
+
   var currentGalleryAlbum = state.gallery.albums[galleryId] || {}
 
   var currentGalleryAlbumAlbums = _pick(state.gallery.albums,currentGalleryAlbum.album_ids,[])
@@ -36,12 +38,7 @@ class GalleryDashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.openAlbum = this.openAlbum.bind(this)
-    this.drawAlbumCard = this.drawAlbumCard.bind(this)
-    this.drawPhotoCard = this.drawPhotoCard.bind(this)
     this.getBreadcrumbNavigationItems = this.getBreadcrumbNavigationItems.bind(this)
-    this.openGalleryInspectorModal = this.openGalleryInspectorModal.bind(this)
-
   }
   render() {
 
@@ -50,24 +47,11 @@ class GalleryDashboard extends Component {
     <Dashboard className="gallery-dashboard">
       <Breadcrumb onClick={this.openAlbum} items={this.getBreadcrumbNavigationItems()}/>
       <DashboardGrid>
-        {this.props.ancestorAlbums.map((v)=><div key={v.id}>{v.name}</div>)}
-        {this.props.albums.map(this.drawAlbumCard)}
-        {this.props.photos.map(this.drawPhotoCard)}
+        {this.props.albums.map((album) => <AlbumCard album={album}/>)}
+        {this.props.photos.map((photo) => <PhotoCard photo={photo}/>)}
       </DashboardGrid>
     </Dashboard>
     );
-  }
-
-  openAlbum(albumId){
-
-    this.props.history.replace(`/galeria/albumy/${albumId}`)
-
-  }
-
-  openGalleryInspectorModal(photoId){
-
-    this.props.history.push(this.props.location.pathname + `/zdjecia/${photoId}`,{modal:true,preModalLocation:this.props.location.pathname})
-
   }
 
   getBreadcrumbNavigationItems(){
@@ -80,43 +64,12 @@ class GalleryDashboard extends Component {
 
   }
 
-  drawPhotoCard(photo){
-
-    return (
-      <GridCard onClick={this.openGalleryInspectorModal} eventKey={photo.id}  key={photo.id}>
-        <GridCard.Body>
-
-          <img style={{maxWidth:'100%',maxHeight:'100%'}} src={photo.url} />
-
-        </GridCard.Body>
-
-      </GridCard>
-    )
-
-  }
-
-  drawAlbumCard(album){
-
-    return (
-      <GridCard onClick={this.openAlbum} key={album.id} eventKey={album.id}>
-        <GridCard.Header>Album: {album.name}</GridCard.Header>
-        <GridCard.Body>
-
-          <img style={{maxWidth:'100%',maxHeight:'100%'}} src={album.description_picture_url} />
-
-        </GridCard.Body>
-
-      </GridCard>
-    )
-
-  }
 
 }
 
 const enhance = compose(
 
   withRouter,
-  withRouterHelpers,
   connect(mapStateToProps)
 )
 

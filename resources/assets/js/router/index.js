@@ -2,8 +2,8 @@ import React from 'react'
 import createHistory from 'history/createBrowserHistory'
 import { Route, Switch, Redirect, matchPath} from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux'
-const history = createHistory()
 import _get from 'lodash/get'
+const history = createHistory()
 
 import ModalContainer from 'Containers/ModalContainer'
 import MainLayout from 'Layouts/MainLayout'
@@ -11,25 +11,20 @@ import NewsPage from 'Pages/NewsPage'
 import TrainingsPage from 'Pages/TrainingsPage'
 import GalleryPage from 'Pages/GalleryPage'
 
-
 class Router extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
-      prevLocation:null,
-      currentLocation:history.location
+      location:history.location
 
     }
-
-    this.onLocationChange = this.onLocationChange.bind(this)
-    this.renderWithModalSupport = this.renderWithModalSupport.bind(this)
-    this.matchPath = this.matchPath.bind(this)
-
-    history.listen(this.onLocationChange)
+    this.onRouteChange = this.onRouteChange.bind(this)
+    history.listen(this.onRouteChange)
   }
   render() {
+   var location = _get(this.state,'location.state.underModalLocation',this.state.location)
 
     return (
 
@@ -38,10 +33,14 @@ class Router extends React.Component {
 
           <MainLayout>
 
-              <Route render={this.renderWithModalSupport}/>
+                <Switch location={location}>
+                <Route path='/aktualnosci' component={NewsPage}/>
+                <Route path='/galeria/albumy/:albumId' component={GalleryPage}/>
+                <Route path='/treningi' component={TrainingsPage}/>
+                <Redirect from='/' to='/aktualnosci' />
+                </Switch>
 
-            <ModalContainer />
-
+                <ModalContainer />
           </MainLayout>
 
         </div>
@@ -50,31 +49,9 @@ class Router extends React.Component {
     )
   }
 
-  onLocationChange(location){
+  onRouteChange(location){
 
-    this.setState((prevState) => (
-
-      {
-        currentLocation:location,
-        prevLocation:prevState.currentLocation
-      }
-
-    ))
-
-  }
-
-  renderWithModalSupport({location, match}){
-    console.log(this.matchPath({path:'/galeria/albumy/:currentGalleryId'}))
-    if( this.matchPath({path:'/galeria/albumy/:currentGalleryId'})){ return <GalleryPage /> }
-    if( this.matchPath({path:'/aktualnośći'}) || this.state.prevLocation === null){ return <NewsPage /> }
-    if( this.matchPath({path:'/treningi'})){ return <TrainingsPage /> }
-    else {return <Redirect path='/' to='/aktualnośći' />}
-    return null
-  }
-
-  matchPath(path){
-
-    return !!(matchPath(history.location.pathname, path) || matchPath(_get(history,'location.state.preModalLocation'),path))
+    this.setState({location})
 
   }
 

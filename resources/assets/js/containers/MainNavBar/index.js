@@ -23,7 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
 
-      displayAuthModal:() => dispatch(displayModal('AuthModal')),
       logOut:() => dispatch(logOut())
   }
 
@@ -50,7 +49,7 @@ class MainNavBar extends Component {
 
           <Navbar.Collapse className="options">
             <Nav>
-              <LinkContainer to='/aktualnośći'><NavItem>Aktualnośći</NavItem></LinkContainer>
+              <LinkContainer to='/aktualnosci'><NavItem>Aktualnośći</NavItem></LinkContainer>
               <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
               <LinkContainer to='/galeria/albumy/1'><NavItem>Galeria</NavItem></LinkContainer>
               <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
@@ -59,7 +58,7 @@ class MainNavBar extends Component {
 
               {!this.props.user.isLoggedIn?
 
-                <LinkContainer to={{pathname:'/autoryzacja',state:{'modal':true, preModalLocation:location.pathname}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>:
+                <LinkContainer to={{pathname:'/autoryzacja',state:{underModalLocation:location}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>:
 
                 <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
 
@@ -80,6 +79,7 @@ class MainNavBar extends Component {
 MainNavBar.defaultProps = {
 
   navItems: []
+
 }
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(withRouter(MainNavBar));

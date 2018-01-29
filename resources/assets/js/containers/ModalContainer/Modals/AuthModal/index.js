@@ -42,7 +42,7 @@ class AuthModal extends Component {
 
             <Tab eventKey={1} title='Logowanie'>
 
-                <LoginForm onSubmitSuccess={this.props.hideModal}/>
+                <LoginForm onSubmitSuccess={this.hide}/>
 
             </Tab>
 
@@ -71,7 +71,7 @@ class AuthModal extends Component {
 
   hide(){
 
-    this.props.displayPreModalRoute()
+    this.props.displayUnderModalLocation()
 
   }
 

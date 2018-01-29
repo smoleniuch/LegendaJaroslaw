@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router'
 import { AuthModal } from '../Modals/AuthModal'
 import { GalleryInspectorModal } from '../Modals/GalleryInspectorModal'
-
+import ModalRoute from 'Router/modal_route'
 class ModalSwitch extends React.Component {
 
   constructor(props) {
@@ -15,8 +15,8 @@ class ModalSwitch extends React.Component {
 
     return (
       <div>
-        <Route path='/autoryzacja' component={AuthModal} />
-        <Route path='/galeria/albumy/:galleryAlbumId/zdjecia/:photoId' component={GalleryInspectorModal} />
+        <ModalRoute path='/autoryzacja' defaultUnderModalPath={'/aktualnosci'} component={AuthModal} />
+        <Route path='/galeria/albumy/:albumId/zdjecia/:photoId' component={GalleryInspectorModal} />
       </div>
     )
   }

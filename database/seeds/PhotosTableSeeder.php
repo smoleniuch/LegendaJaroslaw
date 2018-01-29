@@ -21,7 +21,8 @@ class PhotosTableSeeder extends Seeder
 
             'name' => $faker->realText(20),
             'description' => $faker->realText(40),
-            'url' => $faker->imageUrl($width = 1024, $height = 768),
+            'original' => $faker->imageUrl($width = 1024, $height = 768),
+            'thumbnail' => $faker->imageUrl($width = 250, $height = 150),
 
 
           ]);

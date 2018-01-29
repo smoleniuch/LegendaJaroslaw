@@ -34,7 +34,7 @@ function withRouterHelpers(Component){
       constructor(props) {
         super(props);
 
-        this.displayPreModalRoute = this.displayPreModalRoute.bind(this)
+        this.displayUnderModalLocation = this.displayUnderModalLocation.bind(this)
         this.matchCurrentPath = this.matchCurrentPath.bind(this)
         this.getCurrentUrlParams = this.getCurrentUrlParams.bind(this)
       }
@@ -46,7 +46,7 @@ function withRouterHelpers(Component){
         return (
 
           <Component
-            displayPreModalRoute={this.displayPreModalRoute}
+            displayUnderModalLocation={this.displayUnderModalLocation}
             matchCurrentPath={this.matchCurrentPath}
             getCurrentUrlParams={this.getCurrentUrlParams}
             {...props}/>
@@ -62,26 +62,26 @@ function withRouterHelpers(Component){
        * @param  {String} [alternative='/'] [description]
        * @return {[type]}                   [description]
        */
-      displayPreModalRoute(alternative = '/'){
+      displayUnderModalLocation(alternative = '/'){
 
-        var preModalLocation = _get(this.props.reduxLocation, 'state.preModalLocation');
+        var underModalLocation = _get(this.props.reduxLocation, 'state.underModalLocation');
 
-        if(preModalLocation){
+        if(underModalLocation){
 
-          // this.props.push(preModalLocation)
+          // this.props.push(underModalLocation)
 
         }
-        this.props.push(preModalLocation || alternative)
+        this.props.push(underModalLocation || alternative)
 
       }
 
       matchCurrentPath(description){
 
         var currentLocationPathname = this.props.reduxLocation.pathname
-        var preModalLocationPathName = _get(this.props.reduxLocation, 'state.preModalLocation');
+        var underModalLocationPathName = _get(this.props.reduxLocation, 'state.underModalLocation');
 
         // if current url doesnt match path, check if its under modal path
-        return matchPath(currentLocationPathname,description) || matchPath(preModalLocationPathName,description)
+        return matchPath(currentLocationPathname,description) || matchPath(underModalLocationPathName,description)
 
       }
 
