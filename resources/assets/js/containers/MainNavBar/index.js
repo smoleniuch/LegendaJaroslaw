@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Nav, NavItem, Navbar} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
+import { withRouter } from 'react-router'
 import './style.scss'
 import Logo from 'Components/Logo'
 import { displayModal } from 'Actions/modal_actions.js'
@@ -22,7 +23,6 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
 
-      displayAuthModal:() => dispatch(displayModal('AuthModal')),
       logOut:() => dispatch(logOut())
   }
 
@@ -31,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
 class MainNavBar extends Component {
 
   render() {
+
+    var { location } = this.props
+
     return (<div className="main-navbar-container">
 
       <Navbar className="main-navbar" staticTop collapseOnSelect fixedTop fluid>
@@ -46,16 +49,16 @@ class MainNavBar extends Component {
 
           <Navbar.Collapse className="options">
             <Nav>
-              <LinkContainer to='/aktualnośći'><NavItem>Aktualnośći</NavItem></LinkContainer>
+              <LinkContainer to='/aktualnosci'><NavItem>Aktualnośći</NavItem></LinkContainer>
               <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
-              <LinkContainer to='/galeria'><NavItem>Galeria</NavItem></LinkContainer>
+              <LinkContainer to='/galeria/albumy/1'><NavItem>Galeria</NavItem></LinkContainer>
               <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
             </Nav>
             <Nav pullRight>
 
               {!this.props.user.isLoggedIn?
 
-                <NavItem onSelect={this.props.displayAuthModal}>Zaloguj się</NavItem>:
+                <LinkContainer to={{pathname:'/autoryzacja',state:{underModalLocation:location}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>:
 
                 <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
 
@@ -76,6 +79,7 @@ class MainNavBar extends Component {
 MainNavBar.defaultProps = {
 
   navItems: []
+
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(MainNavBar);
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure:false})(withRouter(MainNavBar));

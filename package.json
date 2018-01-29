@@ -39,15 +39,20 @@
         "react-bootstrap": "^0.32.0",
         "react-dom": "^16.2.0",
         "react-icons": "^2.2.7",
+        "react-image-gallery": "^0.8.7",
+        "react-masonry-component": "^6.0.2",
         "react-redux": "^5.0.6",
         "react-redux-loading-bar": "^3.1.1",
         "react-router-bootstrap": "^0.24.4",
         "react-router-dom": "^4.2.2",
         "react-router-redux": "^5.0.0-alpha.9",
+        "react-slick": "^0.16.0",
+        "recompose": "^0.26.0",
         "redux": "^3.7.2",
         "redux-axios-middleware": "^4.0.0",
         "redux-form": "7.1.0",
         "redux-thunk": "^2.2.0",
+        "slick-carousel": "^1.8.1",
         "webfontloader": "^1.6.28"
     }
 }

@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
+import { withRouter, Switch, Route } from 'react-router-dom'
+import { compose } from 'recompose'
+
 import importAll from 'Utilities/import_all'
+import { withReduxModalManager } from 'Components/ReduxModal'
+import ModalSwitch from './ModalSwitch'
 
 const Modals = importAll(require.context('./Modals',true,/index\.js/))
-
-const mapStateToProps = (state) => {
-
-  return {
-
-    modals:Object.values(state.modal.modals)
-
-  }
-
-}
 
 class ModalContainer extends Component {
 
@@ -22,23 +17,16 @@ class ModalContainer extends Component {
   }
 
   render() {
+
+
     return (
       <div>
-
-        {this.props.modals.map((modal,i) => {
-          var {name, ...props} = modal
-          if(!Modals[name]){throw new Error(`Unsupported Modal Constructor - ${name}`)}
-
-          var Modal = Modals[name]
-
-          return <Modal key={name} {...props}/>
-
-        })}
-
+        <ModalSwitch />
       </div>
     );
   }
 
+
 }
 
-export default connect(mapStateToProps)(ModalContainer);
+export default ModalContainer;

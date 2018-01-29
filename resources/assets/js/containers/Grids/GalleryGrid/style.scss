@@ -1,0 +1,7 @@
+@import '~/sass/mixins/_size';
+
+.gird-card {
+
+  @include size(200,350);
+
+}

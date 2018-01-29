@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import {Modal, Content,  reduxModal} from 'Components/Modal';
 import { Grid, Row, Col } from 'react-bootstrap'
 import {connect} from 'react-redux'
-import {Tabs, Tab} from 'Components/Tabs'
+import { compose } from 'recompose'
+import { withRouter, Route } from 'react-router'
 
 import LoginForm from 'Containers/Forms/LoginForm'
 import RegisterForm from 'Containers/Forms/RegisterForm'
 import { getCurrentUserData } from 'Actions/user_actions'
+import {Modal, Content} from 'Components/Modal';
+import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers.js';
+import {Tabs, Tab} from 'Components/Tabs'
 
 const mapDispatchToProps = dispatch => {
 
@@ -22,11 +25,13 @@ class AuthModal extends Component {
   constructor(props) {
     super(props);
 
+    this.hide = this.hide.bind(this)
     this.onRegisterSuccess = this.onRegisterSuccess.bind(this)
   }
   render() {
+
     return (
-      <Modal  title='Panel Autoryzacji' {...this.props}>
+      <Modal onHide={this.hide} title='Panel Autoryzacji' show={true}>
 
         <Grid fluid>
           <Row>
@@ -37,7 +42,7 @@ class AuthModal extends Component {
 
             <Tab eventKey={1} title='Logowanie'>
 
-                <LoginForm onSubmitSuccess={this.props.hide}/>
+                <LoginForm onSubmitSuccess={this.hide}/>
 
             </Tab>
 
@@ -64,9 +69,15 @@ class AuthModal extends Component {
     );
   }
 
+  hide(){
+
+    this.props.displayUnderModalLocation()
+
+  }
+
   onRegisterSuccess(){
 
-    this.props.hide()
+    this.hide()
 
     this.props.updateCurrentUserData
 
@@ -74,8 +85,15 @@ class AuthModal extends Component {
 
 }
 
+const enhance = compose(
 
-AuthModal = connect(null,mapDispatchToProps)(reduxModal(AuthModal, {name:'AuthModal'}))
+  withRouterHelpers,
+  connect(null,mapDispatchToProps),
+
+)
+
+AuthModal = enhance(AuthModal)
+
 export {
   AuthModal
 }

@@ -84,7 +84,7 @@ module.exports = {
       InlineStyles:path.resolve(__dirname,'resources/assets/styles/InlineStyles'),
       Layouts:path.resolve(__dirname,'resources/assets/js/layouts'),
       Pages:path.resolve(__dirname,'resources/assets/js/layouts/pages'),
-      Router:path.resolve(__dirname,'resources/assets/js/router/index.js'),
+      Router:path.resolve(__dirname,'resources/assets/js/router/'),
 
     }
 
