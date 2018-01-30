@@ -39,6 +39,7 @@ class GalleryDashboard extends Component {
     super(props);
 
     this.getBreadcrumbNavigationItems = this.getBreadcrumbNavigationItems.bind(this)
+    this.openAlbum = this.openAlbum.bind(this)
   }
   render() {
 
@@ -64,6 +65,11 @@ class GalleryDashboard extends Component {
 
   }
 
+  openAlbum(albumId){
+
+    this.props.history.push(albumId)
+
+  }
 
 }
 

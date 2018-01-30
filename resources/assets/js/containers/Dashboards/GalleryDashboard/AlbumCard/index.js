@@ -17,11 +17,13 @@ class AlbumCard extends Component {
 
     return (
       <GridCard onClick={this.openAlbum} className="album-card">
-        <GridCard.Header>Album</GridCard.Header>
+        <GridCard.Header>
+          <div className='folder-name' title={album.name}>{album.name}</div>
+        </GridCard.Header>
         <GridCard.Body>
           <img src={album.description_picture_url} />
         </GridCard.Body>
-        <GridCard.Footer>{album.name}</GridCard.Footer>
+
       </GridCard>
     );
   }
