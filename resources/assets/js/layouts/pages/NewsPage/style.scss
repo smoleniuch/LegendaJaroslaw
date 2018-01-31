@@ -1,3 +1,5 @@
+@import '~Sass/mixins/_media.scss';
+
 .news-side-pandel {
 
   position:fixed;
@@ -7,4 +9,33 @@
 .news-dashboard{
 
   width:calc(100vw - 250px);
+
+
+
+}
+
+.news-page .page-content{
+
+  @include media('<mediumWidth'){
+
+    display:flex;
+    flex-direction: column;
+
+    .news-side-panel {
+
+      width:auto;
+      height:auto;
+      border-bottom:1px solid #ddd;
+    }
+
+    .news-dashboard{
+
+      width:auto;
+      height:auto;
+
+    }
+
+
+  }
+
 }

@@ -1,13 +1,27 @@
+@import '~Sass/mixins/_media.scss';
+
 .news-side-panel {
 
   position:relative;
 
+  .search-bar {
+
+    flex-grow:1;
+
+  }
+
   .motivational-quote-container {
 
-    position:absolute;
+    align-self:flex-end;
+    margin-top:20px;
     text-align:center;
-    bottom:20px;
+    // bottom:20px;
 
+    @include media('<largeWidth'){
+
+      // display:none;
+
+    }
 
   }
 

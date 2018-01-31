@@ -1,6 +1,6 @@
 import React from 'react';
 import {Breadcrumb as BootstrapBreadcrumb} from 'react-bootstrap'
-
+import './style.scss'
 const Breadcrumb = ({items, onClick}) => {
 
   var customOnClick = (e) => {

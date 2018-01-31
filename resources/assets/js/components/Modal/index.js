@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 import _pick from 'lodash/pick'
 import Content from './Content'
 import LoadingBar from 'Components/LoadingBar'
-import reduxModal from './redux_modal'
+import Icon from 'Components/Icon'
+
+import './style.scss'
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -16,10 +19,13 @@ class Modal extends Component {
 
     return (
       <BootstrapModal {...this.modalProps}>
-        <BootstrapModal.Header {...this.headerProps}>
+        <Icon onClick={this.props.onHide} className="close-icon" name="ion-close-round" />
+
+      {this.props.displayDefaultHeader?(<BootstrapModal.Header {...this.headerProps} closeButton={false}>
           <BootstrapModal.Title>{this.headerProps.title}</BootstrapModal.Title>
 
-        </BootstrapModal.Header>
+        </BootstrapModal.Header>):null}
+
         <div className="loading-bar-container">
           <LoadingBar scope='modal'/>
         </div>
@@ -46,8 +52,9 @@ Modal.defaultProps = {
 
   closeButton:true,
   title:'',
-  hide:()=>{}
-
+  hide:()=>{},
+  onHide:()=>{},
+  displayDefaultHeader:true,
 }
 
 Modal.propTypes = {
@@ -64,7 +71,7 @@ export {
 
   Modal,
   Content,
-  reduxModal
+
 
 }
 

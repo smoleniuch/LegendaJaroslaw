@@ -1,0 +1,11 @@
+@import '~Sass/mixins/_styles.scss';
+
+.search-bar {
+
+  .input-group-addon {
+
+    @include primary();
+
+  }
+
+}

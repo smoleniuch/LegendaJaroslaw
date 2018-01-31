@@ -1,5 +1,19 @@
+@import '~Sass/mixins/_size.scss';
+
 .image-gallery-image img{
 
   height:100%;
   width:100%;
+
+}
+
+.image-gallery {
+
+  @include size(100%,100%)
+
+  .image-gallery-content, .image-gallery-slide-wrapper, .image-gallery-slides, .image-gallery-image, .image-gallery-slide, .image-gallery-swipe {
+
+    @include size(100%,100%)
+
+  }
 }

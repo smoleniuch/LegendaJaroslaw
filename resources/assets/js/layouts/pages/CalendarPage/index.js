@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 
-import TrainingsDashboard from 'Containers/Dashboards/TrainingsDashboard'
+import CalendarDashboard from 'Containers/Dashboards/CalendarDashboard'
 import Page from 'Components/Page'
 import './style.scss'
 
-class TrainingsPage extends Component {
+class CalendarPage extends Component {
 
   render() {
     return (
       <Page className='trainings-page'>
         <Page.Content>
-          <TrainingsDashboard />
+          <CalendarDashboard />
         </Page.Content>
       </Page>
     );
@@ -18,4 +18,4 @@ class TrainingsPage extends Component {
 
 }
 
-export default TrainingsPage;
+export default CalendarPage;

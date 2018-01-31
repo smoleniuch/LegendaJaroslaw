@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 
 }
 
-class TrainingsDashboard extends Component {
+class CalendarDashboard extends Component {
 
   constructor(props) {
     super(props);
@@ -42,4 +42,4 @@ class TrainingsDashboard extends Component {
 
 }
 
-export default connect(mapStateToProps,{getCalendarEvents})(TrainingsDashboard);
+export default connect(mapStateToProps,{getCalendarEvents})(CalendarDashboard);

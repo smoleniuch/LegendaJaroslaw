@@ -11,7 +11,7 @@ const Post = ({title, content}) => {
 
   return (
 
-    <Panel className={classNames('post')}>
+    <Panel bsStyle="primary" className={classNames('post')}>
 
   <Panel.Heading>
       <Panel.Title>
