@@ -1,19 +1,31 @@
+@import '~Sass/variables/_colors.scss';
+
 .album-card {
-
-
 
   .card-header {
 
     text-align:center;
-    border-top-right-radius: 5;
-    border-top-left-radius: 5;
+
+  }
+
+  .folder-name {
+
+    border-top-right-radius: 50px;
+    border-top-left-radius: 4px;
+    width:80%;
+    background-color:$color-secondary-1-0;
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+
+
   }
 
   .card-body {
-
-    height:calc(100% - 38px);
+    background-color:$color-secondary-1-0;
+    // box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    height:calc(100% - 19px);
     width:100%;
-
+    box-shadow: 0 0 2px 0px rgba(0, 0, 0, 0.5);
+    
   }
 
   img {
@@ -32,13 +44,26 @@
 
   .card-body {
 
-    border: 1px solid #ddd;
+    // border: 1px solid #ddd;
     border-radius: 4px;
+    border-top-left-radius:0px;
     padding: 5px;
 
     &:hover {
-      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+      // box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 
   }
 }
+
+  &:hover {
+
+    .folder-name, .card-body {
+
+      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+
+
+    }
+
+  }
+
 }

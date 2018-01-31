@@ -1,5 +1,14 @@
+@import '~Sass/mixins/_media.scss';
+
+
 .page-content {
 
   display:flex;
+
+  @include media('<mediumWidth'){
+
+    margin-top: 50px;
+
+  }
 
 }

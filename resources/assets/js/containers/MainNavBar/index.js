@@ -50,9 +50,9 @@ class MainNavBar extends Component {
           <Navbar.Collapse className="options">
             <Nav>
               <LinkContainer to='/aktualnosci'><NavItem>Aktualnośći</NavItem></LinkContainer>
-              <LinkContainer to='/treningi'><NavItem>Treningi</NavItem></LinkContainer>
+              <LinkContainer to='/kalendarz'><NavItem>Kalendarz</NavItem></LinkContainer>
               <LinkContainer to='/galeria/albumy/1'><NavItem>Galeria</NavItem></LinkContainer>
-              <LinkContainer to='/kontakt'><NavItem>Kontakt</NavItem></LinkContainer>
+              <LinkContainer to='/kontakt'><NavItem>O Nas</NavItem></LinkContainer>
             </Nav>
             <Nav pullRight>
 

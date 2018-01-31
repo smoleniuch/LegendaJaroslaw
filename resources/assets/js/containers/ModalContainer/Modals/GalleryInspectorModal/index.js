@@ -5,11 +5,12 @@ import ReactImageGallery from 'react-image-gallery'
 import _pick from 'lodash/pick'
 import _get from 'lodash/get'
 import "react-image-gallery/styles/css/image-gallery.css"
-import './style.scss'
 
 import {Modal, Content,  reduxModal} from 'Components/Modal';
 import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers.js';
 import { withRouter } from 'react-router'
+import './style.scss'
+
 const mapStateToProps = (state, props) => {
 
   var currentPhotoId = props.match.params.photoId
@@ -17,7 +18,6 @@ const mapStateToProps = (state, props) => {
   var currentAlbumPhotoIds = _get(state.gallery.albums,`${currentAlbumId}.photo_ids`,[])
 
 
-  console.log(_pick(state.gallery.photos,))
   return {
 
     currentPhoto:state.gallery.photos[currentPhotoId],
@@ -41,8 +41,8 @@ class GalleryInspectorModal extends Component {
 
 
     return (
-      <Modal onHide={this.onHide} show={true}>
-        <div >
+      <Modal displayDefaultHeader={false} onHide={this.onHide} show={true}>
+        <div style={{height:'500px',width:'100%'}}>
         <ReactImageGallery
           style={{height:'500px',width:'100%'}}
           showThumbnails={false}

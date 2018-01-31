@@ -8,7 +8,7 @@ const history = createHistory()
 import ModalContainer from 'Containers/ModalContainer'
 import MainLayout from 'Layouts/MainLayout'
 import NewsPage from 'Pages/NewsPage'
-import TrainingsPage from 'Pages/TrainingsPage'
+import CalendarPage from 'Pages/CalendarPage'
 import GalleryPage from 'Pages/GalleryPage'
 
 class Router extends React.Component {
@@ -36,7 +36,7 @@ class Router extends React.Component {
                 <Switch location={location}>
                 <Route path='/aktualnosci' component={NewsPage}/>
                 <Route path='/galeria/albumy/:albumId' component={GalleryPage}/>
-                <Route path='/treningi' component={TrainingsPage}/>
+                <Route path='/kalendarz' component={CalendarPage}/>
                 <Redirect from='/' to='/aktualnosci' />
                 </Switch>
 

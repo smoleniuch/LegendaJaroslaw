@@ -1,0 +1,15 @@
+@import '~Sass/variables/_colors.scss';
+
+@mixin style($color, $background-color){
+
+  color:$color;
+  background-color: $background-color;
+  border-color: $background-color;
+
+}
+
+@mixin primary(){
+
+  @include style(#fff,$color-primary-0)
+
+}
