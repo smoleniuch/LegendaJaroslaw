@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
       $this->call(CalendarEventsTableSeeder::class);
       $this->call(CyclicCalendarEventTableSeeder::class);
-      $this->call(UserTableSeeder::class);
       $this->call(PostTableSeeder::class);
       $this->call(MotivationalQuotesTableSeeder::class);
       $this->call(GalleryAlbumTableSeeder::class);
@@ -24,6 +23,8 @@ class DatabaseSeeder extends Seeder
       $this->call(WorkoutTemplatesTableSeeder::class);
       $this->call(WorkoutWeeksTableSeeder::class);
       $this->call(WorkoutCycleTableSeeder::class);
-      
+      $this->call(UserRoleTableSeeder::class);
+      $this->call(UserTableSeeder::class);
+
     }
 }
