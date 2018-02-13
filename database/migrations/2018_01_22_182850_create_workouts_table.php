@@ -15,8 +15,12 @@ class CreateWorkoutsTable extends Migration
     {
         Schema::create('workouts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('description');
+            $table->boolean('canceled')->default(false);
+            $table->integer('delay')->default(0);
+            $table->bigInteger('workout_template_id')->nullable();
+            $table->bigInteger('workout_cycle_id')->nullable();
+            $table->dateTime('start');
+            $table->dateTime('end');
             $table->timestamps();
         });
     }

@@ -3,8 +3,11 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\CyclicCalendarEvent;
-use App\Observers\CyclicCalendarEventObserver;
+// use App\CyclicCalendarEvent;
+use App\WorkoutCycle;
+use App\Workout;
+use App\Observers\WorkoutEventObserver;
+use App\Observers\WorkoutCycleEventObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,8 +19,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-      CyclicCalendarEvent::observe(CyclicCalendarEventObserver::class);
-
+      // CyclicCalendarEvent::observe(CyclicCalendarEventObserver::class);
+      WorkoutCycle::observe(WorkoutCycleEventObserver::class);
+      Workout::observe(WorkoutEventObserver::class);
     }
 
     /**

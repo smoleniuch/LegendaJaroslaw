@@ -9,6 +9,7 @@ import post from './post_reducer.js'
 import motivationalQuote from './motivational_quote_reducer.js'
 import gallery from './gallery_reducer.js'
 import router from './router_reducer.js'
+import workout from './workout_reducer.js'
 
 
 // Combine Reducers
@@ -24,6 +25,7 @@ var reducers = combineReducers({
   motivationalQuote,
   gallery,
   router,
+  workout,
 
 });
 

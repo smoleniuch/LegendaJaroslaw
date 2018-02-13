@@ -12,11 +12,11 @@ class WorkoutTableSeeder extends Seeder
      */
     public function run()
     {
-        $workout = new Workout();
-
-        $workout->name = 'Trening';
-        $workout->description = 'Opis';
-
-        $workout->save();
+        // $workout = new Workout();
+        //
+        // $workout->name = 'Trening';
+        // $workout->description = 'Opis';
+        //
+        // $workout->save();
     }
 }

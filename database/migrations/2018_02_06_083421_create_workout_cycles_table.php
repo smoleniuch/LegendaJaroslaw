@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalendarEventsTable extends Migration
+class CreateWorkoutCyclesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,12 @@ class CreateCalendarEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar_events', function (Blueprint $table) {
+        Schema::create('workout_cycles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->boolean('canceled')->default(false);
-            $table->integer('delayed')->default(0);
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->bigInteger('workout_cycle_template_id');
+            $table->date('valid_from');
+            $table->date('valid_to');
             $table->timestamps();
-
         });
     }
 
@@ -33,6 +29,6 @@ class CreateCalendarEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar_events');
+        Schema::dropIfExists('workout_cycles');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCalendarEventsTable extends Migration
+class CreateWorkoutDayWorkoutTemplatePivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateCalendarEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar_events', function (Blueprint $table) {
+        Schema::create('workout_day_workout_template', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->string('description');
-            $table->boolean('canceled')->default(false);
-            $table->integer('delayed')->default(0);
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->bigInteger('workout_day_id');
+            $table->bigInteger('workout_template_id');
             $table->timestamps();
-
         });
     }
 
@@ -33,6 +28,6 @@ class CreateCalendarEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar_events');
+        Schema::dropIfExists('workout_day_workout_template');
     }
 }

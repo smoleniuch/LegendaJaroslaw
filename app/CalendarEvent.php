@@ -8,7 +8,7 @@ class CalendarEvent extends Model
 {
     protected $hidden = ['cyclicCalendarEvent'];
 
-    protected $fillable = ['start','title','description','end'];
+    protected $fillable = ['start','title','description','end','workout_id'];
 
     public function cyclicCalendarEvent(){
 
