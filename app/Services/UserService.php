@@ -8,7 +8,7 @@ class UserService {
 
     $user = auth()->check() === true?auth()->user(): collect([]);
 
-    $user = collect($user->only(['id','name','email']));
+    $user = collect($user->only(['id','name','email','roles']));
 
     $user->put('isLoggedIn', auth()->check());
 
