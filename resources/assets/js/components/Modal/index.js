@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {Modal as BootstrapModal} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import _pick from 'lodash/pick'
+import Body from './Body'
 import Content from './Content'
-import LoadingBar from 'Components/LoadingBar'
 import Icon from 'Components/Icon'
 
 import './style.scss'
@@ -21,14 +21,7 @@ class Modal extends Component {
       <BootstrapModal {...this.modalProps}>
         <Icon onClick={this.props.onHide} className="close-icon" name="ion-close-round" />
 
-      {this.props.displayDefaultHeader?(<BootstrapModal.Header {...this.headerProps} closeButton={false}>
-          <BootstrapModal.Title>{this.headerProps.title}</BootstrapModal.Title>
 
-        </BootstrapModal.Header>):null}
-
-        <div className="loading-bar-container">
-          <LoadingBar scope='modal'/>
-        </div>
         {this.props.children}
       </BootstrapModal>
     );
@@ -70,8 +63,8 @@ Modal.propTypes = {
 export {
 
   Modal,
+  Body,
   Content,
-
 
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GridCard from 'Components/GridCard'
+import Card from 'Components/Card'
 import { withRouter } from 'react-router'
 import './style.scss'
 
@@ -16,15 +16,15 @@ class AlbumCard extends Component {
     var { album } = this.props;
 
     return (
-      <GridCard onClick={this.openAlbum} className="album-card">
-        <GridCard.Header>
+      <Card onClick={this.openAlbum} className="album-card">
+        <Card.Header>
           <div className='folder-name' title={album.name}>{album.name}</div>
-        </GridCard.Header>
-        <GridCard.Body>
+        </Card.Header>
+        <Card.Body>
           <img src={album.description_picture_url} />
-        </GridCard.Body>
+        </Card.Body>
 
-      </GridCard>
+      </Card>
     );
   }
 

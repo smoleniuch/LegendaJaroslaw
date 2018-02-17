@@ -4,13 +4,13 @@ namespace App\Observers;
 
 use App\WorkoutCycle;
 use App\Services\CalendarService;
-use App\Services\WorkoutService;
+use App\Services\Workout\WorkoutGeneratorService;
 
 class WorkoutCycleEventObserver
 {
     public function __construct(){
 
-      $this->workoutService = new WorkoutService();
+      $this->workoutService = new WorkoutGeneratorService();
 
     }
     /**

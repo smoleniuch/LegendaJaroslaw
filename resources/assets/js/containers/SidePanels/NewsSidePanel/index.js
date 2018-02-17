@@ -18,8 +18,8 @@ const mapStateToProps = (state) => {
   return {
 
     posts:state.post.posts,
-    motivationalQuote:state.motivationalQuote.quoteOfTheDay
-
+    motivationalQuote:state.motivationalQuote.quoteOfTheDay,
+    nextWorkout:state.workout.workouts[state.workout.nextWorkoutId]
   }
 
 }
@@ -45,14 +45,24 @@ class NewsSidePanel extends Component {
 
         <Panel bsStyle="primary">
           <Panel.Heading>Najbliższy Planowany Trening</Panel.Heading>
-          <Panel.Body>Odbędzie się <Icon name="ion-checkmark-circled"/></Panel.Body>
+
+
+            <Panel.Body>
+              {this.props.nextWorkout?(
+                !this.props.nextWorkout.canceled?<div>Odbędzie się <Icon name="ion-checkmark-circled"/> </div>:<div>Nie odbędzie się <Icon name="ion-close-round"/> </div>
+              ):'Brak danych'}
+             </Panel.Body>
+
+
         </Panel>
 
           <SearchBar onChange={this.props.updatePostsFilter}/>
+          {this.props.motivationalQuote?(
+            <MotivationalQuote
+              author={this.props.motivationalQuote.author}
+              text={this.props.motivationalQuote.text}/>
+          ):''}
 
-          <MotivationalQuote
-            author={this.props.motivationalQuote.author}
-            text={this.props.motivationalQuote.text}/>
             {/*
           <SidePanelNavigator data={posts} />
           */}

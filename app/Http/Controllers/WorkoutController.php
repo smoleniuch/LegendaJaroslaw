@@ -4,9 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Workout;
 use Illuminate\Http\Request;
+use App\Services\Workout\WorkoutEditorService;
 
 class WorkoutController extends Controller
 {
+
+    public function __construct(){
+
+      $this->workoutEditorService = new WorkoutEditorService();
+
+    }
+    public function cancel(Workout $workout, Request $request){
+      return $this->workoutEditorService->cancelWorkout($workout, $request->all());
+    }
+
+    public function undoCancel(Workout $workout, Request $request){
+      return $this->workoutEditorService->undoCancel($workout, $request->all());
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +83,9 @@ class WorkoutController extends Controller
      */
     public function update(Request $request, Workout $workout)
     {
-        //
+        $workout->fill($request->all());
+        $workout->save();
+        return response()->json($workout);
     }
 
     /**
@@ -82,4 +98,5 @@ class WorkoutController extends Controller
     {
         //
     }
+
 }

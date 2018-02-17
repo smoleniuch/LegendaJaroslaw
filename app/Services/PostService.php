@@ -7,7 +7,7 @@ class PostService {
 
   public function getAllPosts(){
 
-    return Post::all();
+    return Post::all()->sortByDesc('created_at')->values();
 
   }
 

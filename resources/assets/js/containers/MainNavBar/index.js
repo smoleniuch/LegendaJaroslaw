@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Nav, NavItem, Navbar} from 'react-bootstrap'
+import {Nav, NavItem, Navbar, NavDropdown, MenuItem} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import { withRouter } from 'react-router'
 import './style.scss'
 import Logo from 'Components/Logo'
 import { displayModal } from 'Actions/modal_actions.js'
 import { logOut } from 'Actions/user_actions'
-
+import Authorization from 'Containers/Helpers/Authorization'
 import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
@@ -23,7 +23,12 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
 
-      logOut:() => dispatch(logOut())
+      logOut(){
+        dispatch(logOut())
+      },
+      openEditNextWorkoutModal(){
+        dispatch(displayModal('EditNextWorkoutContent'))
+      }
   }
 
 }
@@ -53,16 +58,36 @@ class MainNavBar extends Component {
               <LinkContainer to='/kalendarz'><NavItem>Kalendarz</NavItem></LinkContainer>
               <LinkContainer to='/galeria/albumy/1'><NavItem>Galeria</NavItem></LinkContainer>
               <LinkContainer to='/kontakt'><NavItem>O Nas</NavItem></LinkContainer>
+
+              <Authorization allowedRoles={['couch']}>
+
+                <NavDropdown eventKey={3} title="Panel Zarządzania" id="basic-nav-dropdown">
+
+                  <LinkContainer to='/panel-zarzadzania/treningi'><NavItem>Treningi</NavItem></LinkContainer>
+                  <LinkContainer to='/panel-zarzadzania/Galeria'><NavItem>Galeria</NavItem></LinkContainer>
+                  <LinkContainer to='/panel-zarzadzania/kalendarz'><MenuItem>Kalendarz</MenuItem></LinkContainer>
+                  <MenuItem divider />
+                  <MenuItem header>Szybkie Akcje</MenuItem>
+
+                  <MenuItem onSelect={this.props.openEditNextWorkoutModal}>Edytuj Najbliższy Trening</MenuItem>
+
+
+                </NavDropdown>
+
+              </Authorization>
+
+
             </Nav>
             <Nav pullRight>
 
-              {!this.props.user.isLoggedIn?
+                <Authorization onlyGuest>
+                  <LinkContainer to={{pathname:'/autoryzacja',state:{underModalLocation:location}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>
+                </Authorization>
 
-                <LinkContainer to={{pathname:'/autoryzacja',state:{underModalLocation:location}}} ><NavItem>Zaloguj się</NavItem></LinkContainer>:
+                <Authorization onlyLoggedIn>
+                  <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
+                </Authorization>
 
-                <NavItem onSelect={this.props.logOut}>Wyloguj się</NavItem>
-
-              }
 
 
 

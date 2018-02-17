@@ -1,0 +1,23 @@
+.labelled-list {
+
+  display:flex;
+  flex-direction:column;
+
+  .labelled-list-item {
+    // 
+    // flex:1;
+    // display:flex
+
+  }
+
+  .item-value {
+    display:inline;
+    float:right;
+  }
+
+  .item-label {
+    display:inline;
+    float:left;
+  }
+
+}

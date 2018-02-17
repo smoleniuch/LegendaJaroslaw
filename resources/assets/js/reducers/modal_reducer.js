@@ -11,22 +11,22 @@ function modalReducer(state = initialState,action){
 
     case 'DISPLAY_MODAL':
 
-    var modal = _get(state, `modals.${action.payload.name}`)
+    var modal = _get(state, `modals.${action.payload.content}`)
     // create if it doesnt exists
     if (modal === undefined){
 
       modal = {
 
         show:true,
-        name:action.payload.name,
-
+        content:action.payload.content,
+        ...action.payload.modalProps
       }
 
     }
 
     else {
 
-      _set(state, `modals.${action.payload.name}.show`, true)
+      _set(state, `modals.${action.payload.content}.show`, true)
 
     }
 
@@ -34,18 +34,18 @@ function modalReducer(state = initialState,action){
         ...state,
         modals:{
           ...state.modals,
-          [action.payload.name]:modal
+          [action.payload.content]:modal
         }
       }
 
     case 'HIDE_MODAL':
 
-      var modal = _get(state, `modals.${action.payload.name}`)
+      var modal = _get(state, `modals.${action.payload.content}`)
       return {
         ...state,
         modals:{
           ...state.modals,
-          [action.payload.name]:{
+          [action.payload.content]:{
             ...modal,
             show:false,
           }
@@ -55,10 +55,10 @@ function modalReducer(state = initialState,action){
 
       var stateCopy = {...state}
 
-      delete stateCopy.modals[action.payload.name]
+      delete stateCopy.modals[action.payload.content]
 
       return stateCopy
-      
+
   }
 
   return state

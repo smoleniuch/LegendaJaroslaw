@@ -6,7 +6,7 @@ use App\Services\UserService;
 use App\Services\PostService;
 use App\Services\MotivationalQuoteService;
 use App\Services\GalleryService;
-use App\Services\WorkoutService;
+use App\Services\Workout\WorkoutFetchingService;
 use App\Workout;
 use App\WorkoutTemplate;
 use Underscore\Types\Arrays;
@@ -20,12 +20,12 @@ class ReduxService {
     $this->postService = new PostService();
     $this->motivationalQuoteService = new MotivationalQuoteService();
     $this->galleryService = new GalleryService();
-    $this->workoutService = new WorkoutService();
+    $this->workoutFetchingService = new WorkoutFetchingService();
 
   }
 
   public function getPreloadedState(){
-
+    
     $preloadedState = json_encode([
 
       'user' => $this->userService->getCurrentUserData(),
@@ -47,12 +47,12 @@ class ReduxService {
   }
 
   public function getWorkoutBranch(){
-
+    $nextWorkout = $this->workoutFetchingService->getNextWorkout();
     return [
 
       'workouts' => Workout::all()->keyBy('id'),
       'workoutTemplates' => WorkoutTemplate::all()->keyBy('id'),
-
+      'nextWorkoutId' => $nextWorkout?$nextWorkout->id:null
     ];
 
   }

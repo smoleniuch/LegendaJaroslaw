@@ -10,6 +10,7 @@ import MainLayout from 'Layouts/MainLayout'
 import NewsPage from 'Pages/NewsPage'
 import CalendarPage from 'Pages/CalendarPage'
 import GalleryPage from 'Pages/GalleryPage'
+import ManagementPanelPage from 'Pages/ManagementPanelPage'
 
 class Router extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Router extends React.Component {
                 <Route path='/aktualnosci' component={NewsPage}/>
                 <Route path='/galeria/albumy/:albumId' component={GalleryPage}/>
                 <Route path='/kalendarz' component={CalendarPage}/>
-                <Redirect from='/' to='/aktualnosci' />
+                <Route path='/panel-zarzadzania' component={ManagementPanelPage}/>
                 </Switch>
 
                 <ModalContainer />

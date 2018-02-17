@@ -6,7 +6,6 @@ import _get from 'lodash/get'
 
 import Dashboard from 'Components/Dashboard'
 import DashboardGrid from 'Components/DashboardGrid';
-import GridCard from 'Components/GridCard'
 import Breadcrumb from 'Components/Breadcrumb'
 import AlbumCard from './AlbumCard'
 import PhotoCard from './PhotoCard'

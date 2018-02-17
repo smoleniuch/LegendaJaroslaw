@@ -5,9 +5,22 @@ import { compose } from 'recompose'
 
 import importAll from 'Utilities/import_all'
 import { withReduxModalManager } from 'Components/ReduxModal'
+import { hideModal } from 'Actions/modal_actions'
 import ModalSwitch from './ModalSwitch'
+import Modal from 'Components/Modal'
 
 const Modals = importAll(require.context('./Modals',true,/index\.js/))
+const ModalContents = importAll(require.context('./ModalContents',true,/index\.js/))
+
+const mapStateToProps = (state) => {
+
+  return {
+
+    modals:Object.values(state.modal.modals)
+
+  }
+
+}
 
 class ModalContainer extends Component {
 
@@ -22,11 +35,25 @@ class ModalContainer extends Component {
     return (
       <div>
         <ModalSwitch />
+
+        {this.props.modals.map((modal, i) => {
+          var { content, ...props } = modal
+          var ContentConstructor = ModalContents[content]
+          return (
+            <Modal key={i} onHide={this.props.hideModal.bind(null,content)}  {...props}>
+              <ContentConstructor hideModal={this.props.hideModal.bind(null,content)}/>
+            </Modal>
+          )
+
+        })}
+
       </div>
     );
   }
 
 
+
+
 }
 
-export default ModalContainer;
+export default connect(mapStateToProps,{hideModal})(ModalContainer);

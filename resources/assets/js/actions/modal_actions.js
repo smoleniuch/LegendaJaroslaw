@@ -1,26 +1,27 @@
-export function displayModal(name){
+export function displayModal(content,modalProps = {}){
 
   return {
 
     type:'DISPLAY_MODAL',
     payload:{
 
-      name,
-
+      content,
+      modalProps,
+      
     }
 
   }
 
 }
 
-export function deleteModal(name){
+export function deleteModal(content){
 
   return {
 
     type:'DELETE_MODAL',
     payload:{
 
-      name,
+      content,
 
     }
 
@@ -28,7 +29,7 @@ export function deleteModal(name){
 
 }
 
-export function hideModal(name, deleteIt = true){
+export function hideModal(content, deleteIt = true){
 
   return (dispatch) => {
 
@@ -39,7 +40,7 @@ export function hideModal(name, deleteIt = true){
         type:'HIDE_MODAL',
         payload:{
 
-          name,
+          content,
 
         }
 
@@ -48,7 +49,7 @@ export function hideModal(name, deleteIt = true){
       setTimeout(() => {
 
         resolve()
-        if(deleteIt){dispatch(deleteModal(name))}
+        if(deleteIt){dispatch(deleteModal(content))}
 
       }, 300)
 

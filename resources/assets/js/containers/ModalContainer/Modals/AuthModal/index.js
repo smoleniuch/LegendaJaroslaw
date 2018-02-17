@@ -7,7 +7,7 @@ import { withRouter, Route } from 'react-router'
 import LoginForm from 'Containers/Forms/LoginForm'
 import RegisterForm from 'Containers/Forms/RegisterForm'
 import { getCurrentUserData } from 'Actions/user_actions'
-import {Modal, Content} from 'Components/Modal';
+import {Modal, Body, Content} from 'Components/Modal';
 import withRouterHelpers from 'Containers/ModalContainer/with_router_helpers.js';
 import {Tabs, Tab} from 'Components/Tabs'
 
@@ -32,39 +32,39 @@ class AuthModal extends Component {
 
     return (
       <Modal onHide={this.hide} title='Panel Autoryzacji' show={true}>
+        <Content title='Panel Autoryzacji'>
+          <Grid fluid>
+            <Row>
 
-        <Grid fluid>
-          <Row>
+            <Col md={8}>
+            <Body borderRight>
+            <Tabs id='auth-modal-forms' defaultActiveKey={1}>
 
-          <Col md={8}>
-          <Content borderRight>
-          <Tabs id='auth-modal-forms' defaultActiveKey={1}>
+              <Tab eventKey={1} title='Logowanie'>
 
-            <Tab eventKey={1} title='Logowanie'>
-
-                <LoginForm onSubmitSuccess={this.hide}/>
-
-            </Tab>
-
-            <Tab eventKey={2} title='Rejestracja'>
-
-              <RegisterForm onSubmitSuccess={this.onRegisterSuccess}/>
+                  <LoginForm onSubmitSuccess={this.hide}/>
 
               </Tab>
 
-          </Tabs>
-          </Content>
+              <Tab eventKey={2} title='Rejestracja'>
+
+                <RegisterForm onSubmitSuccess={this.onRegisterSuccess}/>
+
+                </Tab>
+
+            </Tabs>
+            </Body>
 
 
-          </Col>
+            </Col>
 
-          <Col md={4}>
+            <Col md={4}>
 
-          </Col>
+            </Col>
 
-          </Row>
-        </Grid>
-
+            </Row>
+          </Grid>
+        </Content>
       </Modal>
     );
   }

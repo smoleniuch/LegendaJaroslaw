@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import _pick from 'lodash/pick'
 
 import DashboardGrid from 'Components/DashboardGrid';
-import GridCard from 'Components/GridCard'
+import Card from 'Components/Card'
 
 
 
@@ -55,14 +55,14 @@ class GalleryGrid extends Component {
   drawPhotoCard(photo){
 
     return (
-      <GridCard onClick={this.openGalleryInspectorModal}  key={photo.id}>
-        <GridCard.Body>
+      <Card onClick={this.openGalleryInspectorModal}  key={photo.id}>
+        <Card.Body>
 
           <img style={{maxWidth:'100%',maxHeight:'100%'}} src={photo.url} />
 
-        </GridCard.Body>
+        </Card.Body>
 
-      </GridCard>
+      </Card>
     )
 
   }
@@ -72,15 +72,15 @@ class GalleryGrid extends Component {
   drawAlbumCard(album){
 
     return (
-      <GridCard onClick={this.openAlbum} key={album.id} eventKey={album.id}>
-        <GridCard.Header>Album: {album.name}</GridCard.Header>
-        <GridCard.Body>
+      <Card onClick={this.openAlbum} key={album.id} eventKey={album.id}>
+        <Card.Header>Album: {album.name}</Card.Header>
+        <Card.Body>
 
           <img style={{maxWidth:'100%',maxHeight:'100%'}} src={album.description_picture_url} />
 
-        </GridCard.Body>
+        </Card.Body>
 
-      </GridCard>
+      </Card>
     )
 
   }

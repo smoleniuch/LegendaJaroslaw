@@ -10,7 +10,7 @@ use App\WorkoutCycleTemplate;
 use App\WorkoutWeek;
 use App\WorkoutDay;
 use App\WorkoutTemplate;
-use App\Services\WorkoutService;
+use App\Services\Workout\WorkoutGeneratorService;
 use Carbon\Carbon;
 
 class WorkoutsGenerationFromWorkoutCycleTest extends TestCase

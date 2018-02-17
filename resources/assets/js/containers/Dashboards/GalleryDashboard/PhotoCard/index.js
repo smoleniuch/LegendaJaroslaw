@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import GridCard from 'Components/GridCard'
+import Card from 'Components/Card'
 import { withRouter } from 'react-router'
 import './style.scss'
 
@@ -16,14 +16,14 @@ class PhotoCard extends Component {
     var { photo } = this.props;
 
     return (
-      <GridCard className="photo-card" onClick={this.openGalleryInspectorModal} eventKey={photo.id}  key={photo.id}>
-        <GridCard.Body>
+      <Card className="photo-card" onClick={this.openGalleryInspectorModal} eventKey={photo.id}  key={photo.id}>
+        <Card.Body>
 
           <img style={{maxWidth:'100%',maxHeight:'100%'}} src={photo.original} />
 
-        </GridCard.Body>
+        </Card.Body>
 
-      </GridCard>
+      </Card>
     );
   }
 
