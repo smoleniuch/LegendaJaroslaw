@@ -47,8 +47,8 @@ class GalleryDashboard extends Component {
     <Dashboard className="gallery-dashboard">
       <Breadcrumb onClick={this.openAlbum} items={this.getBreadcrumbNavigationItems()}/>
       <DashboardGrid>
-        {this.props.albums.map((album) => <AlbumCard album={album}/>)}
-        {this.props.photos.map((photo) => <PhotoCard photo={photo}/>)}
+        {this.props.albums.map((album) => <AlbumCard key={album.id} album={album}/>)}
+        {this.props.photos.map((photo) => <PhotoCard key={photo.id} photo={photo}/>)}
       </DashboardGrid>
     </Dashboard>
     );

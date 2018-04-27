@@ -37,11 +37,11 @@ class ModalContainer extends Component {
         <ModalSwitch />
 
         {this.props.modals.map((modal, i) => {
-          var { content, ...props } = modal
+          var { content, show,  ...props } = modal
           var ContentConstructor = ModalContents[content]
           return (
-            <Modal key={i} onHide={this.props.hideModal.bind(null,content)}  {...props}>
-              <ContentConstructor hideModal={this.props.hideModal.bind(null,content)}/>
+            <Modal key={i} onHide={this.props.hideModal.bind(null,content)} show={show} >
+              <ContentConstructor hideModal={this.props.hideModal.bind(null,content)} {...props}/>
             </Modal>
           )
 

@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
   return {
 
-    posts:state.post.posts,
+    posts:Object.values(state.post.posts).sort((a,b) => new Date(b.created_at) - new Date(a.created_at)),
     filter:state.post.filter
 
   }
@@ -30,6 +30,8 @@ class NewsDashboard extends Component {
     var {posts} = this.props
 
     return (
+
+
       <Dashboard className="news-dashboard">
 
       {posts.map((post)=>{
@@ -39,6 +41,7 @@ class NewsDashboard extends Component {
       })}
 
       </Dashboard>
+
     );
   }
 

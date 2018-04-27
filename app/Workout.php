@@ -13,7 +13,7 @@ class Workout extends Model
 {
     use CausesActivity;
 
-    public $fillable = ['begin_date','end_date', 'canceled'];
+    public $fillable = ['name', 'description', 'start', 'end', 'canceled'];
 
     public function workoutTemplate(){
 
@@ -31,5 +31,9 @@ class Workout extends Model
 
       return $this->belongsToMany(Post::class);
 
+    }
+
+    public function getCanceledAttribute($val){
+      return (bool) $val;
     }
 }

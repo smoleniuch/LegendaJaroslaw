@@ -14,6 +14,7 @@ class PostController extends Controller
      */
     public function index(PostService $postService)
     {
+
         return response()->json($postService->getAllPosts());
     }
 
@@ -33,9 +34,10 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, PostService $postService)
     {
-        //
+        
+        return response()->json($postService->add($request->only(['title', 'content'])));
     }
 
     /**

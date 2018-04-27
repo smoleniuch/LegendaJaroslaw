@@ -25,7 +25,6 @@ module.exports = {
       }, {
         test: /\.jsx$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
       }, {
         test: /\.(woff|woff2|eot|ttf|svg)$/,
         loader: 'url-loader?limit=100000'
@@ -85,6 +84,8 @@ module.exports = {
       Layouts:path.resolve(__dirname,'resources/assets/js/layouts'),
       Pages:path.resolve(__dirname,'resources/assets/js/layouts/pages'),
       Router:path.resolve(__dirname,'resources/assets/js/router/'),
+      PostTemplates:path.resolve(__dirname,'resources/assets/js/postTemplates'),
+      
 
     }
 

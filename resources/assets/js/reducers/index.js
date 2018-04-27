@@ -10,7 +10,7 @@ import motivationalQuote from './motivational_quote_reducer.js'
 import gallery from './gallery_reducer.js'
 import router from './router_reducer.js'
 import workout from './workout_reducer.js'
-
+import notifications from './notification_reducer'
 
 // Combine Reducers
 var reducers = combineReducers({
@@ -26,6 +26,8 @@ var reducers = combineReducers({
   gallery,
   router,
   workout,
+  notifications,
+
 
 });
 

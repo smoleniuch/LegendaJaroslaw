@@ -21,6 +21,7 @@ class WorkoutController extends Controller
     public function undoCancel(Workout $workout, Request $request){
       return $this->workoutEditorService->undoCancel($workout, $request->all());
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -64,27 +65,17 @@ class WorkoutController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Workout  $workout
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Workout $workout)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Workout $workout)
-    {
-        $workout->fill($request->all());
-        $workout->save();
+    public function edit(Request $request, Workout $workout)
+    {   
+        $workoutData = $request->only(['canceled', 'start', 'end']);
+        $workout = $this->workoutEditorService->edit($workout, $workoutData);
+
         return response()->json($workout);
     }
 

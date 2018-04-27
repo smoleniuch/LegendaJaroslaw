@@ -16,7 +16,7 @@ const store = createStore(
   reducers,
   preloadedStore,
   composeWithDevTools(
-    applyMiddleware.apply(this,middlewares)
+    applyMiddleware(...middlewares)
   )
 );
 export default store;

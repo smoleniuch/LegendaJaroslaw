@@ -3,10 +3,10 @@ import './style.scss'
 const LabelledList = ({items}) => (
   <div className="labelled-list">
 
-    {items.map((item) => {
+    {items.map((item,i) => {
 
       return (
-        <div className="labelled-list-item">
+        <div key={i} className="labelled-list-item">
           <div className="item-label">{item.label}</div>
           <div className="item-value">{item.value}</div>
         </div>

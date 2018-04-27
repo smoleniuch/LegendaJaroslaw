@@ -5,14 +5,14 @@ class DescriptionCard extends Component {
 
   render() {
 
-    var { size, children, title } = this.props
+    var { size, children, title, className } = this.props
 
     return (
-      <div className={classNames('description-card',size)}>
+      <div className={classNames('description-card',size, className)}>
 
-        <div className="title">{title}</div>
+        <div className="card-title">{title}</div>
 
-        <div className='body'>
+        <div className='card-body'>
 
         {children}
 

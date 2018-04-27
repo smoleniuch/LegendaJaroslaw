@@ -14,11 +14,11 @@ const Breadcrumb = ({items, onClick}) => {
   return (
 
     <BootstrapBreadcrumb>
-      {items.map((item)=>{
+      {items.map((item,i)=>{
 
         return (
 
-          <BootstrapBreadcrumb.Item onClick={customOnClick} data-event-key={item.eventKey} active={item.active}>{item.label}</BootstrapBreadcrumb.Item>
+          <BootstrapBreadcrumb.Item key={i} onClick={customOnClick} data-event-key={item.eventKey} active={item.active}>{item.label}</BootstrapBreadcrumb.Item>
 
         )
 

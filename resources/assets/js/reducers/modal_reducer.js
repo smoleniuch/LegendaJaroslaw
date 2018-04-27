@@ -1,6 +1,8 @@
 import _get from 'lodash/get'
 import _set from 'lodash/set'
 
+import * as types from 'Actions/modalActions/types'
+
 const initialState = {
   modals:{}
 }
@@ -9,7 +11,7 @@ function modalReducer(state = initialState,action){
 
   switch (action.type){
 
-    case 'DISPLAY_MODAL':
+    case types.DISPLAY_MODAL:
 
     var modal = _get(state, `modals.${action.payload.content}`)
     // create if it doesnt exists
@@ -38,7 +40,7 @@ function modalReducer(state = initialState,action){
         }
       }
 
-    case 'HIDE_MODAL':
+    case types.HIDE_MODAL:
 
       var modal = _get(state, `modals.${action.payload.content}`)
       return {
@@ -51,7 +53,7 @@ function modalReducer(state = initialState,action){
           }
         }
       }
-    case 'DELETE_MODAL':
+    case types.DELETE_MODAL:
 
       var stateCopy = {...state}
 

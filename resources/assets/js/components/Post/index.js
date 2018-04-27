@@ -21,7 +21,7 @@ const Post = ({title, content}) => {
 
       <Panel.Body>
 
-        <Content>{content}</Content>
+        <Content html={content} />
 
       </Panel.Body>
 

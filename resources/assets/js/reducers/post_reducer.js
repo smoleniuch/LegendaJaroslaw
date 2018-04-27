@@ -1,7 +1,11 @@
+import _keyBy from 'lodash/keyBy'
+
+import * as types from "Actions/postActions/types";
+
 const initialState = {
 
   filter:'',
-  posts:[]
+  posts:{}
 
 }
 
@@ -9,7 +13,7 @@ export default function postReducer(state = initialState, action){
 
   switch(action.type){
 
-    case 'UPDATE_POSTS_FILTER':
+    case types.UPDATE_POSTS_FILTER:
 
       return {
 
@@ -18,6 +22,17 @@ export default function postReducer(state = initialState, action){
 
       }
 
+    case types.ADD_POST_REQUEST_SUCCESS:
+      var post = action.payload.data
+      return {
+
+        ...state,
+        posts:{
+          ...state.posts,
+          [post.id]:post
+        }
+
+      }
   }
 
   return state

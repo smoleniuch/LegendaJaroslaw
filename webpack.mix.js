@@ -15,6 +15,10 @@ mix.webpackConfig({
 
   devtool:'eval-source-map',
 
+  plugins:[
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /pl/),
+  ]
+
   resolve:{
 
     alias:{
@@ -26,6 +30,7 @@ mix.webpackConfig({
       Images:path.resolve(__dirname,'resources/assets/images'),
       Utilities:path.resolve(__dirname,'resources/assets/utilities'),
       InlineStyles:path.resolve(__dirname,'resources/assets/styles/InlineStyles'),
+
     }
 
   },

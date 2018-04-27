@@ -21,7 +21,7 @@ class PostTableSeeder extends Seeder
 
           $post->fill([
 
-            'content' => $faker->realText(800, 2),
+            'content' => $val = str_replace('"','\'', $faker->realText(800, 2)),
             'title' => $faker->realText(50, 2)
 
           ]);

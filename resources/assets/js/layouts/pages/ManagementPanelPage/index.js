@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
 import Page from 'Components/Page'
-import Dashboard from 'Components/Dashboard'
+import Dashboard from 'Containers/Dashboards/TrainingsManagementDashboard'
 
 class ManagmentPanelPage extends Component {
 
   render() {
     return (
-      <Page className="news-page">
+      <Page>
         <Page.Content>
 
-          <Dashboard>
-            im managment
-          </Dashboard>
+          <Dashboard />
 
         </Page.Content>
       </Page>

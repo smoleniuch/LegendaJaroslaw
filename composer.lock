@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4d341ed997570b3e1cc7f29b769a7df",
+    "content-hash": "a69e0c7890ab730c7c221f496ab03f93",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -418,6 +418,74 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+            "name": "graham-campbell/markdown",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
+                "reference": "359701e5e3986ba18d1b3d390e898a370b8f00d6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/359701e5e3986ba18d1b3d390e898a370b8f00d6",
+                "reference": "359701e5e3986ba18d1b3d390e898a370b8f00d6",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "5.5.*|5.6.*",
+                "illuminate/support": "5.5.*|5.6.*",
+                "illuminate/view": "5.5.*|5.6.*",
+                "league/commonmark": "^0.17",
+                "php": "^7.1.3"
+            },
+            "require-dev": {
+                "graham-campbell/analyzer": "^2.0",
+                "graham-campbell/testbench": "^5.0",
+                "league/commonmark-extras": "^0.1.4",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^6.5|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "10.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "GrahamCampbell\\Markdown\\MarkdownServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GrahamCampbell\\Markdown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Graham Campbell",
+                    "email": "graham@alt-three.com"
+                }
+            ],
+            "description": "Markdown Is A CommonMark Wrapper For Laravel 5",
+            "keywords": [
+                "Graham Campbell",
+                "GrahamCampbell",
+                "Laravel Markdown",
+                "Laravel-Markdown",
+                "common mark",
+                "commonmark",
+                "framework",
+                "laravel",
+                "markdown"
+            ],
+            "time": "2018-03-01T21:04:35+00:00"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -702,17 +770,86 @@
             "time": "2017-12-18T16:25:11+00:00"
         },
         {
+            "name": "league/commonmark",
+            "version": "0.17.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "82d7ab62d7f68391cb9d323f3ccce50be24a5369"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/82d7ab62d7f68391cb9d323f3ccce50be24a5369",
+                "reference": "82d7ab62d7f68391cb9d323f3ccce50be24a5369",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.6.5"
+            },
+            "replace": {
+                "colinodell/commonmark-php": "*"
+            },
+            "require-dev": {
+                "cebe/markdown": "~1.0",
+                "commonmark/commonmark.js": "0.28",
+                "erusev/parsedown": "~1.0",
+                "michelf/php-markdown": "~1.4",
+                "mikehaertl/php-shellcommand": "^1.2",
+                "phpunit/phpunit": "^5.7|^6.5",
+                "scrutinizer/ocular": "^1.1",
+                "symfony/finder": "^3.0|^4.0"
+            },
+            "suggest": {
+                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
+            },
+            "bin": [
+                "bin/commonmark"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.18-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\CommonMark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Markdown parser for PHP based on the CommonMark spec",
+            "homepage": "https://github.com/thephpleague/commonmark",
+            "keywords": [
+                "commonmark",
+                "markdown",
+                "parser"
+            ],
+            "time": "2018-03-29T14:35:19+00:00"
+        },
+        {
             "name": "league/flysystem",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "300568c5c4ff8df14016bb4de9e793954cc7ff7d"
+                "reference": "9fb9ff1e5d93124d97b55b369e9bf98f28877598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/300568c5c4ff8df14016bb4de9e793954cc7ff7d",
-                "reference": "300568c5c4ff8df14016bb4de9e793954cc7ff7d",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/9fb9ff1e5d93124d97b55b369e9bf98f28877598",
+                "reference": "9fb9ff1e5d93124d97b55b369e9bf98f28877598",
                 "shasum": ""
             },
             "require": {
@@ -783,7 +920,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2018-01-29T11:37:40+00:00"
+            "time": "2018-02-17T23:09:28+00:00"
         },
         {
             "name": "mews/purifier",
@@ -988,12 +1125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "fa1402a1e62afc2a7ee062c2767c73566920f749"
+                "reference": "40afac6703a8b770a82579b5a34d2bb511e2486f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/fa1402a1e62afc2a7ee062c2767c73566920f749",
-                "reference": "fa1402a1e62afc2a7ee062c2767c73566920f749",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/40afac6703a8b770a82579b5a34d2bb511e2486f",
+                "reference": "40afac6703a8b770a82579b5a34d2bb511e2486f",
                 "shasum": ""
             },
             "require": {
@@ -1033,7 +1170,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-02-14T22:11:11+00:00"
+            "time": "2018-02-20T08:48:55+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -1855,12 +1992,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "59994ed23212494d0a7c2d4bd1b83a5490e25c16"
+                "reference": "d5b3467271cd2786760a4dfd88b9f08b93cf7799"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/59994ed23212494d0a7c2d4bd1b83a5490e25c16",
-                "reference": "59994ed23212494d0a7c2d4bd1b83a5490e25c16",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/d5b3467271cd2786760a4dfd88b9f08b93cf7799",
+                "reference": "d5b3467271cd2786760a4dfd88b9f08b93cf7799",
                 "shasum": ""
             },
             "require": {
@@ -1910,7 +2047,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-14T14:11:22+00:00"
+            "time": "2018-02-19T12:10:10+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1967,12 +2104,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "d478fe6c43db4eda3b302a2ab3af885b3cacb1b5"
+                "reference": "4cdc08cab8c6514a33faf9fd4282a52e8d75d342"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d478fe6c43db4eda3b302a2ab3af885b3cacb1b5",
-                "reference": "d478fe6c43db4eda3b302a2ab3af885b3cacb1b5",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/4cdc08cab8c6514a33faf9fd4282a52e8d75d342",
+                "reference": "4cdc08cab8c6514a33faf9fd4282a52e8d75d342",
                 "shasum": ""
             },
             "require": {
@@ -2013,7 +2150,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-09T14:10:47+00:00"
+            "time": "2018-02-19T13:20:33+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2021,12 +2158,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "f2a5180009fa9ba0b948211e660352995daa521d"
+                "reference": "3d136006021a51abf80090421c9aa054ebb8a788"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/f2a5180009fa9ba0b948211e660352995daa521d",
-                "reference": "f2a5180009fa9ba0b948211e660352995daa521d",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/3d136006021a51abf80090421c9aa054ebb8a788",
+                "reference": "3d136006021a51abf80090421c9aa054ebb8a788",
                 "shasum": ""
             },
             "require": {
@@ -2101,7 +2238,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-14T10:03:57+00:00"
+            "time": "2018-02-19T10:31:59+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2354,12 +2491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "0b97cfaaa698fb687011f8aed4c12f4e4415c630"
+                "reference": "db7a511c2bd8110a57c3b00364d724668cfa3c83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/0b97cfaaa698fb687011f8aed4c12f4e4415c630",
-                "reference": "0b97cfaaa698fb687011f8aed4c12f4e4415c630",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/db7a511c2bd8110a57c3b00364d724668cfa3c83",
+                "reference": "db7a511c2bd8110a57c3b00364d724668cfa3c83",
                 "shasum": ""
             },
             "require": {
@@ -2414,7 +2551,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-14T14:11:22+00:00"
+            "time": "2018-02-19T12:10:10+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -2802,12 +2939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "e31058450086c3668a94ec7925c102e92eb32cc0"
+                "reference": "b5f41989e1b202322cea242c5c221677a9c4412e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/e31058450086c3668a94ec7925c102e92eb32cc0",
-                "reference": "e31058450086c3668a94ec7925c102e92eb32cc0",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/b5f41989e1b202322cea242c5c221677a9c4412e",
+                "reference": "b5f41989e1b202322cea242c5c221677a9c4412e",
                 "shasum": ""
             },
             "require": {
@@ -2859,7 +2996,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2018-02-14T07:58:52+00:00"
+            "time": "2018-02-19T07:28:47+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3165,12 +3302,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be"
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
-                "reference": "9f901e29c93dae4aa77c0bb161df4276f9c9a1be",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/dfd6be44111a7c41c2e884a336cc4f461b3b2401",
+                "reference": "dfd6be44111a7c41c2e884a336cc4f461b3b2401",
                 "shasum": ""
             },
             "require": {
@@ -3220,7 +3357,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2018-02-11T18:49:29+00:00"
+            "time": "2018-02-19T10:16:54+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3477,12 +3614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe"
+                "reference": "80798b8043cb3b4e770c21e64d4fbc2efdda7942"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3330ef26ade05359d006041316ed0fa9e8e3cefe",
-                "reference": "3330ef26ade05359d006041316ed0fa9e8e3cefe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/80798b8043cb3b4e770c21e64d4fbc2efdda7942",
+                "reference": "80798b8043cb3b4e770c21e64d4fbc2efdda7942",
                 "shasum": ""
             },
             "require": {
@@ -3553,7 +3690,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-02-01T05:57:37+00:00"
+            "time": "2018-02-16T06:05:42+00:00"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -4268,6 +4405,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "graham-campbell/markdown": 20,
         "spatie/laravel-activitylog": 20
     },
     "prefer-stable": false,

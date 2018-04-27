@@ -1,16 +1,28 @@
+import _isFunction from 'lodash/isFunction'
+
 export function displayModal(content,modalProps = {}){
 
-  return {
 
-    type:'DISPLAY_MODAL',
-    payload:{
-
-      content,
-      modalProps,
-      
+  return (dispatch, getState) => {
+    
+    if(_isFunction(modalProps)){
+      modalProps = modalProps(getState())
     }
+    
+    
+    return dispatch({
 
-  }
+      type:'DISPLAY_MODAL',
+      payload:{
+
+        content,
+        modalProps,
+        
+      }
+
+    })
+
+}
 
 }
 

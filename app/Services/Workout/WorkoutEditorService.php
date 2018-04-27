@@ -62,4 +62,12 @@ class WorkoutEditorService {
 
   }
 
+  public function edit(Workout $workout, $data){
+
+    $workout->fill($data);
+    $workout->save();
+
+    return $workout;
+  }
+
 }

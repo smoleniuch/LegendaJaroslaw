@@ -4,6 +4,7 @@ import { Field } from 'redux-form'
 import ClassNames from 'classnames'
 import _findKey from 'lodash/findKey'
 import _pick from 'lodash/pick'
+import _get from 'lodash/get'
 import './style.scss'
 
 class FieldGroup extends Component {
@@ -43,13 +44,13 @@ class FieldGroup extends Component {
 
   get shouldDisplayError(){
 
-    return this.props.meta.touched && this.props.meta.invalid
+    return _get(this.props, 'meta.touched') && _get(this.props,'meta.invalid')
 
   }
 
   get error(){
 
-    return this.shouldDisplayError? this.props.meta.error : null
+    return this.shouldDisplayError? _get(this.props,'meta.error') : null
 
   }
 

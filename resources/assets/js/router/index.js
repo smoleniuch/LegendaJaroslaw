@@ -6,6 +6,7 @@ import _get from 'lodash/get'
 const history = createHistory()
 
 import ModalContainer from 'Containers/ModalContainer'
+import Notifications from 'Containers/Notifications'
 import MainLayout from 'Layouts/MainLayout'
 import NewsPage from 'Pages/NewsPage'
 import CalendarPage from 'Pages/CalendarPage'
@@ -42,6 +43,8 @@ class Router extends React.Component {
                 </Switch>
 
                 <ModalContainer />
+
+                <Notifications />
           </MainLayout>
 
         </div>
