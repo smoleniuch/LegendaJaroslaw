@@ -7,12 +7,17 @@ use App\GalleryAlbum;
 
 class Photo extends Model
 {
+    protected $fillable = ['name','description'];
+    protected $hidden = ['gallery_album'];
 
-  protected $fillable = ['name','description'];
 
-  public function galleryAlbums(){
+    public function galleryAlbum()
+    {
+        return $this->belongsTo(GalleryAlbum::class);
+    }
 
-    return $this->belongsToMany(GalleryAlbum::class);
-
-  }
+    public function getGalleryAlbumIdAttribute($v)
+    {
+        return $v;
+    }
 }

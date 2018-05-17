@@ -15,7 +15,10 @@ class DashboardGrid extends Component {
 
     return (
       <div>
-        <Masonry className={classNames('dashboard-grid',className)} options={this.withDefaultOptions(options)} {...props}>
+        <Masonry
+         className={classNames('dashboard-grid',className)}
+         options={this.withDefaultOptions(options)}
+          {...props}>
           {children}
         </Masonry>
       </div>

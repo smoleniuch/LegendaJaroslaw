@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CardBody = ({children}) => (
-  <div className="card-body">
+const CardBody = ({children, ...props}) => (
+  <div className="card-body" {...props}>
 
     {children}
 

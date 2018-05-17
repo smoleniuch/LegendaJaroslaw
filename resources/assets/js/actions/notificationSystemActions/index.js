@@ -3,5 +3,6 @@ export {
     success as successNotification,
     error as errorNotification,
     warning as warningNotification,
+    info as infoNotification,
     
 }

@@ -72,3 +72,17 @@ export function hideModal(content, deleteIt = true){
 
 
 }
+
+export function modalConfirmation({afterConfirmPromiseGenerator, question}){
+
+  return dispatch => {
+
+    return new Promise((resolve, reject) => {
+
+      dispatch(displayModal('ConfirmationModalContent',{afterConfirmPromiseGenerator, question}))
+
+    })
+
+  }
+
+}

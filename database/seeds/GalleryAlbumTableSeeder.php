@@ -26,6 +26,7 @@ class GalleryAlbumTableSeeder extends Seeder
         GalleryAlbum::create([
 
           'name' => 'Walki',
+          'parent_id' => 1,
           'description' => 'Zdjęcia z walk',
           'description_picture_url' => $faker->imageUrl($width = 640, $height = 480),
 
@@ -34,6 +35,7 @@ class GalleryAlbumTableSeeder extends Seeder
         GalleryAlbum::create([
 
           'name' => 'Zawody',
+          'parent_id' => 1,
           'description' => 'Zdjęcia z zawodow',
           'description_picture_url' => $faker->imageUrl($width = 640, $height = 480),
 
@@ -43,6 +45,7 @@ class GalleryAlbumTableSeeder extends Seeder
 
           'name' => 'Treningi',
           'description' => 'Zdjęcia z treningow',
+          'parent_id' => 1,
           'description_picture_url' => $faker->imageUrl($width = 640, $height = 480),
 
         ]);
@@ -51,6 +54,7 @@ class GalleryAlbumTableSeeder extends Seeder
 
           'name' => 'Różne',
           'description' => 'Różne zdjęcia',
+          'parent_id' => 1,
           'description_picture_url' => $faker->imageUrl($width = 640, $height = 480),
 
         ]);

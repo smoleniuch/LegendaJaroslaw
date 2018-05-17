@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames'
 
+import Icon from 'Components/Icon'
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
@@ -21,7 +22,7 @@ class GridCard extends Component {
 
     return (
       <div className={classNames("grid-card",className)} onClick={this.onClick}>
-
+        {this.props.selected  && (<div className="selection-tick-container"><Icon size={30} name="ion-checkmark-round"/></div>)}
         {children}
 
       </div>
@@ -30,7 +31,15 @@ class GridCard extends Component {
 
   onClick(e){
 
-    this.props.onClick(this.props.eventKey, e)
+    if(this.props.selectable){
+      this.props.onCheckToggle(this.props.eventKey)
+    }
+    else {
+
+      this.props.onClick(this.props.eventKey, e)
+      
+    }
+
 
   }
 
@@ -39,5 +48,11 @@ class GridCard extends Component {
 GridCard.Header = Header;
 GridCard.Body = Body;
 GridCard.Footer = Footer;
+
+GridCard.defaultProps = {
+    selected:false,
+    selectable:false,
+    onSelected:()=>{},
+}
 
 export default GridCard;

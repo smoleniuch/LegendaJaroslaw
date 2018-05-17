@@ -18,7 +18,7 @@ function modalReducer(state = initialState,action){
     if (modal === undefined){
 
       modal = {
-
+        isLoading:false,
         show:true,
         content:action.payload.content,
         ...action.payload.modalProps

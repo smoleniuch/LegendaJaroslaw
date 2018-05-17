@@ -1,0 +1,8 @@
+.hover-switch .hover-switch--on,
+.hover-switch:hover .hover-switch--off {
+  display: none;
+}
+
+.hover-switch:hover .hover-switch--on {
+  display: initial;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Symfony\Component\Finder\Finder;
 use Faker\Factory as Faker;
 use App\Photo;
 
@@ -14,20 +15,25 @@ class PhotosTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
+        $finder = new Finder();
+        $finder->files()->in(storage_path('app/public/gallery/pictures'));
 
-        for($i = 0;$i < 100;$i++){
-
-          $photo = Photo::create([
+        foreach ($finder as $file) {
+            $photo = Photo::create([
 
             'name' => $faker->realText(20),
             'description' => $faker->realText(40),
-            'original' => $faker->imageUrl($width = 1024, $height = 768),
-            'thumbnail' => $faker->imageUrl($width = 250, $height = 150),
+            'original' => asset('storage/gallery/pictures/' . $file->getRelativePathname()),
+            'thumbnail' => asset('storage/gallery/pictures/' . $file->getRelativePathname()),
+            'storage_path' => 'public/gallery/pictures/' . $file->getRelativePathname(),
+            
 
 
           ]);
 
-          $photo->galleryAlbums()->attach(rand(1,5));
+            $photo->galleryAlbum()->associate(rand(1, 5));
+
+            $photo->save();
         }
     }
 }

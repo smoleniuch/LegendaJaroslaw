@@ -2,13 +2,20 @@ import axios from "axios";
 import _get from "lodash/get";
 import config from "Config";
 import { successNotification, errorNotification } from "Actions/notificationSystemActions";
+import { addRequest, removeRequest } from "Actions/activeRequestActions";
 import axiosMiddleware from "redux-axios-middleware";
 
+
 const middlewareConfig = {
+
   interceptors: {
     request: [
       {
         success: function({ getState, dispatch, getSourceAction }, req) {
+          var action = req.reduxSourceAction
+          if(action.payload.scope){
+            dispatch(addRequest(action.payload.scope))
+          }
           return req;
         },
         error: function({ getState, dispatch, getSourceAction }, error) {
@@ -22,6 +29,10 @@ const middlewareConfig = {
           var action = getSourceAction(req.config); //contains information about request object
           var notificationMsg = _get(action, "payload.notify.success");
 
+          if(action.payload.scope){
+            dispatch(removeRequest(action.payload.scope))
+          }
+
           if (notificationMsg) {
             dispatch(successNotification(notificationMsg));
           }
@@ -32,6 +43,10 @@ const middlewareConfig = {
 
           var action = getSourceAction(error.config); //contains information about request object
           var notificationMsg = _get(action, "payload.notify.error");
+
+          if(action.payload.scope){
+            dispatch(removeRequest(action.payload.scope))
+          }
 
           if (notificationMsg) {
             dispatch(errorNotification(notificationMsg));

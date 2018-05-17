@@ -1,24 +1,19 @@
-import React from 'react'
+import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
-class LoadingButton extends React.Component {
-	constructor(...args) {
-		super(...args);
+import Button from '../Button'
 
-		this.state = {
-			isLoading: false
-		};
-	}
 
-	render() {
-		let isLoading = this.state.isLoading;
-		return (
-			<Button
-				bsStyle="primary"
-				disabled={isLoading}
-				onClick={!isLoading ? this.props.onClick : null}
-			>
-				{isLoading ? 'Loading...' : 'Loading state'}
-			</Button>
-		);
-	}
+
+class LoadingButton extends Component {
+    render() {
+
+        var {label, loadingLabel, isLoading , ...props} = this.props
+
+        return (
+            <Button disabled={isLoading} {...props}>{isLoading?loadingLabel:label}</Button>
+        );
+    }
 }
+
+export default LoadingButton;

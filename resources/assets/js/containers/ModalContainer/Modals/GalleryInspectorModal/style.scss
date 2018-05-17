@@ -1,19 +1,22 @@
-@import '~Sass/mixins/_size.scss';
+@import "~Sass/mixins/_size.scss";
 
-.image-gallery-image img{
+.image-gallery-image {
+  background-color: black;
+  display: flex;
 
-  height:100%;
-  width:100%;
-
+  img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
 }
 
 .image-gallery {
-
-  @include size(100%,100%)
-
-  .image-gallery-content, .image-gallery-slide-wrapper, .image-gallery-slides, .image-gallery-image, .image-gallery-slide, .image-gallery-swipe {
-
-    @include size(100%,100%)
-
+  @include size(100%, 100%) .image-gallery-content, .image-gallery-slide-wrapper,
+    .image-gallery-slides, .image-gallery-image, .image-gallery-slide,
+    .image-gallery-swipe {
+    @include size(100%, 100%);
   }
 }

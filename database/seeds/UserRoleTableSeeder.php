@@ -12,12 +12,10 @@ class UserRoleTableSeeder extends Seeder
      */
     public function run()
     {
-      $roles = collect(['couch', 'boxer']);
+        $roles = collect(['coach', 'boxer']);
 
-        $roles->each(function($role){
-
-          UserRole::create(['name' => $role]);
-          
+        $roles->each(function ($role) {
+            UserRole::create(['name' => $role]);
         });
     }
 }

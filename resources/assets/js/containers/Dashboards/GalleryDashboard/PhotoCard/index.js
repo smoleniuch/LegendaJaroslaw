@@ -13,16 +13,16 @@ class PhotoCard extends Component {
 
   render() {
 
-    var { photo } = this.props;
+    var { photo, ...props } = this.props;
 
     return (
-      <Card className="photo-card" onClick={this.openGalleryInspectorModal} eventKey={photo.id}  key={photo.id}>
-        <Card.Body>
+      <Card className="photo-card" onClick={this.openGalleryInspectorModal} {...props}>
+        <Card.Body style={{width:'100%',height:'auto'}}>
 
-          <img style={{maxWidth:'100%',maxHeight:'100%'}} src={photo.original} />
-
+          <img style={{width:'100%',height:'auto'}} src={photo.original} />
+        <div className="text-center">{photo.name}</div>
+          
         </Card.Body>
-
       </Card>
     );
   }

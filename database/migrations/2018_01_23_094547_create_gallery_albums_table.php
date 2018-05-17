@@ -16,6 +16,7 @@ class CreateGalleryAlbumsTable extends Migration
         Schema::create('gallery_albums', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->bigInteger('parent_id')->nullable();
             $table->string('description_picture_url')->nullable();
             $table->string('description')->default('');
             $table->timestamps();

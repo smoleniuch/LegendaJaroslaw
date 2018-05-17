@@ -17,8 +17,10 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
+            $table->string('storage_path');
             $table->string('original');
             $table->string('thumbnail');
+            $table->bigInteger('gallery_album_id')->nullable();
             $table->timestamps();
         });
     }

@@ -1,13 +1,23 @@
+@import '~Sass/variables/_colors.scss';
+
 .grid-card {
 
   width:200px;
-  height:170px;
+  // min-height:170px;
   // background-color:blue;
   margin-bottom:10px;
 
   &:hover{
 
     cursor:pointer;
+
+  }
+
+  .selection-tick-container {
+
+    position:absolute;
+    top:-10px;
+    color:$color-primary-1;
 
   }
 

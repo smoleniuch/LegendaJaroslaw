@@ -67,7 +67,7 @@ class MainNavBar extends Component {
                   <NavItem>O Nas</NavItem>
                 </LinkContainer>
 
-                <Authorization allowedRoles={["couch"]}>
+                <Authorization allowedRoles={["coach"]}>
                   <NavDropdown
                     eventKey={3}
                     title="Panel Zarządzania"

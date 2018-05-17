@@ -1,6 +1,17 @@
-.gallery-dashboard div {
+.gallery-dashboard {
 
   // margin-left:50px;
   // margin-right:50px;
   // width:50px;
+
+  .editor-bar {
+    text-align:right;
+    margin-top:-20px;
+    margin-bottom:5px;
+
+    .dropdown-menu {
+      left:unset;
+      right:0;
+    }
+  }
 }

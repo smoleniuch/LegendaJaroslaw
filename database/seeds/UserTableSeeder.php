@@ -22,6 +22,6 @@ class UserTableSeeder extends Seeder
 
         ]);
 
-        $user->roles()->attach(UserRole::where('name','couch')->first());
+        $user->roles()->attach(UserRole::where('name', 'coach')->first());
     }
 }

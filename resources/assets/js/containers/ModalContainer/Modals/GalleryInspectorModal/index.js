@@ -13,14 +13,15 @@ import './style.scss'
 
 const mapStateToProps = (state, props) => {
 
-  var currentPhotoId = props.match.params.photoId
-  var currentAlbumId = props.match.params.albumId
+  var currentPhotoId = +props.match.params.photoId
+  var currentAlbumId = +props.match.params.albumId
   var currentAlbumPhotoIds = _get(state.gallery.albums,`${currentAlbumId}.photo_ids`,[])
 
 
   return {
 
     currentPhoto:state.gallery.photos[currentPhotoId],
+    startIndex:currentAlbumPhotoIds.findIndex(id => id === currentPhotoId),
     currentAlbumPhotos:Object.values(_pick(state.gallery.photos,currentAlbumPhotoIds))
   }
 
@@ -39,12 +40,14 @@ class GalleryInspectorModal extends Component {
 
   render() {
 
+    var startIndex = this.props.startIndex
 
     return (
       <Modal displayDefaultHeader={false} onHide={this.onHide} show={true}>
         <div style={{height:'500px',width:'100%'}}>
         <ReactImageGallery
           style={{height:'500px',width:'100%'}}
+          startIndex={startIndex}
           showThumbnails={false}
           onSlide={this.updateCurrentUrl}
           items={this.props.currentAlbumPhotos}/>

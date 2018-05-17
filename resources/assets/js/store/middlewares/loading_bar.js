@@ -8,3 +8,7 @@ export default function loadingBarMiddleware(){
   })
 
 }
+
+// export default function loadingBarMiddleware(){
+
+// }
