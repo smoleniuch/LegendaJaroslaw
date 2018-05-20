@@ -20,7 +20,9 @@ const Post = ({post}) => {
         {post.title}
       </Panel.Title>
 
-      <Authorization allowedRoles="coach"><MenuBar post={post}/></Authorization>
+      <Authorization allowedRoles="coach">
+      <MenuBar post={post}/>
+      </Authorization>
     </Panel.Heading>
 
       <Panel.Body>

@@ -8,18 +8,19 @@ use App\Services\Workout\WorkoutEditorService;
 
 class WorkoutController extends Controller
 {
-
-    public function __construct(){
-
-      $this->workoutEditorService = new WorkoutEditorService();
-
+    public function __construct()
+    {
+        $this->workoutEditorService = new WorkoutEditorService();
+        $this->middleware('role:coach');
     }
-    public function cancel(Workout $workout, Request $request){
-      return $this->workoutEditorService->cancelWorkout($workout, $request->all());
+    public function cancel(Workout $workout, Request $request)
+    {
+        return $this->workoutEditorService->cancelWorkout($workout, $request->all());
     }
 
-    public function undoCancel(Workout $workout, Request $request){
-      return $this->workoutEditorService->undoCancel($workout, $request->all());
+    public function undoCancel(Workout $workout, Request $request)
+    {
+        return $this->workoutEditorService->undoCancel($workout, $request->all());
     }
 
     /**
@@ -72,7 +73,7 @@ class WorkoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, Workout $workout)
-    {   
+    {
         $workoutData = $request->only(['canceled', 'start', 'end']);
         $workout = $this->workoutEditorService->edit($workout, $workoutData);
 
@@ -89,5 +90,4 @@ class WorkoutController extends Controller
     {
         //
     }
-
 }

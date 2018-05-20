@@ -1,4 +1,4 @@
 <?php
 
 
-Route::get('/get-current-user-data','UserController@getCurrentUserData');
+Route::get('/get-current-user-data', 'UserController@getCurrentUserData');

@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:coach')->only([
+            'store',
+            'update',
+            'destroy',
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,6 @@ class PostController extends Controller
      */
     public function index(PostService $postService)
     {
-
         return response()->json($postService->getAllPosts());
     }
 
@@ -37,7 +44,6 @@ class PostController extends Controller
      */
     public function store(Request $request, PostService $postService)
     {
-        
         return response()->json($postService->add($request->only(['title', 'content'])));
     }
 

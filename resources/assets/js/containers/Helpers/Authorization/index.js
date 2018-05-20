@@ -24,7 +24,7 @@ class Authorization extends React.Component {
     this.passLoginStatus = this.passLoginStatus.bind(this)
   }
   render() {
-
+    // return this.props.children
     if(this.passAuthorizationTests()){
 
       return this.props.children

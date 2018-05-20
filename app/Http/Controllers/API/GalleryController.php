@@ -9,6 +9,10 @@ use App\Services\GalleryService;
 
 class GalleryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:coach');
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -1,3 +1,3 @@
 <?php
-Route::resource('posts', 'PostController');
 
+Route::resource('posts', 'PostController');
