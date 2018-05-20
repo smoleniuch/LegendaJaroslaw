@@ -23,6 +23,7 @@ export default function postReducer(state = initialState, action){
       }
 
     case types.ADD_POST_REQUEST_SUCCESS:
+    case types.UPDATE_POST_REQUEST_SUCCESS:
       var post = action.payload.data
       return {
 
@@ -32,6 +33,18 @@ export default function postReducer(state = initialState, action){
           [post.id]:post
         }
 
+      }
+
+    case types.DELETE_POST_REQUEST_SUCCESS:
+
+      var id = action.meta.previousAction.payload.request.url.split('/').pop();
+
+      var posts = {...state.posts}
+      delete posts[id]
+
+      return {
+        ...state,
+        posts,
       }
   }
 

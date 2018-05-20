@@ -1,28 +1,23 @@
 import React, { Component } from "react";
 import ReactMde, { ReactMdeCommands , DraftUtil } from "react-mde";
-import {EditorState} from "draft-js";
+import {EditorState, ContentState} from "draft-js";
 import * as Showdown from "showdown";
 import _isEqual from 'lodash/isEqual'
+import MarkdownConverter from 'Utilities/MarkdownConverter'
 
 import "react-mde/lib/styles/css/react-mde-all.css";
 
 class MarkdownEditor extends Component {
   constructor(props) {
     super(props);
+        this.converter = new MarkdownConverter();
 
     this.state = {
-      mdeState:{markdown:'', html:'', draftEditorState:EditorState.createEmpty()}
+      mdeState:{markdown:this.props.defaultMarkdown, html:this.converter.makeHtml(this.props.defaultMarkdown), draftEditorState:EditorState.createWithContent(ContentState.createFromText(this.props.defaultMarkdown))}
     };
 
     this.handleValueChange = this.handleValueChange.bind(this);
-    this.converter = new Showdown.Converter({
-      tables: true,
-      simplifiedAutoLink: true,
-      ghCodeBlocks:false,
-      disableForced4SpacesIndentedSublists:false,
-      emoji:true,
 
-    });
     this.generateMarkdownPreview = this.generateMarkdownPreview.bind(this)
     this.setMarkdown = this.setMarkdown.bind(this)
   }
@@ -44,6 +39,10 @@ class MarkdownEditor extends Component {
         />
       </div>
     );
+  }
+
+  componentDidMount(){
+    // this.setMarkdown(this.props.defaultMarkdown)
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -85,6 +84,7 @@ class MarkdownEditor extends Component {
 
 MarkdownEditor.defaultProps = {
   onChange: () => {},
+  defaultMarkdown:'',
 };
 
 export default MarkdownEditor;

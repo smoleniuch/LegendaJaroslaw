@@ -1,0 +1,19 @@
+@import '~Sass/mixins/_media.scss';
+
+.news-dashboard {
+
+    .add-new-post-button { 
+
+        position:fixed;
+        bottom:15px;
+        left:265px;
+
+        @include media('<mediumWidth'){
+
+            left:15px;
+      
+          }
+    }
+
+
+}

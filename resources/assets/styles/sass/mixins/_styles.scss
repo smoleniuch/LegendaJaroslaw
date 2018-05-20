@@ -9,7 +9,10 @@
 }
 
 @mixin primary(){
+  &.primary {
 
-  @include style(#fff,$color-primary-0)
+    @include style(#fff,$color-primary-0)
+    
+  }
 
 }

@@ -10,6 +10,7 @@ export default {
   'ion-android-delete': require('react-icons/lib/io/android-delete'),
   'io-android-folder-open':require('react-icons/lib/io/android-folder-open'),
   'io-android-folder':require('react-icons/lib/io/android-folder'),
+  'ion-android-add-circle':require('react-icons/lib/io/android-add-circle'),
 
   'fa-folder': require('react-icons/lib/fa/folder'),
 

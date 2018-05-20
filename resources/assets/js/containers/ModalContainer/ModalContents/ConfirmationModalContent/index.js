@@ -25,7 +25,7 @@ class ConfirmationModalContent extends React.Component {
                 <br />
                 <br />
                 <Button disabled={this.state.promiseState === 'pending'} onClick={this.props.hideModal} > Nie </Button>
-                <Button className="pull-right" disabled={this.state.promiseState === 'pending'} onClick={this.onConfirm}> Tak </Button>
+                <Button bsStyle="primary" className="pull-right" disabled={this.state.promiseState === 'pending'} onClick={this.onConfirm}> Tak </Button>
                 
             </Body>
             </Content>

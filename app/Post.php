@@ -11,13 +11,13 @@ class Post extends Model
 
     public function getContentAttribute($val){
 
-        // double quotes spoils json parsing in client side,
-        // @todo how to escape it with markdown conversion??
-        // $val = str_replace('"','\'', $val);
-        
-        $val = Markdown::convertToHtml($val);
+        return $val === null?'':$val;
 
-        return $val;
+    }
+
+    public function getTitleAttribute($val){
+
+        return $val === null?'':$val;
 
     }
 }

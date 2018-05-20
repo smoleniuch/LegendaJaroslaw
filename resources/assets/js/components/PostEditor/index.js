@@ -15,8 +15,8 @@ class PostEditor extends Component {
     super(props);
 
     this.state = {
-      title:'',
-      content:''
+      title:_get(this.props.defaultPost,'title', ''),
+      content:_get(this.props.defaultPost,'content', ''),
     }
   }
 
@@ -31,7 +31,7 @@ class PostEditor extends Component {
           <FormControl value={this.state.title} onChange={this.updateTitle} />
         </FormGroup>
         <ControlLabel>Treść</ControlLabel>
-        <MarkdownEditor ref={c => this.editor = c} onChange={this.updatecontent} />
+        <MarkdownEditor defaultMarkdown={_get(this.props.defaultPost,'content', '')} ref={c => this.editor = c} onChange={this.updatecontent} />
       </div>
     );
   }

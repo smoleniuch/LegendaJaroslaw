@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PostService;
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -71,7 +72,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update($request->only(['content', 'title']));
+        $post->save();
+
+        return $post;
     }
 
     /**
@@ -82,6 +86,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return response(204);
     }
 }

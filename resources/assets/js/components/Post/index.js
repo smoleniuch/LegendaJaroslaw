@@ -4,10 +4,12 @@ import classNames from 'classnames'
 import { Panel } from 'react-bootstrap'
 import Header from './Header'
 import Content from './Content'
-
+import MenuBar from './MenuBar'
+import Authorization from 'Containers/Helpers/Authorization'
+import MarkdownConverter from 'Utilities/MarkdownConverter'
 import './style.scss'
 
-const Post = ({title, content}) => {
+const Post = ({post}) => {
 
   return (
 
@@ -15,13 +17,15 @@ const Post = ({title, content}) => {
 
   <Panel.Heading>
       <Panel.Title>
-        {title}
+        {post.title}
       </Panel.Title>
+
+      <Authorization allowedRoles="coach"><MenuBar post={post}/></Authorization>
     </Panel.Heading>
 
       <Panel.Body>
 
-        <Content html={content} />
+        <Content html={(new MarkdownConverter()).makeHtml(post.content)} />
 
       </Panel.Body>
 

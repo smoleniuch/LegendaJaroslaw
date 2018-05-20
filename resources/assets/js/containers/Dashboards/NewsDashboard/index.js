@@ -7,6 +7,11 @@ import _sortBy from 'lodash/sortBy'
 import Dashboard from 'Components/Dashboard'
 import Post from 'Components/Post'
 import existsInString from 'Utilities/exists_in_string'
+import Icon from 'Components/Icon'
+import RoundButton from 'Components/RoundButton'
+import Authorization from 'Containers/Helpers/Authorization'
+import {displayModal} from 'Actions/modalActions'
+import './style.scss'
 
 const mapStateToProps = (state) => {
 
@@ -15,6 +20,14 @@ const mapStateToProps = (state) => {
     posts:Object.values(state.post.posts).sort((a,b) => new Date(b.created_at) - new Date(a.created_at)),
     filter:state.post.filter
 
+  }
+
+}
+
+const mapDispatchToProps = dispatch => {
+
+  return {
+    displayAddNewPostModal:_ => dispatch(displayModal('AddNewPostContent'))
   }
 
 }
@@ -33,12 +46,19 @@ class NewsDashboard extends Component {
 
 
       <Dashboard className="news-dashboard">
-
+      <div>
       {posts.map((post)=>{
 
-        return this.shouldDisplayPost(post)?<Post key={post.id} {...post} />:null
+        return this.shouldDisplayPost(post)?<Post key={post.id} post={post} />:null
 
       })}
+      </div>
+
+      <Authorization allowedRoles='coach'>
+        <RoundButton  onClick={this.props.displayAddNewPostModal}size={60} className='add-new-post-button' rounded bsStyle="primary">
+        <Icon size={40} name="ion-android-add" />
+        </RoundButton>
+        </Authorization>
 
       </Dashboard>
 
@@ -52,4 +72,4 @@ class NewsDashboard extends Component {
   }
 }
 
-export default connect(mapStateToProps)(NewsDashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsDashboard);

@@ -1,4 +1,3 @@
 <?php
+Route::resource('posts', 'PostController');
 
-Route::get('/posts','PostController@index');
-Route::post('/posts','PostController@store');

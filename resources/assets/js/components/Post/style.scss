@@ -1,8 +1,12 @@
 .post {
+  .panel-heading {
 
-  .post-title{
+    display:flex;
+    align-content: space-between;
+  }
+  .panel-title{
 
-    
+    flex:1;
 
   }
 
