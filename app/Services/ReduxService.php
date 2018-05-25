@@ -12,21 +12,20 @@ use App\WorkoutTemplate;
 use Underscore\Types\Arrays;
 use Underscore\Types\Parse;
 
-class ReduxService {
+class ReduxService
+{
+    public function __construct()
+    {
+        $this->userService = new UserService();
+        $this->postService = new PostService();
+        $this->motivationalQuoteService = new MotivationalQuoteService();
+        $this->galleryService = new GalleryService();
+        $this->workoutFetchingService = new WorkoutFetchingService();
+    }
 
-  public function __construct(){
-
-    $this->userService = new UserService();
-    $this->postService = new PostService();
-    $this->motivationalQuoteService = new MotivationalQuoteService();
-    $this->galleryService = new GalleryService();
-    $this->workoutFetchingService = new WorkoutFetchingService();
-
-  }
-
-  public function getPreloadedState(){
-    
-    $preloadedState = json_encode([
+    public function getPreloadedState()
+    {
+        $preloadedState = json_encode([
 
       'user' => $this->userService->getCurrentUserData(),
       'post' => [
@@ -36,26 +35,28 @@ class ReduxService {
       ],
       'motivationalQuote' => [
 
-        'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay()
+        'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay(),
+        'motivationalQuotes' => new \stdClass(),
+        'quotesFetched' => false,
+        'authorsFetched' => false,
+        'authors' => new \stdClass(),
 
       ],
       'gallery' => $this->galleryService->getMainGallery(),
       'workout' => $this->getWorkoutBranch()
     ]);
 
-    return $preloadedState;
-  }
+        return $preloadedState;
+    }
 
-  public function getWorkoutBranch(){
-    $nextWorkout = $this->workoutFetchingService->getNextWorkout();
-    return [
+    public function getWorkoutBranch()
+    {
+        $nextWorkout = $this->workoutFetchingService->getNextWorkout();
+        return [
 
       'workouts' => Workout::all()->keyBy('id'),
       'workoutTemplates' => WorkoutTemplate::all()->keyBy('id'),
       'nextWorkoutId' => $nextWorkout?$nextWorkout->id:null
     ];
-
-  }
-
-
+    }
 }

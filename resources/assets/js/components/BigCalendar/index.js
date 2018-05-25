@@ -2,13 +2,13 @@ import BigCalendar from 'react-big-calendar';
 import React, { Component } from 'react';
 import classNames from 'classnames'
 import moment from 'moment';
-
+import pl from 'moment/locale/pl';
 import Event from './Event';
 import Toolbar from './Toolbar';
 import './style.scss'
+ 
 
 moment.locale('pl')
-
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );

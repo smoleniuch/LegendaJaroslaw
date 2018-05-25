@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMotivationalQuotesTable extends Migration
+class CreateMotivationalQuoteAuthorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateMotivationalQuotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('motivational_quotes', function (Blueprint $table) {
+        Schema::create('motivational_quote_authors', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('text');
-            $table->bigInteger('author_id')->nullable();
-            $table->boolean('quote_of_the_day')->default(false);
+            $table->string('name');
+            $table->string('avatar_path_url')->default('');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateMotivationalQuotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('motivational_quotes');
+        Schema::dropIfExists('motivational_quote_authors');
     }
 }

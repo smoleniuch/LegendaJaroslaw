@@ -183,7 +183,7 @@ class GalleryDashboard extends Component {
       active: this.props.currentGalleryAlbum.id === album.id
     }));
   }
-
+  
   onAlbumSelectionToggle(id) {
 
     this.props.toggleGallerySelection({albumIds:[id]})

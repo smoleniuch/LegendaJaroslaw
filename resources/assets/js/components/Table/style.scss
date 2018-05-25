@@ -1,5 +1,17 @@
 .custom-react-table-container {
     .ReactTable .rt-tbody .rt-td {
-        text-align:center;
+        // text-align:center;
+    }
+
+    .button-bar-container{
+        .btn
+        {
+            border-bottom-left-radius:0px;
+            border-bottom-right-radius:0px;
+            &:not(:first-child):not(:last-child){
+                border-radius:0px;
+            }
+
+        }
     }
 }

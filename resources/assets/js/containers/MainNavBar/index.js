@@ -76,11 +76,8 @@ class MainNavBar extends Component {
                     <LinkContainer to="/panel-zarzadzania/treningi">
                       <NavItem>Treningi</NavItem>
                     </LinkContainer>
-                    <LinkContainer to="/panel-zarzadzania/Galeria">
-                      <NavItem>Galeria</NavItem>
-                    </LinkContainer>
-                    <LinkContainer to="/panel-zarzadzania/kalendarz">
-                      <MenuItem>Kalendarz</MenuItem>
+                    <LinkContainer to="/panel-zarzadzania/motywujace-cytaty">
+                      <NavItem>Motywujące Cytaty</NavItem>
                     </LinkContainer>
                     <MenuItem divider />
                     <MenuItem header>Szybkie Akcje</MenuItem>

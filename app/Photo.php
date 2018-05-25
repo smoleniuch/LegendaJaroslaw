@@ -8,7 +8,7 @@ use App\GalleryAlbum;
 class Photo extends Model
 {
     protected $fillable = ['name','description'];
-    protected $hidden = ['gallery_album'];
+    // protected $hidden = ['gallery_album'];
 
 
     public function galleryAlbum()

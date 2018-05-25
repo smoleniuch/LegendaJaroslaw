@@ -59,7 +59,7 @@ class NewsSidePanel extends Component {
           <SearchBar onChange={this.props.updatePostsFilter}/>
           {this.props.motivationalQuote?(
             <MotivationalQuote
-              author={this.props.motivationalQuote.author}
+              author={this.props.motivationalQuote.author.name}
               text={this.props.motivationalQuote.text}/>
           ):''}
 

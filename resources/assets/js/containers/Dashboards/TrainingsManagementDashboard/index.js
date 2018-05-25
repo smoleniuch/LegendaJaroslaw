@@ -41,6 +41,10 @@ class TrainingsManagementDashboard extends Component {
         <Table
           columns={[
             {
+              Header:'Treningi',
+              columns:[
+          
+            {
               Header: "Nazwa",
               id: "name",
               accessor: workout =>
@@ -73,7 +77,8 @@ class TrainingsManagementDashboard extends Component {
                   Edytuj
                 </Button>
               )
-            }
+            }]
+          }
           ]}
           data={this.props.workouts}
         />

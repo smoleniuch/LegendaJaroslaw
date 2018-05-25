@@ -67,6 +67,7 @@ export default Router;
 export {
 
   history,
+  Route,
   Router
 
 }

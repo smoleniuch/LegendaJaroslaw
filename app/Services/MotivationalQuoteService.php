@@ -1,28 +1,72 @@
 <?php
 
 namespace App\Services;
+
 use App\MotivationalQuote;
+use App\MotivationalQuoteAuthor;
 
-class MotivationalQuoteService {
+class MotivationalQuoteService
+{
+    public function getQuoteOfTheDay()
+    {
+        $quoteOfADay = MotivationalQuote::where('quote_of_the_day', true)->first();
+        if ($quoteOfADay) {
+            $quoteOfADay->makeVisible('author');
+        }
+        
 
-  public function getQuoteOfTheDay(){
+        return $quoteOfADay;
+    }
 
-    return MotivationalQuote::where('quote_of_the_day', true)->first();
+    public function shuffleQuoteOfTheDay()
+    {
+        $currentQuoteOfADay = $this->getQuoteOfTheDay();
 
-  }
+        $randomQuote = MotivationalQuote::where('quote_of_the_day', false)->inRandomOrder()->first();
 
-  public function shuffleQuoteOfTheDay(){
+        if ($currentQuoteOfADay) {
+            $currentQuoteOfADay->update(['quote_of_the_day' => false]);
+        }
 
-    $currentQuoteOfADay = $this->getQuoteOfTheDay();
+        $randomQuote->update(['quote_of_the_day' => true]);
 
-    $randomQuote = MotivationalQuote::where('quote_of_the_day',false)->inRandomOrder()->first();
+        return $randomQuote;
+    }
 
-    $currentQuoteOfADay->update(['quote_of_the_day' => false]);
+    public function saveQuote($data, $quoteId = null)
+    {
+        $textQuote = data_get($data, 'text');
+        $authorData = data_get($data, 'author');
+        $data = [];
 
-    $randomQuote->update(['quote_of_the_day' => true]);
+        if (isset($authorData['id'])) {
+            $author = MotivationalQuoteAuthor::findOrFail($authorData['id']);
+        } elseif ($authorData) {
+            $author = new MotivationalQuoteAuthor($authorData);
+            $author->save();
+        }
 
-    return $randomQuote;
 
-  }
+        if ($quoteId) {
+            $quote = MotivationalQuote::findOrFail($quoteId);
+        } else {
+            $quote = new MotivationalQuote();
+        }
 
+        $quote->text = $textQuote;
+        if (isset($author)) {
+            $quote->author()->associate($author);
+        } else {
+            $quote->author()->dissociate();
+        }
+        
+        $quote->save();
+        $data['quote'] = $quote;
+        
+        if (isset($author)) {
+            $data['author'] = $author;
+            $author->save();
+        }
+        return $data;
+    }
 }
