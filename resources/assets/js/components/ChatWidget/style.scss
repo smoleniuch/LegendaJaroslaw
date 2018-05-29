@@ -1,0 +1,41 @@
+@import "~Sass/variables/colors";
+
+.widget-container {
+  word-wrap: break-word;
+  .conversation-container .header {
+    padding: 0px;
+    background-color: $rgba-primary-0;
+
+    .title {
+      @media screen and (max-width: 800px) {
+        padding: 10px 0 15px 0;
+      }
+    }
+
+    .close-button {
+      top: 15px;
+    }
+  }
+
+  .messages-container {
+    height: 70vh;
+    max-height: 600px;
+  }
+
+  .launcher {
+    background-color: $rgba-primary-0;
+
+    &.hide-sm {
+      .badge {
+        display: none;
+      }
+    }
+    .badge {
+      background-color: $color-secondary-1-0;
+    }
+  }
+  
+  .message .client {
+    background-color:#f5f5f5;
+  }
+}

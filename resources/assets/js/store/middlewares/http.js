@@ -1,17 +1,22 @@
 import axios from "axios";
 import _get from "lodash/get";
+import _set from "lodash/set";
+import _cloneDeep from "lodash/cloneDeep";
 import config from "Config";
 import { successNotification, errorNotification } from "Actions/notificationSystemActions";
 import { addRequest, removeRequest } from "Actions/activeRequestActions";
 import axiosMiddleware from "redux-axios-middleware";
-
+import {getSocketId} from '../../broadcast.js';
 
 const middlewareConfig = {
 
   interceptors: {
     request: [
       {
-        success: function({ getState, dispatch, getSourceAction }, req) {
+        success: ({ getState, dispatch, getSourceAction }, req) =>  {
+          
+          _set(req, 'headers.X-Socket-ID', getSocketId())
+
           var action = req.reduxSourceAction
           if(action.payload.scope){
             dispatch(addRequest(action.payload.scope))

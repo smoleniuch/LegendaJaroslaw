@@ -5,12 +5,14 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\UserRole;
+use App\UserProfile;
+use App\ChatMessage;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $appends = array('roles','test');
+    protected $appends = array('roles');
 
 
     /**
@@ -19,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -31,27 +33,28 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles(){
-
-      return $this->belongsToMany(UserRole::class);
-
+    public function roles()
+    {
+        return $this->belongsToMany(UserRole::class);
     }
 
-    public function hasRole($role){
-
-      return $this->roles->get()->contains('name',$role);
-
+    public function chatMessages()
+    {
+        return $this->hasMany(ChatMessage::class);
     }
 
-    public function getRolesAttribute(){
-
-      return $this->roles()->get()->pluck('name');
-
+    public function hasRole($role)
+    {
+        return $this->roles->get()->contains('name', $role);
     }
 
-    public function getTestAttribute(){
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
 
-      return 'testVal';
-
+    public function getRolesAttribute()
+    {
+        return $this->roles()->get()->pluck('name');
     }
 }

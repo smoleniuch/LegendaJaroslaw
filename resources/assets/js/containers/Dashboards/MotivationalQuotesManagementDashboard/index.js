@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { browserHistory } from "react-router";
 import moment from "moment";
 import _get from "lodash/get";
-
+console.log(moment.locale())
 import Dashboard from "Components/Dashboard";
 import DashboardGrid from "Components/DashboardGrid";
 import WorkoutCard from "Components/cards/WorkoutCard";

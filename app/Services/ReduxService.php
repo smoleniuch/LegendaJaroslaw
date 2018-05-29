@@ -9,6 +9,7 @@ use App\Services\GalleryService;
 use App\Services\Workout\WorkoutFetchingService;
 use App\Workout;
 use App\WorkoutTemplate;
+use App\ChatMessage;
 use Underscore\Types\Arrays;
 use Underscore\Types\Parse;
 
@@ -26,25 +27,25 @@ class ReduxService
     public function getPreloadedState()
     {
         $preloadedState = json_encode([
+        'chat' => $this->getChatBranch(),
+        'user' => $this->userService->getCurrentUserData(),
+        'post' => [
 
-      'user' => $this->userService->getCurrentUserData(),
-      'post' => [
+          'posts' => $this->postService->getAllPosts()
 
-        'posts' => $this->postService->getAllPosts()
+        ],
+        'motivationalQuote' => [
 
-      ],
-      'motivationalQuote' => [
+          'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay(),
+          'motivationalQuotes' => new \stdClass(),
+          'quotesFetched' => false,
+          'authorsFetched' => false,
+          'authors' => new \stdClass(),
 
-        'quoteOfTheDay' => $this->motivationalQuoteService->getQuoteOfTheDay(),
-        'motivationalQuotes' => new \stdClass(),
-        'quotesFetched' => false,
-        'authorsFetched' => false,
-        'authors' => new \stdClass(),
-
-      ],
-      'gallery' => $this->galleryService->getMainGallery(),
-      'workout' => $this->getWorkoutBranch()
-    ]);
+        ],
+        'gallery' => $this->galleryService->getMainGallery(),
+        'workout' => $this->getWorkoutBranch()
+      ]);
 
         return $preloadedState;
     }
@@ -58,5 +59,15 @@ class ReduxService
       'workoutTemplates' => WorkoutTemplate::all()->keyBy('id'),
       'nextWorkoutId' => $nextWorkout?$nextWorkout->id:null
     ];
+    }
+
+    public function getChatBranch()
+    {
+        $messages = ChatMessage::latest()->take(500)->get()->reverse()->values()->all();
+        // dd($messages);
+        return [
+        'initialMessages' => $messages,
+        'newMessagesCount' => 0,
+      ];
     }
 }

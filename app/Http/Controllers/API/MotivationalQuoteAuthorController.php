@@ -81,7 +81,6 @@ class MotivationalQuoteAuthorController extends Controller
     public function update(Request $request, MotivationalQuoteAuthor $motivationalQuoteAuthor)
     {
         $motivationalQuoteAuthor->update($request->only(['name']));
-
         return response()->json($motivationalQuoteAuthor);
     }
 

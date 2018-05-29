@@ -11,6 +11,7 @@ export default {
   'io-android-folder-open':require('react-icons/lib/io/android-folder-open'),
   'io-android-folder':require('react-icons/lib/io/android-folder'),
   'ion-android-add-circle':require('react-icons/lib/io/android-add-circle'),
+  'ion-android-contact':require('react-icons/lib/io/android-contact'),
 
   'fa-folder': require('react-icons/lib/fa/folder'),
 

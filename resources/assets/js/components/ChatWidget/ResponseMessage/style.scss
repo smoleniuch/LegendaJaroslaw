@@ -1,0 +1,42 @@
+@import "~Sass/mixins/size";
+$border: 1px solid #e7e7e7;
+.custom-chat-message {
+  width: 100%;
+  margin-top:-30px;
+  margin-bottom:5px;
+  & * {
+    background: white;
+  }
+  .avatar-container {
+    @include square(50px);
+    border-radius: 50%;
+    position: relative;
+    top: 33px;
+    left: -6px;
+    border: $border;
+
+    img {
+        width:100%;
+    }
+  }
+
+  .user-name {
+    padding-left: 25px;
+    margin-left: 20px;
+    background-color: #f5f5f5;
+    border-top-right-radius: 5px;
+    border: $border;
+  }
+
+  .content {
+    min-height: 50px;
+    padding: 10px;
+    border: $border;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .time-container {
+    text-align: right;
+  }
+}
