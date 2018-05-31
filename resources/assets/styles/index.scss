@@ -8,4 +8,8 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 
 
 // My customs
-@import 'helper_classes'
+@import 'helper_classes';
+
+body {
+    font-family: 'Roboto', sans-serif;
+}

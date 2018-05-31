@@ -1,28 +1,35 @@
-@import '~Sass/variables/_colors';
-@import '~Sass/mixins/_media';
-@import '~Sass/mixins/_size';
+@import "~Sass/variables/_colors";
+@import "~Sass/mixins/_media";
+@import "~Sass/mixins/_size";
 
 .main-navbar-container {
-
-
   .main-navbar {
 
+    a {
+      color: #333 !important;
+      text-decoration:none !important ;
+      font-weight:500;
+    }
 
-    background-color:white;
+    background-color: white;
     // border-color:$color-primary-4;
 
+    li.active a,
+    li.custom-nav-item a ,
+    &.navbar-default .navbar-nav > .open > a {
+      background-color: inherit;
+
+      &:visited,
+      &:hover,
+      &:visited,
+      &:focus {
+        background-color: inherit;
+        color: inherit;
+      }
+    }
   }
 
-  .azs-legenda-logo {
-
-    border-radius:50%;
-    z-index:2;
-    @include square(50px);
-
-  }
-
-  @include media('screen', '>mediumWidth'){
-
+  @include media("screen", ">mediumWidth") {
     // .container {
     //
     //   max-width:calc(100vw - 300px)
@@ -33,14 +40,57 @@
     // margin-right:auto;
     // padding: 23px 0px;
     // background-color: blue;
-    height:50px;
+    height: 50px;
   }
 
   .navbar {
+    margin-bottom: 25px;
+  }
 
-    margin-bottom:25px;
+  li.custom-nav-item {
+
+    &:not(.active) .icon.active-icon:not(.active) {
+      opacity:0;
+    }
+
+    &.active {
+      .icon.active-icon {
+        color: $color-secondary-2-0;
+      }
+    }
+    &:not(.dropdown-menu):hover .icon.active-icon {
+      opacity: 1;
+    }
+  }
+
+  li.dropdown li.custom-nav-item{
+    display:inline;
+
 
   }
 
+  .icon.active-icon{
+    margin-right:5px;
+    &.active {
+      color: $color-secondary-2-0;
+    }
+  }
+
+  .navbar-header {
+    height:50px;
+    display:flex;
+    margin-right:25px;
+    .logo-container {
+      margin:auto;
+    }
+
+  }
+
+  .navbar-nav {
+    & > li > a, & .dropdown-toggle li a {
+      font-weight: 700;
+      font-size: 15px;
+    }
+  }
 
 }

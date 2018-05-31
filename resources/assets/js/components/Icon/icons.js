@@ -1,3 +1,6 @@
+import BoxingGlove from './customIcons/BoxingGlove'
+
+
 export default {
 
   'ion-checkmark-circled': require('react-icons/lib/io/checkmark-circled'),
@@ -15,4 +18,5 @@ export default {
 
   'fa-folder': require('react-icons/lib/fa/folder'),
 
+   'boxing-glove': BoxingGlove,
 }

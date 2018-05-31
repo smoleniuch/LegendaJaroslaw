@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import LogoImageUrl from 'Images/cropped-logo.png';
+import LogoImageUrl from 'Images/legenda-boxing-text.png';
 import './style.scss'
 
 class Logo extends Component {
@@ -9,7 +9,7 @@ class Logo extends Component {
     return(
     <div className='logo-container'>
 
-      <img  className="azs-legenda-logo" src={LogoImageUrl} />
+      <img  className="azs-legenda-logo" src={`/${LogoImageUrl}`} />
 
     </div>
   )}

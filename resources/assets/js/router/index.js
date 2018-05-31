@@ -39,6 +39,7 @@ class Router extends React.Component {
                 <Route path='/aktualnosci' component={NewsPage}/>
                 <Route path='/galeria/albumy/:albumId' component={GalleryPage}/>
                 <Route path='/kalendarz' component={CalendarPage}/>
+                <Route path='/o-nas' render={_ => 'strona w budowie...'}/>
                 <Route path='/panel-zarzadzania' component={ManagementPanelPage}/>
                 </Switch>
 
