@@ -2,6 +2,6 @@
 
 return [
     'profile' => [
-        'default_avatar_url' => env('APP_URL') . '/storage/avatars/default.png'
+        'default_avatar_url' => env('APP_URL') . '/storage/images/avatars/default.png'
     ]
 ];

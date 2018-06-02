@@ -36,11 +36,12 @@ export function getMotivationalQuoteAuthors(){
 }
 
 export function updateMotivationalQuoteAuthor(id, data){
+
     return {
         type:types.UPDATE_MOTIVATIONAL_QUOTE_AUTHOR_REQUEST,
         payload:{
             request:{
-                method:'put',
+                method:'post',
                 url:`/motivational-quote-authors/${id}`,
                 data,
             },

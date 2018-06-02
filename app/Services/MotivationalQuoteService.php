@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\MotivationalQuote;
 use App\MotivationalQuoteAuthor;
+use Illuminate\Support\Facades\Storage;
 
 class MotivationalQuoteService
 {
@@ -37,15 +38,12 @@ class MotivationalQuoteService
     {
         $textQuote = data_get($data, 'text');
         $authorData = data_get($data, 'author');
+        $authorId = data_get($data, 'author.id');
         $data = [];
-
-        if (isset($authorData['id'])) {
-            $author = MotivationalQuoteAuthor::findOrFail($authorData['id']);
-        } elseif ($authorData) {
-            $author = new MotivationalQuoteAuthor($authorData);
-            $author->save();
+        
+        if ($authorData) {
+            $author = $this->saveAuthor($authorId, $authorData);
         }
-
 
         if ($quoteId) {
             $quote = MotivationalQuote::findOrFail($quoteId);
@@ -56,17 +54,53 @@ class MotivationalQuoteService
         $quote->text = $textQuote;
         if (isset($author)) {
             $quote->author()->associate($author);
+            $data['author'] = $author;
         } else {
             $quote->author()->dissociate();
         }
         
         $quote->save();
         $data['quote'] = $quote;
-        
-        if (isset($author)) {
-            $data['author'] = $author;
-            $author->save();
-        }
+
         return $data;
+    }
+
+    public function saveAuthor($authorId, $authorData)
+    {
+        $authorData = collect($authorData);
+        $avatarFile = $authorData->get('avatarFile');
+        $motivationalQuoteAuthor;
+
+        if ($authorId) {
+            $motivationalQuoteAuthor = MotivationalQuoteAuthor::findOrFail($authorId);
+            $motivationalQuoteAuthor->update(['name' => $authorData->get('name', '')]);
+        } else {
+            $motivationalQuoteAuthor = MotivationalQuoteAuthor::create(['name' => $authorData->get('name')]);
+        }
+        
+        if ($avatarFile) {
+            $this->deleteAuthorAvatarFile($motivationalQuoteAuthor);
+
+            $filePath = $avatarFile->store('public/images/avatars');
+
+            $motivationalQuoteAuthor->update([
+                'avatar_path_url' => Storage::url($filePath),
+                ]);
+        }
+
+        return $motivationalQuoteAuthor;
+    }
+
+    public function deleteAuthorAvatarFile(MotivationalQuoteAuthor $author)
+    {
+        $avatarPathUrl = $author->avatar_path_url;
+            
+        if ($avatarPathUrl) {
+            preg_match('/[^\/]+$/', $avatarPathUrl, $match);
+            $fileName = $match[0];
+            return Storage::delete('public/images/avatars/' . $fileName);
+        }
+
+        return false;
     }
 }

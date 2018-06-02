@@ -3,18 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\MotivationalQuoteAuthor;
+use App\Services\MotivationalQuoteService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class MotivationalQuoteAuthorController extends Controller
 {
-    public function __construct()
+    public function __construct(MotivationalQuoteService $motivationalQuoteService)
     {
         $this->middleware('role:coach')->only([
             'store',
             'update',
             'destroy',
         ]);
+
+        $this->motivationalQuoteService = $motivationalQuoteService;
     }
     /**
      * Display a listing of the resource.
@@ -78,9 +81,11 @@ class MotivationalQuoteAuthorController extends Controller
      * @param  \App\MotivationalQuoteAuthor  $motivationalQuoteAuthor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MotivationalQuoteAuthor $motivationalQuoteAuthor)
+    public function update(Request $request, $id)
     {
-        $motivationalQuoteAuthor->update($request->only(['name']));
+        $avatarFile = $request->file('avatarFile');
+        $motivationalQuoteAuthor = $this->motivationalQuoteService->saveAuthor($id, $request->merge(['avatarFile' => $avatarFile])->all());
+
         return response()->json($motivationalQuoteAuthor);
     }
 

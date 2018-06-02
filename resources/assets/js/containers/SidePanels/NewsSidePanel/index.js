@@ -5,7 +5,7 @@ import _debounce from 'lodash/debounce'
 import SidePanel from 'Components/SidePanel'
 import Icon from 'Components/Icon'
 import Panel from 'Components/Panel'
-import MotivationalQuote from 'Components/MotivatinalQuote'
+import MotivationalQuote from 'Components/MotivationalQuote'
 
 import SearchBar from 'Components/SearchBar'
 import SidePanelNavigator from 'Components/SidePanelNavigator'
@@ -59,8 +59,7 @@ class NewsSidePanel extends Component {
           <SearchBar onChange={this.props.updatePostsFilter}/>
           {this.props.motivationalQuote?(
             <MotivationalQuote
-              author={this.props.motivationalQuote.author.name}
-              text={this.props.motivationalQuote.text}/>
+              quote={this.props.motivationalQuote}/>
           ):''}
 
             {/*

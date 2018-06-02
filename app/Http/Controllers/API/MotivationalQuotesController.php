@@ -9,7 +9,6 @@ use App\Services\MotivationalQuoteService;
 
 class MotivationalQuotesController extends Controller
 {
-
     public function __construct(MotivationalQuoteService $motivationalQuoteService)
     {
         $this->motivationalQuoteService = $motivationalQuoteService;
@@ -47,9 +46,18 @@ class MotivationalQuotesController extends Controller
      */
     public function store(Request $request)
     {
-        $quote = $this->motivationalQuoteService->saveQuote($request->all());
+        $avatarFile = $request->file('avatarFile');
+        $serviceData = collect($request->only(['name', 'text']));
+        $authorData = collect(json_decode($request->author));
+        
+        if ($authorData->isNotEmpty()) {
+            $authorData = $authorData->merge(['avatarFile' => $avatarFile]);
+            $serviceData = $serviceData->merge(['author' => $authorData]);
+        }
 
-        return response()->json($quote);
+        $responseData = $this->motivationalQuoteService->saveQuote($serviceData->all());
+
+        return response()->json($responseData);
     }
 
     /**

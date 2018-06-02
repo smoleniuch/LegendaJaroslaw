@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\MotivationalQuoteAuthor;
+use App\Services\MotivationalQuoteService;
 
 class MotivationalQuoteAuthorObserver
 {
@@ -24,8 +25,12 @@ class MotivationalQuoteAuthorObserver
      */
     public function deleting(MotivationalQuoteAuthor $author)
     {
+        $service = new MotivationalQuoteService();
+        
         $author->quotes->each(function ($quote) {
             $quote->delete();
         });
+
+        $service->deleteAuthorAvatarFile($author);
     }
 }

@@ -1,11 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import _get from "lodash/get";
+import _merge from "lodash/merge";
 import PropTypes from "prop-types";
 
 import { Form, FieldGroup } from "Components/Form";
 import { Content, Body } from "Components/Modal";
 import LoadingButton from "Components/LoadingButton";
+import AuthorAvatar from "Components/MotivationalQuote/AuthorAvatar";
+import DropzoneFiles from "Components/DropzoneFiles";
 import {
   updateMotivationalQuote,
   addMotivationalQuote
@@ -27,6 +30,7 @@ class UpdateMotivationalQuoteContent extends React.Component {
 
     this.state = {
       quoteText: _get(this.props, "motivationalQuote.text", ""),
+      selectedFiles: [],
       selectedAuthor: preSelectedAuthorId
         ? this.props.authorOptions.find(
             option => option.value.id === preSelectedAuthorId
@@ -43,7 +47,10 @@ class UpdateMotivationalQuoteContent extends React.Component {
         <Body>
           <Form>
             <FieldGroup
-              isValidNewOption={(inputValue, selectedOption)  => inputValue !== '' && !selectedOption.some(option => option.value.name === inputValue)}
+              isValidNewOption={(inputValue, selectedOption) =>
+                inputValue !== "" &&
+                !selectedOption.some(option => option.value.name === inputValue)
+              }
               getOptionValue={option => option.value.name}
               onCreateOption={this.handleAuthorCreation}
               creatable
@@ -53,6 +60,27 @@ class UpdateMotivationalQuoteContent extends React.Component {
               label="Autor"
               componentClass="select"
             />
+            {_get(this.state, "selectedAuthor.value.newAuthor") && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center"
+                }}
+              >
+                <DropzoneFiles
+                  onDrop={this.onFileDrop}
+                  multiple={false}
+                  accept="image/*"
+                  style={{ height: "100px", width: "100px" }}
+                  title="Wybierz Avatar"
+                />
+                <AuthorAvatar
+                  displayName={false}
+                  name={_get(this.state,'selectedAuthor.value.name')}
+                  avatarUrl={_get(this.state,'selectedFiles.0.preview')}
+                />
+              </div>
+            )}
 
             <FieldGroup
               value={this.state.quoteText}
@@ -77,11 +105,25 @@ class UpdateMotivationalQuoteContent extends React.Component {
     );
   }
 
+  onFileDrop = selectedFiles => {
+    this.setState(prevState => {
+      var selectedAuthor = { ...prevState.selectedAuthor };
+      _merge(selectedAuthor, {
+        value: { avatar_path_url: selectedFiles[0].preview }
+      });
+
+      return {
+        selectedFiles,
+        selectedAuthor
+      };
+    });
+  };
+
   handleAuthorCreation = inputValue => {
     this.setState({
       selectedAuthor: {
         label: inputValue,
-        value:  { name: inputValue },
+        value: { name: inputValue, newAuthor: true }
       }
     });
   };
@@ -104,12 +146,12 @@ class UpdateMotivationalQuoteContent extends React.Component {
   };
 
   addQuote = () => {
-    return this.props.dispatchByModal(
-      addMotivationalQuote({
-        text: this.state.quoteText,
-        author: _get(this.state, "selectedAuthor.value", null),
-      })
-    );
+    var formData = new FormData();
+    formData.append("text", this.state.quoteText);
+    formData.append("author", JSON.stringify(_get(this.state, "selectedAuthor.value", null)));
+    formData.append("avatarFile", this.state.selectedFiles[0]);
+
+    return this.props.dispatchByModal(addMotivationalQuote(formData));
   };
 }
 

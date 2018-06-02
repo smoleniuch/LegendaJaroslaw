@@ -7,7 +7,7 @@ use App\MotivationalQuote;
 
 class MotivationalQuoteAuthor extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'avatar_path_url'];
 
     public function quotes()
     {
