@@ -1,8 +1,14 @@
 import React from 'react';
 import { Route, matchPath, withRouter } from 'react-router-dom'
+import { replace } from 'Router'
 import _get from 'lodash/get'
+import {connect} from 'react-redux'
 
-const ModalRoute = ({location, match, history, defaultUnderModalPath, ...restProps }) => {
+const mapStateToProps = state => ({
+  location:state.router.location
+})
+
+const ModalRoute = ({location, replace, defaultUnderModalPath, ...restProps }) => {
 
   var underModalLocation = _get(location, 'state.underModalLocation',{})
 
@@ -12,7 +18,7 @@ const ModalRoute = ({location, match, history, defaultUnderModalPath, ...restPro
     underModalLocation.pathname === undefined &&
     underModalLocation.pathname !== defaultUnderModalPath){
 
-    history.replace(location.pathname,{
+    replace(location.pathname,{
 
       underModalLocation:{
         pathname:defaultUnderModalPath
@@ -42,4 +48,4 @@ ModalRoute.defaultProps = {
 
 }
 
-export default withRouter(ModalRoute);
+export default connect(mapStateToProps, {replace})(ModalRoute);

@@ -17,7 +17,7 @@ mix.webpackConfig({
 
   plugins:[
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /pl/),
-  ]
+  ],
 
   resolve:{
 
