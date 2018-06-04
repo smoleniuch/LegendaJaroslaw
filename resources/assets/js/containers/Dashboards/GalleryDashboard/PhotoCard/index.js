@@ -20,7 +20,7 @@ class PhotoCard extends Component {
         <Card.Body style={{width:'100%',height:'auto'}}>
 
           <img style={{width:'100%',height:'auto'}} src={photo.original} />
-        <div className="text-center">{photo.name}</div>
+        {/* <div className="text-center">{photo.name}</div> */}
           
         </Card.Body>
       </Card>

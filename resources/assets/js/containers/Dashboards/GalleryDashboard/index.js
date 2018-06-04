@@ -93,6 +93,7 @@ class GalleryDashboard extends Component {
       <Dashboard className="gallery-dashboard">
         <div>
           <Breadcrumb
+            className="navigation-bar"
             onClick={this.openAlbum}
             items={this.getBreadcrumbNavigationItems()}
           />

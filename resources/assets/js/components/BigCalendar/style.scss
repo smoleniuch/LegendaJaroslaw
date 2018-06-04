@@ -3,7 +3,12 @@
 
 .rbc-calendar {
 
-  &.without-all-day-row {
+
+  .rbc-today {
+    background-color:rgba($rgb-primary-1, 0.55);
+  }
+
+  &.without-all-day-row { 
 
 
     .rbc-time-header .rbc-row:nth-child(2) {
@@ -16,15 +21,27 @@
   .rbc-event {
 
     background-color:$color-primary-0;
+    
 
   }
 
 
   .rbc-toolbar {
 
+    .rbc-btn-group {
+    box-shadow:0px 0px 4px 0.5px #a6a3a6;
+      
+    }
+
     @include media('<mediumWidth'){
 
       display:none;
+
+    }
+
+    button {
+      background-color:rgba(255,255,255, 0.85);
+      border-radius:0px;
 
     }
 

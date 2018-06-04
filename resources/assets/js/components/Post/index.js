@@ -13,7 +13,7 @@ const Post = ({post}) => {
 
   return (
 
-    <Panel bsStyle="primary" className={classNames('post')}>
+    <Panel className={classNames('post')}>
 
   <Panel.Heading>
       <Panel.Title>

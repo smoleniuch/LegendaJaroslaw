@@ -1,3 +1,4 @@
+$whiteOpacityBackground:rgba(255,255,255, 0.85);
 
 .dashboard {
 
@@ -6,5 +7,13 @@
   height:calc(100vh - 50px);
   overflow:auto;
   flex-grow:1;
+
+  .ReactTable {
+    
+    .rt-thead.-filters input, .-pagination select, .-pagination input {
+      background-color:$whiteOpacityBackground;
+    }
+    
+  }
 
 }

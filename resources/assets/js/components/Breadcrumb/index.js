@@ -1,7 +1,7 @@
 import React from 'react';
 import {Breadcrumb as BootstrapBreadcrumb} from 'react-bootstrap'
 import './style.scss'
-const Breadcrumb = ({items, onClick}) => {
+const Breadcrumb = ({items, onClick, ...props}) => {
 
   var customOnClick = (e) => {
 
@@ -13,12 +13,12 @@ const Breadcrumb = ({items, onClick}) => {
 
   return (
 
-    <BootstrapBreadcrumb>
+    <BootstrapBreadcrumb {...props}>
       {items.map((item,i)=>{
 
         return (
 
-          <BootstrapBreadcrumb.Item key={i} onClick={customOnClick} data-event-key={item.eventKey} active={item.active}>{item.label}</BootstrapBreadcrumb.Item>
+          <BootstrapBreadcrumb.Item key={i} onClick={customOnClick} data-event-key={item.eventKey} active={item.active} >{item.label}</BootstrapBreadcrumb.Item>
 
         )
 

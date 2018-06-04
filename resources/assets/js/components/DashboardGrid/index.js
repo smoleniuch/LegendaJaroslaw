@@ -29,7 +29,7 @@ class DashboardGrid extends Component {
 
     return {
 
-      gutter:10,
+      gutter:20,
       resize:true,
       transitionDuration: 200,
       itemSelector: '.grid-card',

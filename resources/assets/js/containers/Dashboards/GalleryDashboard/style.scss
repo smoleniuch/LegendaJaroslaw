@@ -4,6 +4,11 @@
   // margin-right:50px;
   // width:50px;
 
+  .navigation-bar {
+    background-color:rgba(255,255,255, 0.85);
+    box-shadow:0px 0px 2px 0.5px #a6a3a6;;
+  }
+
   .editor-bar {
     text-align:right;
     margin-top:-20px;
@@ -13,5 +18,15 @@
       left:unset;
       right:0;
     }
+
+   & > * {
+     border-top:none;
+     background-color:rgba(255,255,255, 0.85);
+     box-shadow:0px 0px 2px 0.5px #a6a3a6;;
+   }
+
+   button, label {
+    border-radius:0px;
+   }
   }
 }

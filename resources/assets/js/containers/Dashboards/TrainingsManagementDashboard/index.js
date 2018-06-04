@@ -4,6 +4,7 @@ import { browserHistory } from "react-router";
 import moment from "moment";
 import _sortBy from "lodash/sortBy";
 
+import { IconButtonBarColumn } from "Components/Table/BuiltInColumns";
 import Dashboard from "Components/Dashboard";
 import DashboardGrid from "Components/DashboardGrid";
 import WorkoutCard from "Components/cards/WorkoutCard";
@@ -63,21 +64,31 @@ class TrainingsManagementDashboard extends Component {
                   <Label bsStyle="success">Aktualny</Label>
                 );
 
-                return <h4>{label}</h4>;
+                return <h4 className='text-center' style={{margin:'auto'}}>{label}</h4>;
               }
             },
-            {
-              Header: "",
-              id:'button',
-              sortable:false,
-              resizable:false,
-              width:100,
-              Cell: ({ original }) => (
-                <Button onClick={() => this.openEditWorkoutModal(original.id)}>
-                  Edytuj
-                </Button>
-              )
-            }]
+            // {
+            //   Header: "",
+            //   id:'button',
+            //   sortable:false,
+            //   resizable:false,
+            //   width:100,
+            //   Cell: ({ original }) => (
+            //     <Button onClick={() => this.openEditWorkoutModal(original.id)}>
+            //       Edytuj
+            //     </Button>
+            //   )
+            // }
+            IconButtonBarColumn({
+              display: rowInfo => rowInfo.row.authorId !== 'null',
+              iconButtons: [
+                {
+                  name: "ion-edit",
+                  onClick: this.openEditWorkoutModal
+                }
+              ]
+            })
+          ]
           }
           ]}
           data={this.props.workouts}
@@ -86,7 +97,7 @@ class TrainingsManagementDashboard extends Component {
     );
   }
 
-  openEditWorkoutModal(workoutId) {
+  openEditWorkoutModal({id:workoutId}) {
     this.props.displayModal("EditWorkoutContent", { workoutId });
   }
 }
