@@ -1,8 +1,10 @@
+@import '~Sass/mixins/imageBackground';
+
 $whiteOpacityBackground:rgba(255,255,255, 0.85);
 
 .dashboard {
 
-  padding:20px;
+  
   // margin-top:50px;
   height:calc(100vh - 50px);
   overflow:auto;
@@ -10,10 +12,16 @@ $whiteOpacityBackground:rgba(255,255,255, 0.85);
 
   .ReactTable {
     
+    @include opacityContainer();
+
     .rt-thead.-filters input, .-pagination select, .-pagination input {
       background-color:$whiteOpacityBackground;
     }
     
+  }
+
+  .content {
+    padding:20px;
   }
 
 }

@@ -55,6 +55,7 @@ class MotivationalQuotesManagementDashboard extends Component {
       !areMotivationalQuotesFetched || !areMotivationalQuoteAuthorsFetched;
     return (
       <Dashboard>
+        <Dashboard.Content >
         <Table
           collapseOnDataChange={false}
           loading={isLoading}
@@ -123,6 +124,8 @@ class MotivationalQuotesManagementDashboard extends Component {
           ]}
           data={isLoading ? [] : motivationalQuotes}
         />
+        </Dashboard.Content >
+        
       </Dashboard>
     );
   }

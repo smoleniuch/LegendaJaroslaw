@@ -18,7 +18,14 @@ class PhotosTableSeeder extends Seeder
         $finder = new Finder();
         $finder->files()->in(storage_path('app/public/gallery/pictures'));
 
+ 
+
         foreach ($finder as $file) {
+
+            $imageSize = getimagesize(storage_path('app/public/gallery/pictures/' . $file->getRelativePathname()));
+
+            $widthToHeightRatio = $imageSize[0] / $imageSize[1];
+
             $photo = Photo::create([
 
             'name' => $faker->realText(20),
@@ -26,7 +33,7 @@ class PhotosTableSeeder extends Seeder
             'original' => asset('storage/gallery/pictures/' . $file->getRelativePathname()),
             'thumbnail' => asset('storage/gallery/pictures/' . $file->getRelativePathname()),
             'storage_path' => 'public/gallery/pictures/' . $file->getRelativePathname(),
-            
+            'width_to_height_ratio' => $widthToHeightRatio
 
 
           ]);

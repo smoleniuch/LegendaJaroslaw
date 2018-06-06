@@ -1,8 +1,14 @@
 @import '~Sass/variables/_colors.scss';
 @import '~Sass/mixins/_media.scss';
+@import '~Sass/mixins/_imageBackground.scss';
 
 .rbc-calendar {
 
+    .rbc-time-view {
+
+    @include opacityContainer();
+
+  }
 
   .rbc-today {
     background-color:rgba($rgb-primary-1, 0.55);

@@ -13,7 +13,7 @@ class NewsPage extends Component {
       <Page className="news-page">
         <Page.Content>
 
-          <SidePanel />
+          {/* <SidePanel /> */}
           <NewsDashboard />
 
         </Page.Content>

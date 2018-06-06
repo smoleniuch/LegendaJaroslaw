@@ -3,6 +3,12 @@ import classNames from 'classnames'
 
 import './style.scss'
 
+const Content = ({children, ...props}) => {
+
+  return <div className="content" {...props}>{children}</div>
+
+}
+
 class Dashboard extends Component {
 
   render() {
@@ -19,5 +25,7 @@ class Dashboard extends Component {
   }
 
 }
+
+Dashboard.Content = Content
 
 export default Dashboard;

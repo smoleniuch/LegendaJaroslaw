@@ -39,6 +39,7 @@ class TrainingsManagementDashboard extends Component {
 
     return (
       <Dashboard>
+        <Dashboard.Content>
         <Table
           columns={[
             {
@@ -67,18 +68,6 @@ class TrainingsManagementDashboard extends Component {
                 return <h4 className='text-center' style={{margin:'auto'}}>{label}</h4>;
               }
             },
-            // {
-            //   Header: "",
-            //   id:'button',
-            //   sortable:false,
-            //   resizable:false,
-            //   width:100,
-            //   Cell: ({ original }) => (
-            //     <Button onClick={() => this.openEditWorkoutModal(original.id)}>
-            //       Edytuj
-            //     </Button>
-            //   )
-            // }
             IconButtonBarColumn({
               display: rowInfo => rowInfo.row.authorId !== 'null',
               iconButtons: [
@@ -93,6 +82,7 @@ class TrainingsManagementDashboard extends Component {
           ]}
           data={this.props.workouts}
         />
+        </Dashboard.Content>
       </Dashboard>
     );
   }

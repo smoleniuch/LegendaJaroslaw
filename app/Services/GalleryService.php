@@ -41,11 +41,19 @@ class GalleryService
         return $photosData->map(function ($photoData) use ($galleryAlbum, $photoFiles) {
             $photoData = collect($photoData);
             $photoFile = $photoFiles[$photoData->get('imageFileId')];
+            // dd($photoFile);
             $photoFilePath = $photoFile->store('public/gallery/pictures');
+            preg_match('/[^\/]+$/', $photoFilePath, $match);
+            $fileName = $match[0];
+            
+            $imageSize = getimagesize(storage_path('app/public/gallery/pictures/' . $fileName));
+
+            $widthToHeightRatio = $imageSize[0] / $imageSize[1];
             $photoFileURL = Storage::url($photoFilePath);
             $photo = new Photo($photoData->only(['name','description'])->toArray());
             $photo->original =  $photoFileURL;
             $photo->thumbnail =  $photoFileURL;
+            $photo->width_to_height_ratio = $widthToHeightRatio;
             $photo->storage_path =  $photoFilePath;
             
             $photo->galleryAlbum()->associate($galleryAlbum);

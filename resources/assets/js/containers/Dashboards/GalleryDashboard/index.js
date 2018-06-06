@@ -137,6 +137,8 @@ class GalleryDashboard extends Component {
         </Authorization>
           
         </div>
+        <Dashboard.Content >
+        
         <DashboardGrid
           imagesLoadedOptions={{
             updateOnEachImageLoad: true
@@ -165,6 +167,8 @@ class GalleryDashboard extends Component {
             />
           ))}
         </DashboardGrid>
+        </Dashboard.Content >
+        
       </Dashboard>
     );
   }

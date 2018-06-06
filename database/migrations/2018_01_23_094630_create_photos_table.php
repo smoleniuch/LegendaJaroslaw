@@ -20,6 +20,7 @@ class CreatePhotosTable extends Migration
             $table->string('storage_path');
             $table->string('original');
             $table->string('thumbnail');
+            $table->float('width_to_height_ratio', 8, 2);
             $table->bigInteger('gallery_album_id')->nullable();
             $table->timestamps();
         });

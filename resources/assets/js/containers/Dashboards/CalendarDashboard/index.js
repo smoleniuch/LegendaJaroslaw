@@ -32,14 +32,14 @@ class CalendarDashboard extends Component {
 
     var { workouts, ...props } = this.props
 
-    return (<Dashboard className="trainings-dashboard">
-
+    return (<Dashboard className="calendar-dashboard">
+      <Dashboard.Content>
       <BigCalendar
         startAccessor={this.startAccessor}
         endAccessor={this.endAccessor}
         titleAccessor={this.titleAccessor}
         events={workouts}/>
-
+    </Dashboard.Content>
     </Dashboard>);
   }
 

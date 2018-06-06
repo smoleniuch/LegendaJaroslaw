@@ -15,6 +15,7 @@ import NewsPage from "Pages/NewsPage";
 import CalendarPage from "Pages/CalendarPage";
 import GalleryPage from "Pages/GalleryPage";
 import ManagementPanelPage from "Pages/ManagementPanelPage";
+import AboutUsPage from 'Pages/AboutUsPage';
 
 class Router extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class Router extends React.Component {
               <Route path="/aktualnosci" component={NewsPage} />
               <Route path="/galeria/albumy/:albumId" component={GalleryPage} />
               <Route path="/kalendarz" component={CalendarPage} />
-              <Route path="/o-nas" render={_ => "strona w budowie..."} />
+              <Route path="/o-nas" component={AboutUsPage} />
               <PrivateRoute
                 allowedUserRoles={["coach"]}
                 path="/panel-zarzadzania"
