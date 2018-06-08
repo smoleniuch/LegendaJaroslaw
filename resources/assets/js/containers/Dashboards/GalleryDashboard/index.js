@@ -91,7 +91,7 @@ class GalleryDashboard extends Component {
     var currentGalleryAlbumPhotos = Object.values(this.props.currentGalleryAlbumPhotos);
     return (
       <Dashboard className="gallery-dashboard">
-        <div>
+        <div className="navigation-bar-container">
           <Breadcrumb
             className="navigation-bar"
             onClick={this.openAlbum}

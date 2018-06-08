@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import _debounce from 'lodash/debounce'
+import classNames from 'classnames';
 
 import SidePanel from 'Components/SidePanel'
 import Icon from 'Components/Icon'
@@ -49,7 +50,7 @@ class NewsSidePanel extends Component {
 
             <Panel.Body>
               {this.props.nextWorkout?(
-                !this.props.nextWorkout.canceled?<div>Odbędzie się <Icon name="ion-checkmark-circled"/> </div>:<div>Nie odbędzie się <Icon name="ion-close-round"/> </div>
+                !this.props.nextWorkout.canceled?<div >Odbędzie się <Icon className="valid" name="ion-checkmark-circled"/> </div>:<div>Nie odbędzie się <Icon className="invalid" name="ion-close-round"/> </div>
               ):'Brak danych'}
              </Panel.Body>
 

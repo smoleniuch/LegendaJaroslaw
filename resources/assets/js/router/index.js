@@ -48,6 +48,7 @@ class Router extends React.Component {
                 path="/panel-zarzadzania"
                 component={ManagementPanelPage}
               />
+              <Redirect to='/aktualnosci'/>
             </Switch>
 
             <ModalContainer />
@@ -67,7 +68,7 @@ class Router extends React.Component {
 export default Router;
 
 
-export { history, Route, Router };
+export { history, Route, Router, Switch, Redirect };
 export {
   replace,
   go

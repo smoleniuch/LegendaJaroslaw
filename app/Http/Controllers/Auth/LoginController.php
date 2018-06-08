@@ -40,19 +40,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticate(Request $request){
+    public function authenticate(Request $request)
+    {
+        $userService = new UserService();
 
-      $userService = new UserService();
+        $this->login($request->merge(['remember' => true]));
 
-      $this->login($request);
-
-      return response()->json($userService->getCurrentUserData());
-
+        return response()->json($userService->getCurrentUserData());
     }
 
-    public function logout(Request $request){
-
-      return response()->json(auth()->logout());
-
+    public function logout(Request $request)
+    {
+        return response()->json(auth()->logout());
     }
 }
