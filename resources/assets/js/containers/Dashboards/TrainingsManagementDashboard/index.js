@@ -12,8 +12,10 @@ import Post from "Components/Post";
 import Table from "Components/Table";
 import Button from "Components/Button";
 import Label from "react-bootstrap/lib/Label";
+import CRUDTable from 'Components/CRUDTable';
 
 import { displayModal } from "Actions/modalActions";
+import { deleteWorkout } from "Actions/workoutActions";
 
 const mapStateToProps = state => {
   return {
@@ -25,7 +27,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  displayModal
+  displayModal,
+  deleteWorkout,
 };
 
 class TrainingsManagementDashboard extends Component {
@@ -39,52 +42,65 @@ class TrainingsManagementDashboard extends Component {
 
     return (
       <Dashboard>
-        <Dashboard.Content>
-        <Table
-          columns={[
-            {
-              Header:'Treningi',
-              columns:[
-          
-            {
-              Header: "Nazwa",
-              id: "name",
-              accessor: workout =>
-                this.props.workoutTemplates[workout.workout_template_id].name
-            },
-            { Header: "Rozpoczyna się", accessor: "start" },
-            { Header: "Kończy się", accessor: "end" },
-            {
-              Header: "Status",
-              id:'status',
-              accessor:'canceled',
-              Cell: ({ original }) => {
-                var label = original.canceled ? (
-                  <Label bsStyle="danger">Odwołany</Label>
-                ) : (
-                  <Label bsStyle="success">Aktualny</Label>
-                );
+      <Dashboard.Content>
 
-                return <h4 className='text-center' style={{margin:'auto'}}>{label}</h4>;
-              }
-            },
-            IconButtonBarColumn({
-              display: rowInfo => rowInfo.row.authorId !== 'null',
-              iconButtons: [
-                {
-                  name: "ion-edit",
-                  onClick: this.openEditWorkoutModal
-                }
-              ]
-            })
-          ]
-          }
-          ]}
-          data={this.props.workouts}
-        />
-        </Dashboard.Content>
+
+      <CRUDTable
+        onAdd={this.openAddNewWorkoutModal}
+        onEdit={this.openEditWorkoutModal}
+        onDelete={this.onDelete}
+        data={this.props.workouts}
+        columns={[
+          {
+            Header:'Treningi',
+            columns:[
+        
+          {
+            Header: "Nazwa",
+            // id: "name",
+            accessor: 'name'
+          },
+          { Header: "Rozpoczyna się", accessor: "start" },
+          { Header: "Kończy się", accessor: "end" },
+          {
+            Header: "Status",
+            id:'status',
+            accessor:'canceled',
+            Cell: ({ original }) => {
+              var label = original.canceled ? (
+                <Label bsStyle="danger">Odwołany</Label>
+              ) : (
+                <Label bsStyle="success">Aktualny</Label>
+              );
+
+              return <h4 className='text-center' style={{margin:'auto'}}>{label}</h4>;
+            }
+          },
+        ]
+        }
+        ]}
+      
+      />
+                      </Dashboard.Content>
       </Dashboard>
-    );
+    )
+
+   
+  }
+
+  openAddNewWorkoutModal = () => {
+
+    this.props.displayModal('AddNewWorkoutContent')
+
+  }
+
+  onDelete = ({id}) => {
+
+  this.props.displayModal("ConfirmationModalContent", {
+      question: "Czy chcesz usunąć wybrany trening?",
+    afterConfirmPromiseGenerator:() => this.props.deleteWorkout(id)
+  });
+
   }
 
   openEditWorkoutModal({id:workoutId}) {

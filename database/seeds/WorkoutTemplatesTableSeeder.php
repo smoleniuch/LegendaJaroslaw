@@ -15,7 +15,7 @@ class WorkoutTemplatesTableSeeder extends Seeder
 
       $basic = new WorkoutTemplate();
 
-      $basic->name = 'Podstawowy Trening';
+      $basic->name = 'Trening';
       $basic->starts_at = '19:00';
       $basic->ends_at = '21:00';
 

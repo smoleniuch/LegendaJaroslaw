@@ -8,10 +8,9 @@ use App\Services\Workout\WorkoutGeneratorService;
 
 class WorkoutCycleEventObserver
 {
-    public function __construct(){
-
-      $this->workoutService = new WorkoutGeneratorService();
-
+    public function __construct()
+    {
+        $this->workoutService = new WorkoutGeneratorService();
     }
     /**
      * Listen to the WorkoutCycle created event.
@@ -22,8 +21,7 @@ class WorkoutCycleEventObserver
     public function created(WorkoutCycle $event)
     {
 
-        $this->workoutService->generateWorkoutsFromWorkoutCycle($event);
-
+        // $this->workoutService->generateWorkoutsFromWorkoutCycle($event);
     }
 
     /**

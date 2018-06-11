@@ -1,0 +1,11 @@
+.date-time-span-container {
+    .pickers-container {
+        display: flex;
+        align-items:baseline;
+        &>span {
+            font-weight: bold;
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+    }
+}

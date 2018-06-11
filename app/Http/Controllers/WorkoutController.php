@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Workout;
 use Illuminate\Http\Request;
 use App\Services\Workout\WorkoutEditorService;
+use App\Services\Workout\WorkoutGeneratorService;
+use App\Http\Requests\AddWorkouts;
 
 class WorkoutController extends Controller
 {
     public function __construct()
     {
         $this->workoutEditorService = new WorkoutEditorService();
+        $this->workoutGeneratorService = new WorkoutGeneratorService();
         $this->middleware('role:coach');
     }
     public function cancel(Workout $workout, Request $request)
@@ -49,9 +52,11 @@ class WorkoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddWorkouts $request)
     {
-        //
+        $workouts = $this->workoutGeneratorService->generateWorkouts($request->all());
+
+        return response()->json($workouts);
     }
 
     /**
@@ -72,7 +77,7 @@ class WorkoutController extends Controller
      * @param  \App\Workout  $workout
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Workout $workout)
+    public function update(Request $request, Workout $workout)
     {
         $workoutData = $request->only(['canceled', 'start', 'end']);
         $workout = $this->workoutEditorService->edit($workout, $workoutData);
@@ -88,6 +93,6 @@ class WorkoutController extends Controller
      */
     public function destroy(Workout $workout)
     {
-        //
+        return response()->json($workout->delete());
     }
 }

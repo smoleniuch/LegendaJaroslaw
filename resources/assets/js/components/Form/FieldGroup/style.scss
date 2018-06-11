@@ -8,8 +8,12 @@
 }
 
 
-.has-error {
+.has-error { 
+  .control-label,  .field-group-error{
+    color:$color-secondary-2-0;    
 
-  color:$color-secondary-2-0;
-
+  }
+  .help-block {
+    color:unset;
+  }
 }

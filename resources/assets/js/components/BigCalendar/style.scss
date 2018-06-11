@@ -4,7 +4,7 @@
 
 .rbc-calendar {
 
-    .rbc-time-view {
+    .rbc-time-view, .rbc-month-view, .rbc-agenda-view {
 
     @include opacityContainer();
 

@@ -8,10 +8,10 @@ import Button from '../Button'
 class LoadingButton extends Component {
     render() {
 
-        var {label, loadingLabel, isLoading , ...props} = this.props
+        var {label, loadingLabel, isLoading , disabled,  ...props} = this.props
 
         return (
-            <Button disabled={isLoading} {...props}>{isLoading?loadingLabel:label}</Button>
+            <Button disabled={isLoading || disabled} {...props}>{isLoading?loadingLabel:label}</Button>
         );
     }
 }

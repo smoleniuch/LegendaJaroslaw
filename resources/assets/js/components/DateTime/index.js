@@ -17,12 +17,15 @@ class DateTime extends Component {
     }
 
     onChange = (v) => {
-        this.props.onChange(v.format('YYYY-MM-DD HH:mm:ss'), this.props.name)
+
+        var outputFormat = `${this.props.dateFormat?this.props.dateFormat:''} ${this.props.timeFormat?this.props.timeFormat:''}`.replace(/^ | $/,'')
+        
+        this.props.onChange(v.format(outputFormat), this.props.name)
     }
 }
 
 DateTime.defaultProps = {
-    editable:false,
+    editable:true,
     onChange:() => {},
     timeFormat:'HH:mm:ss',
     dateFormat:'YYYY-MM-DD',

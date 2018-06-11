@@ -29,8 +29,8 @@ export function editWorkout(id, data) {
     type: "EDIT_WORKOUT_REQUEST",
     payload: {
       request: {
-        url: `/workouts/${id}/edit`,
-        method: "post",
+        url: `/workouts/${id}`,
+        method: "put",
         data
       },
       notify: {

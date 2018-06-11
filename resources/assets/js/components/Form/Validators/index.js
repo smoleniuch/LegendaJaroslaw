@@ -3,9 +3,12 @@ import _isString from 'lodash/isString'
 import _mapValues from 'lodash/mapValues'
 import _isArray from 'lodash/isArray'
 
-export const required = (value) => {
 
-    return [null,'',undefined].includes(value) ? 'Pole Wymagane.' : undefined
+
+
+export const required = v => {
+
+    return [null,'',undefined].includes(v)  || (_isArray(v) && v.length === 0) ? 'Pole Wymagane.': undefined  
 
 }
 

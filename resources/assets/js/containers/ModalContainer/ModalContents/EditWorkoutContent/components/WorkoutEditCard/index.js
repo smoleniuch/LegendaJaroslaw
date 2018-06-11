@@ -14,7 +14,7 @@ class WorkoutEditCard extends Component {
         {this.props.workout ? (
           <LabelledList
             items={[
-              { label: "Nazwa", value: this.props.workoutTemplate.name },
+              { label: "Nazwa", value: this.props.workout.name },
               {
                 label: "Odwołany",
                 value: (
@@ -49,7 +49,7 @@ class WorkoutEditCard extends Component {
                   />
                 )
               },
-              { label: "Opis", value: this.props.workoutTemplate.description }
+              // { label: "Opis", value: this.props.workoutTemplate.description }
             ]}
           />
         ) : (

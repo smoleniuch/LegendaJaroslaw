@@ -1,3 +1,4 @@
+import * as types from 'Actions/workoutActions/types'
 const initialState = {
 
   workouts:{},
@@ -17,6 +18,30 @@ export default function workoutReducer(state = initialState, action){
       workouts:{
         ...state.workouts,
         [workout.id]:workout
+      }
+    }
+
+    case types.DELETE_WORKOUT_REQUEST_SUCCESS:
+
+    var workoutId = action.meta.previousAction.payload.request.url.split('/').pop();
+    var workouts = {...state.workouts}
+
+    delete workouts[workoutId];
+
+    return {
+      ...state,
+      workouts
+    }
+
+    case types.ADD_WORKOUTS_REQUEST_SUCCESS:
+
+    var workouts = action.payload.data
+
+    return {
+      ...state,
+      workouts:{
+        ...state.workouts,
+        ...workouts
       }
     }
 

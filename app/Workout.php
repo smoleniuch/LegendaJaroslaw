@@ -13,27 +13,25 @@ class Workout extends Model
 {
     use CausesActivity;
 
-    public $fillable = ['name', 'description', 'start', 'end', 'canceled'];
+    public $fillable = ['name', 'description', 'start', 'end', 'canceled', 'delay'];
 
-    public function workoutTemplate(){
-
-      return $this->belongsTo(WorkoutTemplate::class);
-
+    public function workoutTemplate()
+    {
+        return $this->belongsTo(WorkoutTemplate::class);
     }
 
-    public function workoutCycle(){
-
-      return $this->belongsTo(WorkoutCycle::class);
-
+    public function workoutCycle()
+    {
+        return $this->belongsTo(WorkoutCycle::class);
     }
 
-    public function posts(){
-
-      return $this->belongsToMany(Post::class);
-
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class);
     }
 
-    public function getCanceledAttribute($val){
-      return (bool) $val;
+    public function getCanceledAttribute($val)
+    {
+        return (bool) $val;
     }
 }

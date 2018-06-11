@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         GalleryAlbum::observe(GalleryAlbumObserver::class);
         Photo::observe(PhotoObserver::class);
         WorkoutCycle::observe(WorkoutCycleEventObserver::class);
-        Workout::observe(WorkoutEventObserver::class);
+        // Workout::observe(WorkoutEventObserver::class);
         MotivationalQuoteAuthor::observe(MotivationalQuoteAuthorObserver::class);
         ChatMessage::observe(ChatMessageObserver::class);
     }

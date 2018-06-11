@@ -5,6 +5,7 @@ import _get from 'lodash/get'
 import Dashboard from 'Components/Dashboard'
 import BigCalendar from 'Components/BigCalendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './style.scss'
 
 const mapStateToProps = (state) => {
 
@@ -22,7 +23,7 @@ class CalendarDashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.titleAccessor = this.titleAccessor.bind(this)
+    // this.titleAccessor = this.titleAccessor.bind(this)
     this.startAccessor = this.timeAccessor.bind(this,'start')
     this.endAccessor = this.timeAccessor.bind(this,'end')
 
@@ -37,17 +38,17 @@ class CalendarDashboard extends Component {
       <BigCalendar
         startAccessor={this.startAccessor}
         endAccessor={this.endAccessor}
-        titleAccessor={this.titleAccessor}
+        titleAccessor={'name'}
         events={workouts}/>
     </Dashboard.Content>
     </Dashboard>);
   }
 
-  titleAccessor(workout){
+  // titleAccessor(workout){
 
-    return _get(this.props.workoutTemplates,`${workout.workout_template_id}.name`)
+  //   return _get(this.props.workoutTemplates,`${workout.workout_template_id}.name`)
 
-  }
+  // }
 
   timeAccessor(path, event){
 

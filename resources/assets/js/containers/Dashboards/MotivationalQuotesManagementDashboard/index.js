@@ -12,6 +12,7 @@ import Table from "Components/Table";
 import { IconButtonBarColumn } from "Components/Table/BuiltInColumns";
 import Button from "Components/Button";
 import Label from "react-bootstrap/lib/Label";
+import CRUDTable from 'Components/CRUDTable';
 
 import { displayModal } from "Actions/modalActions";
 import {
@@ -56,7 +57,14 @@ class MotivationalQuotesManagementDashboard extends Component {
     return (
       <Dashboard>
         <Dashboard.Content >
-        <Table
+          <CRUDTable
+          pivotBy={["authorId"]}          
+          displayRowButtons={rowInfo => rowInfo.row.authorId !== 'null'}
+          onAdd={this.onAddButtonClick}
+          onDelete={this.onDeleteButtonClick}
+          onAggregatedDelete={this.onAuthorDeleteClick}
+          onEdit={this.openEditMotivationalQuoteModal}
+          data={isLoading ? [] : motivationalQuotes}
           collapseOnDataChange={false}
           loading={isLoading}
           columns={[
@@ -97,33 +105,11 @@ class MotivationalQuotesManagementDashboard extends Component {
                     return regexp.test(row.text)
                   }
                 },
-                IconButtonBarColumn({
-                  display: rowInfo => rowInfo.row.authorId !== 'null',
-                  iconButtons: [
-                    {
-                      name: "ion-edit",
-                      onClick: this.openEditMotivationalQuoteModal
-                    },
-                    {
-                      name: "ion-android-delete",
-                      onClick: this.onDeleteButtonClick,
-                      onAggregatedClick: this.onAuthorDeleteClick
-                    }
-                  ]
-                })
               ]
             }
           ]}
-          pivotBy={["authorId"]}
-          topButtons={[
-            {
-              bsStyle: "primary",
-              iconName: "ion-android-add",
-              onClick: this.onAddButtonClick
-            }
-          ]}
-          data={isLoading ? [] : motivationalQuotes}
-        />
+          />
+
         </Dashboard.Content >
         
       </Dashboard>
