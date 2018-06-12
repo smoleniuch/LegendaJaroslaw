@@ -44,7 +44,7 @@ class NewsSidePanel extends Component {
     return (
       <SidePanel className='news-side-panel'>
 
-        <Panel bsStyle="primary">
+        <Panel >
           <Panel.Heading>Najbliższy Planowany Trening</Panel.Heading>
 
 

@@ -12,6 +12,7 @@ import RoundButton from "Components/RoundButton";
 import Authorization from "Containers/Helpers/Authorization";
 import SidePanel from 'Containers/SidePanels/NewsSidePanel'
 
+import { fetchPosts } from 'Actions/postActions'
 import { displayModal } from "Actions/modalActions";
 import "./style.scss";
 
@@ -23,13 +24,15 @@ const mapStateToProps = state => {
     posts: Object.values(state.post.posts).sort(
       (a, b) => new Date(b.created_at) - new Date(a.created_at)
     ),
+    lastPostChunk:state.post.lastPostChunk,
     filter: state.post.filter
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    displayAddNewPostModal: _ => dispatch(displayModal("AddNewPostContent"))
+    displayAddNewPostModal: _ => dispatch(displayModal("AddNewPostContent")),
+    fetchPosts: chunk => dispatch(fetchPosts(chunk)),
   };
 };
 
@@ -49,7 +52,14 @@ class NewsDashboard extends Component {
         <LatestImagesCarousel images={latestImages} />
         <div className="data-content">
         <SidePanel />
-        <Dashboard.Content>
+        <Dashboard.Content onScroll={(e)=>{
+          const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+          
+          if(bottom){
+            this.props.fetchPosts(this.props.lastPostChunk + 1)
+          }
+
+        }}>
 
           {posts.map(post => {
             return this.shouldDisplayPost(post) ? (

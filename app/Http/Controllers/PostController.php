@@ -69,6 +69,11 @@ class PostController extends Controller
         //
     }
 
+    public function getByChunk(Request $request, PostService $postService)
+    {
+        return response()->json($postService->getPostsByChunk($request->input('chunk')));
+    }
+
     /**
      * Update the specified resource in storage.
      *

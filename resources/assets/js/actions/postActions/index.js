@@ -85,3 +85,27 @@ export function addPost(data){
   }
 
 }
+
+export function fetchPosts(chunk){
+
+  return {
+
+    type:types.FETCH_POSTS_REQUEST,
+    payload:{
+
+      request:{
+       method:'post',
+       url:'/posts/chunk',
+       data:{chunk} 
+      },
+
+      notify:{
+        error:{message:'Wystąpił błąd w pobieraniu postów'}
+      }
+
+    }
+
+
+  }
+
+}

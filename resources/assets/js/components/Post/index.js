@@ -28,7 +28,8 @@ const Post = ({post}) => {
       <Panel.Body>
 
         <Content html={(new MarkdownConverter()).makeHtml(post.content)} />
-
+        
+        <div className="date text-right">{post.created_at}</div>
       </Panel.Body>
 
 

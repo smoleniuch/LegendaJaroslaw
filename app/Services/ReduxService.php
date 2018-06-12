@@ -30,8 +30,9 @@ class ReduxService
         'chat' => $this->getChatBranch(),
         'user' => $this->userService->getCurrentUserData(),
         'post' => [
-
-          'posts' => $this->postService->getAllPosts()
+          'lastPostChunk' => 0,
+          'isFetching' => false,
+          'posts' => $this->postService->getPostsByChunk(0)
 
         ],
         'motivationalQuote' => [
