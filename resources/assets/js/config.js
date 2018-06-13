@@ -1,5 +1,5 @@
 export default {
 
-  appURL:'http://legenda-jaroslaw.test'
+  appURL:'http://217.182.73.107'
 
 }
