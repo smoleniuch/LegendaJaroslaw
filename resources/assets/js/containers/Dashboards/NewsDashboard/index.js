@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { browserHistory } from "react-router";
 import moment from "moment";
 import _sortBy from "lodash/sortBy";
+import _throttle from 'lodash/throttle';
 
 import Dashboard from "Components/Dashboard";
 import Post from "Components/Post";
@@ -11,7 +12,7 @@ import Icon from "Components/Icon";
 import RoundButton from "Components/RoundButton";
 import Authorization from "Containers/Helpers/Authorization";
 import SidePanel from 'Containers/SidePanels/NewsSidePanel'
-
+import LoadingIndicator from 'Components/LoadingIndicator'
 import { fetchPosts } from 'Actions/postActions'
 import { displayModal } from "Actions/modalActions";
 import "./style.scss";
@@ -24,6 +25,7 @@ const mapStateToProps = state => {
     posts: Object.values(state.post.posts).sort(
       (a, b) => new Date(b.created_at) - new Date(a.created_at)
     ),
+    isFetching:state.post.isFetching,
     lastPostChunk:state.post.lastPostChunk,
     filter: state.post.filter
   };
@@ -41,6 +43,7 @@ class NewsDashboard extends Component {
     super(props);
 
     this.shouldDisplayPost = this.shouldDisplayPost.bind(this);
+    this.fetchPosts = _throttle(this.props.fetchPosts, 3000)
   }
   render() {
     var { posts, latestImages } = this.props;
@@ -52,21 +55,15 @@ class NewsDashboard extends Component {
         <LatestImagesCarousel images={latestImages} />
         <div className="data-content">
         <SidePanel />
-        <Dashboard.Content onScroll={(e)=>{
-          const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-          
-          if(bottom){
-            this.props.fetchPosts(this.props.lastPostChunk + 1)
-          }
-
-        }}>
+        <Dashboard.Content onScroll={this.onContentScroll}>
 
           {posts.map(post => {
             return this.shouldDisplayPost(post) ? (
               <Post key={post.id} post={post} />
             ) : null;
           })}
-
+            
+            <LoadingIndicator active={this.props.isFetching}  width={50} height={50}/>
           </Dashboard.Content>
           </div>
         <Authorization allowedRoles="coach">
@@ -82,6 +79,17 @@ class NewsDashboard extends Component {
         </Authorization>
       </Dashboard>
     );
+  }
+
+  onContentScroll = e => {
+
+      const bottom = e.target.scrollHeight - e.target.scrollTop < e.target.clientHeight + 200;
+      
+      if(bottom && !this.props.isFetching){
+        this.fetchPosts(this.props.lastPostChunk + 1)
+      }
+
+
   }
 
   shouldDisplayPost(post) {

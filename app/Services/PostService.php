@@ -12,9 +12,9 @@ class PostService
 
     public function getPostsByChunk($chunk = 1)
     {
-        $posts = Post::all()->sortByDesc('created_at')->chunk(5)->get($chunk);
+        $posts = Post::all()->sortByDesc('created_at')->chunk(10)->get($chunk);
       
-        return $posts?$posts:[];
+        return $posts?$posts:new \stdClass();
     }
 
     public function add($data)
