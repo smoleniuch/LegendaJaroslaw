@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'react-bootstrap/lib/image'
+import Image from 'react-bootstrap/lib/Image'
 import moment from 'moment'
 
 import Icon from 'Components/Icon';

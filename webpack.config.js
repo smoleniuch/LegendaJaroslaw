@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack')
 
+var inProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: path.resolve(__dirname, './resources/assets/js/index.js'),
   output: {
@@ -63,7 +65,7 @@ module.exports = {
 
   },
 
-  devtool: 'eval-source-map',
+  devtool: inProduction?'eval-source-map':false,
 
   resolve: {
 
