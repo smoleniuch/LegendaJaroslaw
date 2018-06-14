@@ -1,9 +1,12 @@
 var path = require('path');
 var webpack = require('webpack')
 
-var inProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
+
+module.exports = (env, argv) => {
+  var inProduction = argv.p ;
+  
+  return ({
   entry: path.resolve(__dirname, './resources/assets/js/index.js'),
   output: {
     filename: 'bundle.js',
@@ -65,7 +68,7 @@ module.exports = {
 
   },
 
-  devtool: inProduction?'eval-source-map':false,
+  devtool: !inProduction?'eval-source-map':false,
 
   resolve: {
 
@@ -92,4 +95,4 @@ module.exports = {
     }
 
   }
-};
+})};

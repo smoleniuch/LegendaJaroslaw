@@ -65,7 +65,7 @@ const middlewareConfig = {
 };
 
 const defaultClient = axios.create({
-  baseURL: config.appURL + "/api",
+  baseURL: window.location.hostname + "/api",
   responseType: ["json"],
   headers: {
     "X-CSRF-TOKEN": document
