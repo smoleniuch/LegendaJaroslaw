@@ -31,7 +31,7 @@ export function registerUser(data) {
 
     type: 'REGISTER_USER_REQUEST',
     payload: {
-
+      client:'web',      
       request: {
         url: '/register',
         method: 'post',
@@ -57,8 +57,9 @@ export function loginAttempt(email, password, rememberMe = true) {
 
     type: 'LOGIN_ATTEMPT_REQUEST',
     payload: {
+      client:'web',      
       request: {
-
+        
         method: 'post',
         url: '/login',
         data: {
@@ -83,6 +84,7 @@ export function logOut() {
 
     type: 'LOG_OUT',
     payload: {
+      client:'web',
       request: {
 
         method: 'post',
