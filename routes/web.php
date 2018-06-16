@@ -15,12 +15,14 @@ Route::get('/{section}', 'HomeController@index')->where(['section' => '.*']);
 
 
 
-Route::namespace('Auth')->group(function (){
+Route::namespace('Auth')->group(function () {
+    Route::post('/login', 'LoginController@authenticate');
 
-    Route::post('/login','LoginController@authenticate');
+    Route::post('/logout', 'LoginController@logout');
 
-    Route::post('/logout','LoginController@logout');
-
-    Route::post('/register','RegisterController@register');
-
+    Route::post('/register', 'RegisterController@register');
 });
+
+Route::get('/bundle.js', function () {
+    return response()->json(['test' => 1]);
+}) ;

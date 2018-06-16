@@ -1,8 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
+var _get = require('lodash/get')
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
-
-module.exports =  {
+module.exports = env => ({
 
     entry: path.resolve(__dirname, "./resources/assets/js/index.js"),
     output: {
@@ -11,9 +13,11 @@ module.exports =  {
     },
 
     plugins: [
-      new webpack.ProvidePlugin({
-        Promise: "bluebird"
-      }),
+      // new webpack.ProvidePlugin({
+      //   Promise: "bluebird"
+      // }),
+      new webpack.IgnorePlugin(/^\.\/locale/, /moment$/),
+      ... _get(env, 'analyzeBundle')? [new BundleAnalyzerPlugin()] : []
     ],
 
     module: {
@@ -72,5 +76,4 @@ module.exports =  {
           "resources/assets/js/postTemplates"
         )
       }
-    }
-};
+    }});

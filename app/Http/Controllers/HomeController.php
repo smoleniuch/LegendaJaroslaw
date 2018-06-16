@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ReduxService;
+use App\Helpers\BrowserAnalyzer;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        $reduxService = new ReduxService();
+        $preloadedState = $reduxService->getPreloadedState();
 
-      $reduxService = new ReduxService();
+        $bundlePath = BrowserAnalyzer::supportGzipCompression()?'bundle.js.gz':'bundle.js';
 
-      return view('welcome')->with('preloadedState',$reduxService->getPreloadedState());
-
+        return view('welcome')->with(compact('preloadedState','bundlePath'));
     }
 }

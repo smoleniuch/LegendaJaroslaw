@@ -10,6 +10,6 @@
     </head>
     <body>
       <div id="app"></div>
-      <script src="{{ asset('bundle.js') }}"></script>
+      <script src="{{ asset($bundlePath) }}"></script>
     </body>
 </html>

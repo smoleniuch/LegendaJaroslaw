@@ -9,6 +9,7 @@ import './style.scss'
  
 
 moment.locale('pl')
+console.log(moment.locale())
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );

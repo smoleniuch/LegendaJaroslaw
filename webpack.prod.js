@@ -3,9 +3,12 @@ var webpack = require("webpack");
 var merge = require("webpack-merge");
 var common = require("./webpack.common.js");
 
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin")
 
-module.exports = merge(common, {
+module.exports = (...args) => merge(common(...args), {
   mode: "production",
+  plugins:[new CompressionPlugin({
+      deleteOriginalAssets:true,
+  })],
   devtool: false
 });
