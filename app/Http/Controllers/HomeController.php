@@ -13,7 +13,7 @@ class HomeController extends Controller
         $reduxService = new ReduxService();
         $preloadedState = $reduxService->getPreloadedState();
 
-        $bundlePath = BrowserAnalyzer::supportGzipCompression()?'bundle.js.gz':'bundle.js';
+        $bundlePath = BrowserAnalyzer::supportGzipCompression()?asset('bundle.js.gz'):asset('bundle.js');
 
         return view('welcome')->with(compact('preloadedState','bundlePath'));
     }
