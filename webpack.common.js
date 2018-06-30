@@ -1,8 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
 var _get = require('lodash/get')
+
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
+  const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = env => ({
 
@@ -13,9 +15,7 @@ module.exports = env => ({
     },
 
     plugins: [
-      // new webpack.ProvidePlugin({
-      //   Promise: "bluebird"
-      // }),
+      new CompressionPlugin(),
       new webpack.IgnorePlugin(/^\.\/locale/, /moment$/),
       ... _get(env, 'analyzeBundle')? [new BundleAnalyzerPlugin()] : []
     ],

@@ -44,7 +44,7 @@ class AddNewWorkoutContent extends React.Component {
   render() {
 
     return (
-      <Content title="Dodaj Trening">
+      <Content title="Dodaj Treningi">
         <Body>
           <Form onSubmit={this.props.handleSubmit(this.handleSubmit)} >
             <Field

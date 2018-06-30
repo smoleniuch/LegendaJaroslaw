@@ -8,7 +8,7 @@ import {
 import ReactSelect from "react-select";
 import ReactSelectCreatable from "react-select/lib/Creatable";
 import DateTimeSpan from 'Components/DateTimeSpan';
-import { Field } from "redux-form";
+import { Field, clearFields } from "redux-form";
 import ClassNames from "classnames";
 import _findKey from "lodash/findKey";
 import _pick from "lodash/pick";
@@ -29,6 +29,10 @@ class FieldGroup extends Component {
       if(this.props.input.onChange){ this.props.input.onChange(this.props.defaultValue)}
 
     }
+  }
+  
+  componentDidUpdate(){
+
   }
 
   render() {
@@ -64,7 +68,7 @@ class FieldGroup extends Component {
       'toTimePickerProps',
     ]);
 
-    return <DateTimeSpan  {...props} {...this.props.input}/>
+    return <DateTimeSpan  {...props} {...this.props.input} ref={c => this.dateTimeSpanRef = c}/>
   }
   
   get getSelectElement() {
@@ -135,10 +139,14 @@ class FieldGroup extends Component {
 
     return _findKey(states, v => v) || null;
   }
+
 }
 
 FieldGroup.defaultProps = {
-  input:{}
+  input:{},
+  displayResetBtn:false,
 }
+
+export {ControlLabel}
 
 export default FieldGroup;

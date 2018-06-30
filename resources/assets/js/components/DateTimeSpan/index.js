@@ -65,6 +65,13 @@ class DateTimeSpan extends React.Component {
         })
     }
 
+    reset = () => {
+      this.props.onChange({
+          from:null,
+          to:null,
+      })
+    }
+
 }
 
 DateTimeSpan.defaultProps = {

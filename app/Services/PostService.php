@@ -14,7 +14,7 @@ class PostService
     {
         $posts = Post::all()->sortByDesc('created_at')->chunk(10)->get($chunk);
       
-        return $posts?$posts:new \stdClass();
+        return $posts?$posts->keyBy('id'):new \stdClass();
     }
 
     public function add($data)

@@ -1,21 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { browserHistory } from "react-router";
-import moment from "moment";
-import _sortBy from "lodash/sortBy";
 
-import { IconButtonBarColumn } from "Components/Table/BuiltInColumns";
 import Dashboard from "Components/Dashboard";
-import DashboardGrid from "Components/DashboardGrid";
-import WorkoutCard from "Components/cards/WorkoutCard";
-import Post from "Components/Post";
-import Table from "Components/Table";
-import Button from "Components/Button";
 import Label from "react-bootstrap/lib/Label";
 import CRUDTable from 'Components/CRUDTable';
-
+import SelectButtonDropdownBody from './components/SelectButtonDropdownBody'
 import { displayModal } from "Actions/modalActions";
-import { deleteWorkout } from "Actions/workoutActions";
+import { deleteWorkout, deleteWorkouts } from "Actions/workoutActions";
+import './style.scss'
 
 const mapStateToProps = state => {
   return {
@@ -29,6 +21,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   displayModal,
   deleteWorkout,
+  deleteWorkouts,
 };
 
 class TrainingsManagementDashboard extends Component {
@@ -41,7 +34,7 @@ class TrainingsManagementDashboard extends Component {
     var { posts } = this.props;
 
     return (
-      <Dashboard>
+      <Dashboard className="training-managment-dashboard">
       <Dashboard.Content>
 
 
@@ -49,7 +42,12 @@ class TrainingsManagementDashboard extends Component {
         onAdd={this.openAddNewWorkoutModal}
         onEdit={this.openEditWorkoutModal}
         onDelete={this.onDelete}
+        onBulkDelete={this.onBulkDelete}
+        onBulkEdit={this.onBulkEdit}
         data={this.props.workouts}
+        selectTable={true}
+        displayAdvancedSelectorBtn={true}
+        SelectorDropdownBody={SelectButtonDropdownBody}
         columns={[
           {
             Header:'Treningi',
@@ -92,6 +90,19 @@ class TrainingsManagementDashboard extends Component {
 
     this.props.displayModal('AddNewWorkoutContent')
 
+  }
+
+  onBulkDelete = selectedIds => {
+
+    this.props.displayModal("ConfirmationModalContent", {
+      question: `Czy chcesz usunąć ${selectedIds.length} wybranych treningów ?`,
+    afterConfirmPromiseGenerator:() => this.props.deleteWorkouts(selectedIds)
+  });
+
+  }
+  
+  onBulkEdit = selectedWorkoutIds => {
+    this.props.displayModal("BulkEditWorkoutContent", {selectedWorkoutIds});
   }
 
   onDelete = ({id}) => {
