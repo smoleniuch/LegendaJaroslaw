@@ -9,23 +9,38 @@ import InputField from './InputField'
 class DateTime extends Component {
     render() {
 
-        var { onChange, name, ...props } = this.props
+        var { onChange, name, inputProps, ...props } = this.props
 
         return (
-            <Datetime onChange={this.onChange} {...props}/>
+            <Datetime onChange={this.onChange} inputProps={this.mergedInputProps(inputProps)} {...props}/>
         );
     }
 
     onChange = (v) => {
 
+        if(v === null){
+            return this.props.onChange(null, this.props.name)
+        }
+
         var outputFormat = `${this.props.dateFormat?this.props.dateFormat:''} ${this.props.timeFormat?this.props.timeFormat:''}`.replace(/^ | $/,'')
         
         this.props.onChange(v.format(outputFormat), this.props.name)
+    }
+
+    mergedInputProps = inputProps => ({
+     ...inputProps,
+     removable:this.props.removable,
+     resetValue:this.resetValue,
+    })
+    
+    resetValue = _ => {
+        this.onChange(null)
     }
 }
 
 DateTime.defaultProps = {
     editable:true,
+    removable:false,
     onChange:() => {},
     timeFormat:'HH:mm:ss',
     dateFormat:'YYYY-MM-DD',

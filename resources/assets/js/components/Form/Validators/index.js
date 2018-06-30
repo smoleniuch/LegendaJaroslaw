@@ -2,8 +2,8 @@ import _isFunction from 'lodash/isFunction'
 import _isString from 'lodash/isString'
 import _mapValues from 'lodash/mapValues'
 import _isArray from 'lodash/isArray'
-
-
+import _get from 'lodash/get'
+import moment from 'moment'
 
 
 export const required = v => {
@@ -79,9 +79,27 @@ export function validateGenerator(formValidations = {}){
 
 }
 
-// export function runValidation(values, formValidations, props){
-//
-//
-//
-//
-// }
+export function isValidTimeSpan(value){
+
+  var from = moment(_get(value,'from'), 'HH:mm')
+  var to = moment(_get(value,'to'), 'HH:mm')
+ 
+  return from.isValid() && to.isValid() && from.isBefore(to)? undefined : 'Nieprawidłowy przedział'
+  
+
+}
+
+export function isValidTimeSpanOptional(value){
+
+  var fromTimeInput = _get(value,'from')
+  var toTimeInput = _get(value, 'to')
+
+  var from = moment(fromTimeInput, 'HH:mm')
+  var to = moment(toTimeInput, 'HH:mm')
+
+  if (!fromTimeInput && !toTimeInput){return undefined}
+
+  return from.isValid() && to.isValid() && from.isBefore(to)? undefined : 'Nieprawidłowy przedział'
+  
+
+}

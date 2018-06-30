@@ -33,6 +33,18 @@ export default function workoutReducer(state = initialState, action){
       workouts
     }
 
+    case types.DELETE_WORKOUTS_REQUEST_SUCCESS:
+
+    var workoutsIds = action.payload.data.success || [];
+    var workouts = {...state.workouts}
+
+    for(var id of workoutsIds){ delete workouts[id]}
+
+    return {
+      ...state,
+      workouts
+    }
+
     case types.ADD_WORKOUTS_REQUEST_SUCCESS:
 
     var workouts = action.payload.data
@@ -45,6 +57,17 @@ export default function workoutReducer(state = initialState, action){
       }
     }
 
+    case types.EDIT_WORKOUTS_REQUEST_SUCCESS:
+
+    var workouts = action.payload.data.success
+
+    return {
+      ...state,
+      workouts:{
+        ...state.workouts,
+        ...workouts
+      }
+    }
   }
 
   return state

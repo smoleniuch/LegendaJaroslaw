@@ -1,3 +1,5 @@
+import _get from "lodash/get";
+
 import * as types from "./types";
 
 export function addWorkouts(data){
@@ -69,6 +71,66 @@ export function deleteWorkout(id) {
       request: {
         url: `/workouts/${id}`,
         method: "delete",
+      }
+    }
+  };
+}
+
+export function deleteWorkouts(ids = []) {
+  return {
+    type: types.DELETE_WORKOUTS_REQUEST,
+    payload: {
+      request: {
+        url: `/workouts/delete`,
+        method: "post",
+        data:{
+          ids,
+        }
+      },
+      notify:{
+        success:{
+          message:(r) => `Pomyślnie usunięto ${_get(r,'data.success.length')} treningi`,
+          display:(r) => _get(r,'data.success.length', 0) > 0,
+        },
+        error:{
+          message:(r) => `Usuwanie ${_get(r,'data.error.length')} treningów nie powiodło się`
+        }
+
+      }
+    }
+  };
+}
+
+export function editWorkouts(values, ids = []) {
+  return {
+    type: types.EDIT_WORKOUTS_REQUEST,
+    payload: {
+      request: {
+        url: `/workouts/bulk-edit`,
+        method: "post",
+        data:{
+          values,
+          ids
+        }
+      },
+      notify:{
+        success:{
+          message:(r) =>{ 
+
+            var successfullEdits = Object.keys(_get(r,'data.success', {})).length
+
+            return `Pomyślnie zedytowano ${successfullEdits} ${successfullEdits === 1?'trening':'treningów'}`
+          },
+        },
+        error:{
+          message:(r) =>{ 
+
+            var unsuccessfullEdits = _get(r,'data.error.length', ids.length)
+
+            return `Edycja ${unsuccessfullEdits} ${unsuccessfullEdits === 1?'treningu':'treningów'} zakończyła się niepowodzeniem`
+          },
+        }
+
       }
     }
   };

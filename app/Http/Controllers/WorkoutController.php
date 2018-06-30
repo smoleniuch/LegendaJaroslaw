@@ -95,4 +95,16 @@ class WorkoutController extends Controller
     {
         return response()->json($workout->delete());
     }
+
+    public function delete(Request $request){
+
+       return response()->json($this->workoutEditorService->delete($request->input('ids'))) ;
+
+    }
+
+    public function bulkEdit(Request $request){
+
+        return response()->json($this->workoutEditorService->bulkEdit($request->all())) ;
+ 
+     }
 }

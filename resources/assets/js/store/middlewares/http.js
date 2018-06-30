@@ -1,6 +1,8 @@
 import axios from "axios";
 import _get from "lodash/get";
+import _has from "lodash/has";
 import _set from "lodash/set";
+import _isFunction from "lodash/isFunction";
 import _cloneDeep from "lodash/cloneDeep";
 import config from "Config";
 import { successNotification, errorNotification } from "Actions/notificationSystemActions";
@@ -30,31 +32,38 @@ const middlewareConfig = {
     ],
     response: [
       {
-        success: function({ getState, dispatch, getSourceAction }, req) {
-          var action = getSourceAction(req.config); //contains information about request object
-          var notificationMsg = _get(action, "payload.notify.success");
+        success: function({ getState, dispatch, getSourceAction }, res) {
+          var action = getSourceAction(res.config); //contains information about request object
+          var successMsg = _get(action, "payload.notify.success.message");
+          var displaySuccessMsg = _get(action, "payload.notify.success.display", () => true);
+          var errorMsg = _get(action, "payload.notify.error.message");
 
           if(action.payload.scope){
             dispatch(removeRequest(action.payload.scope))
           }
 
-          if (notificationMsg) {
-            dispatch(successNotification(notificationMsg));
+          if (successMsg && displaySuccessMsg(res)) {
+            dispatch(successNotification({message:_isFunction(successMsg)?successMsg(res):successMsg}));
           }
 
-          return req;
+          if (errorMsg && _has(res,'data.error')) {
+            dispatch(errorNotification({message:_isFunction(errorMsg)?errorMsg(res):errorMsg}));
+          }
+
+
+          return res;
         },
         error: function({ getState, dispatch, getSourceAction }, error) {
 
           var action = getSourceAction(error.config); //contains information about request object
-          var notificationMsg = _get(action, "payload.notify.error");
+          var errorMsg = _get(action, "payload.notify.error.message");
 
           if(action.payload.scope){
             dispatch(removeRequest(action.payload.scope))
           }
 
-          if (notificationMsg) {
-            dispatch(errorNotification(notificationMsg));
+          if (errorMsg) {
+            dispatch(errorNotification({message:_isFunction(errorMsg)?errorMsg(error):errorMsg}));
           }
 
           throw error;
