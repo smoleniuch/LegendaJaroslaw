@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
-      $schedule->call('App\Services\MotivationalQuoteService@shuffleQuoteOfTheDay')->dailyAt('17:00');
+      $schedule->call('App\Services\MotivationalQuoteService@shuffleQuoteOfTheDay')->daily();
 
     }
 
