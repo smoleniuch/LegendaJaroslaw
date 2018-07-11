@@ -41,7 +41,8 @@
 
     @include media('<mediumWidth'){
 
-      display:none;
+      flex-direction: column;
+      flex-flow: column-reverse;
 
     }
 
