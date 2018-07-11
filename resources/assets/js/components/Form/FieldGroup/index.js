@@ -19,6 +19,12 @@ import "./style.scss";
 class FieldGroup extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      value:this.props.defaultValue
+    }
+
+    this.lazyOnChange = _debounce(this.onChange,200)
   }
 
   componentDidMount(){
@@ -128,8 +134,8 @@ class FieldGroup extends Component {
     // var events = { ...this.props.input };
     var {onChange,value, ...restEvents} = this.props.input;
     props = Object.assign({}, props, {...restEvents} );
-
-    return <FormControl inputRef={c => this.formControlRef = c} {...props} />;
+    
+    return <FormControl onChange={this.fireLazyChange}  inputRef={c => this.formControlRef = c} {...props} />;
   }
 
   get validationState() {
@@ -139,7 +145,19 @@ class FieldGroup extends Component {
 
     return _findKey(states, v => v) || null;
   }
+  
+  fireLazyChange = e => {
+    let value = e.target.value
 
+    this.lazyOnChange(value)
+  }
+
+  onChange = value => {
+
+    var onChange = _get(this.props,'input.onChange', () => {})
+
+    onChange(value)
+  }
 }
 
 FieldGroup.defaultProps = {

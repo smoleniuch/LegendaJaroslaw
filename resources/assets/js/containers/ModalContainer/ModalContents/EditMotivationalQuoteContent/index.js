@@ -83,7 +83,7 @@ class UpdateMotivationalQuoteContent extends React.Component {
             )}
 
             <FieldGroup
-              value={this.state.quoteText}
+              defaultValue={this.state.quoteText}
               input={{ onChange: this.onQuoteTextChange }}
               name="quote"
               label="Cytat"
@@ -132,8 +132,8 @@ class UpdateMotivationalQuoteContent extends React.Component {
     this.setState({ selectedAuthor });
   };
 
-  onQuoteTextChange = e => {
-    this.setState({ quoteText: e.target.value });
+  onQuoteTextChange = quoteText => {
+    this.setState({ quoteText });
   };
 
   updateQuote = () => {
