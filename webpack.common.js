@@ -1,23 +1,31 @@
 var path = require("path");
 var webpack = require("webpack");
 var _get = require('lodash/get')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
   const CompressionPlugin = require("compression-webpack-plugin")
 
+
+const publicPath = path.resolve(__dirname, "public")
+const storagePath = path.resolve(__dirname, "storage/app/public")
+  
 module.exports = env => ({
 
     entry: path.resolve(__dirname, "./resources/assets/js/index.js"),
     output: {
       filename: "bundle.js",
-      path: path.resolve(__dirname, "public")
+      path: publicPath
     },
 
     plugins: [
       new CompressionPlugin(),
       new webpack.IgnorePlugin(/^\.\/locale/, /moment$/),
-      ... _get(env, 'analyzeBundle')? [new BundleAnalyzerPlugin()] : []
+      ... _get(env, 'analyzeBundle')? [new BundleAnalyzerPlugin()] : [],
+      new CopyWebpackPlugin([
+        {from:path.resolve(__dirname,'resources/assets/images'), to:`${publicPath}/assets/images` }
+      ]),
     ],
 
     module: {

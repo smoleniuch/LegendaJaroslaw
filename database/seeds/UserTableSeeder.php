@@ -22,6 +22,15 @@ class UserTableSeeder extends Seeder
 
         ]);
 
+        $user2 = User::create([
+
+            'password' => Hash::make('andrewgolota'),
+            'email' => 'trener@gmail.com',
+            'name' => 'Andrew'
+  
+          ]);
+
         $user->roles()->attach(UserRole::where('name', 'coach')->first());
+        $user2->roles()->attach(UserRole::where('name', 'coach')->first());
     }
 }
