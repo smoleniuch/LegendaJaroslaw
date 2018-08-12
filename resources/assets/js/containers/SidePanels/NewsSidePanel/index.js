@@ -43,7 +43,7 @@ class NewsSidePanel extends Component {
 
     return (
       <SidePanel className='news-side-panel'>
-
+        <SidePanel.Content>
         <Panel >
           <Panel.Heading>Najbliższy Planowany Trening</Panel.Heading>
 
@@ -66,7 +66,17 @@ class NewsSidePanel extends Component {
             {/*
           <SidePanelNavigator data={posts} />
           */}
-
+          </SidePanel.Content>
+<div >
+          <div style={{display:'flex',marginTop:'auto', width:'100%'}}>
+          <div style={{width:'100%',flexGrow:1}}>
+          <img style={{width:'100%',flexGrow:1}} src="/assets/images/ali-face.png" />
+          </div>
+          <div style={{width:'100%',flexGrow:1}}>
+          <img style={{width:'100%',flexGrow:1}} src="/assets/images/frazier-face.png" />
+          </div>
+          </div>
+</div>
       </SidePanel>
     );
   }

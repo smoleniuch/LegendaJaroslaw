@@ -5,7 +5,7 @@ import './style.scss'
 
 const Content = ({children, ...props}) => {
 
-  return <div className="content" {...props}>{children}</div>
+  return <div className="dashboard-content" {...props}>{children}</div>
 
 }
 

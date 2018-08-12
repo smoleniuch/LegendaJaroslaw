@@ -3,6 +3,8 @@ import classNames from 'classnames'
 
 import './style.scss'
 
+const Content = ({children}) => <div className="content">{children}</div>
+
 class SidePanel extends Component {
 
   render() {
@@ -19,5 +21,7 @@ class SidePanel extends Component {
   }
 
 }
+
+SidePanel.Content = Content
 
 export default SidePanel;
