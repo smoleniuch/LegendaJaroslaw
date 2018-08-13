@@ -18,6 +18,10 @@ use App\Observers\GalleryAlbumObserver;
 use App\Observers\MotivationalQuoteAuthorObserver;
 use App\Observers\ChatMessageObserver;
 
+use App\Services\GalleryService;
+use Intervention\Image\ImageManager;
+use App\Services\ReduxService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -42,5 +46,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(GalleryService::class, function ($app) {
+            return new GalleryService(new ImageManager());
+        });
+
+        $this->app->bind(ReduxService::class, function ($app) {
+            return new ReduxService($app->make(GalleryService::class));
+        });
     }
 }

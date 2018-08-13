@@ -42,7 +42,7 @@ class AlbumCard extends Component {
                   height: "50%"
                 }}
               >
-                <Image width={80} height={80}  src={image.original} />
+                <Image width={80} height={80}  src={image.thumbnail} />
               </div>
             ))}
           </div>

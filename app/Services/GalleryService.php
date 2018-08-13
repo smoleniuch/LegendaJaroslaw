@@ -6,9 +6,16 @@ use App\GalleryAlbum;
 use App\Photo;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 
 class GalleryService
 {
+
+    public function __construct(ImageManager $imageManager){
+        $this->imageManager = $imageManager;
+
+    }
+
     public function getMainGallery()
     {
         $gallery = [
@@ -41,20 +48,25 @@ class GalleryService
         return $photosData->map(function ($photoData) use ($galleryAlbum, $photoFiles) {
             $photoData = collect($photoData);
             $photoFile = $photoFiles[$photoData->get('imageFileId')];
-            // dd($photoFile);
-            $photoFilePath = $photoFile->store('public/gallery/pictures');
-            preg_match('/[^\/]+$/', $photoFilePath, $match);
+
+            $photoPublicFilePath = Storage::url($photoFile->store('public/gallery/pictures'));
+            preg_match('/[^\/]+$/', $photoPublicFilePath, $match);
             $fileName = $match[0];
             
-            $imageSize = getimagesize(storage_path('app/public/gallery/pictures/' . $fileName));
+            $storageFilePath = storage_path('app/public/gallery/pictures/' . $fileName);
+            $imageSize = getimagesize($storageFilePath);
 
             $widthToHeightRatio = $imageSize[0] / $imageSize[1];
-            $photoFileURL = Storage::url($photoFilePath);
+
+            $thumbnailPaths = $this->makeThumbnail($storageFilePath, ["widthToHeightRatio" => $widthToHeightRatio]);
+
+            
             $photo = new Photo($photoData->only(['name','description'])->toArray());
-            $photo->original =  $photoFileURL;
-            $photo->thumbnail =  $photoFileURL;
+            $photo->original =  $photoPublicFilePath;
+            $photo->thumbnail =  $thumbnailPaths['publicPath'];
             $photo->width_to_height_ratio = $widthToHeightRatio;
-            $photo->storage_path =  $photoFilePath;
+            $photo->storage_path =  $storageFilePath;
+            $photo->thumbnail_storage_path =  $thumbnailPaths['storagePath'];
             
             $photo->galleryAlbum()->associate($galleryAlbum);
             $photo->save();
@@ -148,4 +160,32 @@ class GalleryService
 
         ];
     }
+
+    public function makeThumbnail($filePath, array $config = []){
+
+        $baseConfig = [
+            "widthToHeightRatio" => 1,
+            "width" => 200,
+            "fileOutputFolder" => storage_path('app/public/gallery/pictures/'),
+            "publicFolderPath" => Storage::url('gallery/pictures/')
+        ];
+
+        $config = array_merge($baseConfig, $config);
+        
+        $fileName = explode('/', $filePath);
+        $fileName = array_pop($fileName);
+
+        $thumbnailFileName = 'thumbnail-' . $fileName;
+        $fileOutputPath = $config['fileOutputFolder'] . $thumbnailFileName;
+
+        $thumbnail = $this->imageManager->make($filePath)
+                          ->resize($config['width'], $config['width'] / $config['widthToHeightRatio'])
+                          ->save($fileOutputPath);
+
+        return [
+            "publicPath" => $config["publicFolderPath"] . $thumbnailFileName,
+            "storagePath" => $fileOutputPath,
+        ];
+    }
+
 }

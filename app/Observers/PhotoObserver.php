@@ -27,5 +27,6 @@ class PhotoObserver
     {
 
         Storage::delete($photo->storage_path);
+        Storage::delete($photo->thumbnail_storage_path);
     }
 }

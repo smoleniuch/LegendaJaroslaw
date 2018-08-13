@@ -50,7 +50,7 @@ const LatestImagesCarousel = ({images}) => {
 
                 return (
                 
-                <img onClick={e => console.log(e)} style={{height:75, width:75 * image.width_to_height_ratio}}  src={image.original} />
+                <img onClick={e => console.log(e)} style={{height:75, width:75 * image.width_to_height_ratio}}  src={image.thumbnail} />
                 
                 )
 

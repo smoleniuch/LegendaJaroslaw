@@ -8,9 +8,9 @@ use App\Helpers\BrowserAnalyzer;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(ReduxService $reduxService)
     {
-        $reduxService = new ReduxService();
+
         $preloadedState = $reduxService->getPreloadedState();
 
         $bundlePath = BrowserAnalyzer::supportGzipCompression()?asset('bundle.js.gz'):asset('bundle.js');

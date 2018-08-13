@@ -168,6 +168,7 @@ return [
          * Package Service Providers...
          */
         GrahamCampbell\Markdown\MarkdownServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */

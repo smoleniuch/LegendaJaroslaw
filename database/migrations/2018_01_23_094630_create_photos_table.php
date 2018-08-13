@@ -18,6 +18,7 @@ class CreatePhotosTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('storage_path');
+            $table->string('thumbnail_storage_path');
             $table->string('original');
             $table->string('thumbnail');
             $table->float('width_to_height_ratio', 8, 2);

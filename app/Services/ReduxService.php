@@ -15,12 +15,12 @@ use Underscore\Types\Parse;
 
 class ReduxService
 {
-    public function __construct()
+    public function __construct(GalleryService $galleryService)
     {
         $this->userService = new UserService();
         $this->postService = new PostService();
         $this->motivationalQuoteService = new MotivationalQuoteService();
-        $this->galleryService = new GalleryService();
+        $this->galleryService = $galleryService;
         $this->workoutFetchingService = new WorkoutFetchingService();
     }
 

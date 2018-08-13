@@ -19,7 +19,7 @@ class PhotoCard extends Component {
       <Card className="photo-card" onClick={this.openGalleryInspectorModal} {...props}>
         <Card.Body style={{width:'100%',height:'auto'}}>
 
-          <img style={{width:'100%',height:'auto'}} src={photo.original} />
+          <img style={{width:'100%',height:'auto'}} src={photo.thumbnail} />
         {/* <div className="text-center">{photo.name}</div> */}
           
         </Card.Body>
